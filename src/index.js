@@ -1,1 +1,13 @@
 import './style.css';
+require("svg-url-loader!./HTML5_Badge.svg");
+require("svg-url-loader!./CSS3_logo.svg");
+require("svg-url-loader!./javascript.svg");
+require("svg-url-loader!./webpack-icon.svg");
+require("svg-url-loader!./jest-js-icon.svg");
+require("svg-url-loader!./React-icon.svg");
+require("svg-url-loader!./nodejs-icon-svgrepo-com.svg");
+require("svg-url-loader!./Git_icon.svg");
+require("svg-url-loader!./mongodb-icon.svg");
+require("svg-url-loader!./solidity-svgrepo-com.svg");
+require("svg-url-loader!./truffle-seeklogo.com 2.svg");
+require("svg-url-loader!./hardhat-seeklogo.com.svg");

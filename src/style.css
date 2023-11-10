@@ -43,7 +43,6 @@ html{
 
 #hero{
     display: grid;
-    grid-template-rows: 60% 40%;
 }
 
 .hero-card{
@@ -51,7 +50,7 @@ html{
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-rows: 65% 35%;
+    grid-template-rows: 35% 15% 50%;
 }
 
 .hero-text{
@@ -199,6 +198,94 @@ html{
     align-items: center;
     /*grid-template-columns: repeat(11, 1fr);*/
 }
+
+.tech-stack-icon{
+    height: 80px;
+}
+
+#html-icon {
+    background: url("../src/HTML5_Badge.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #css-icon {
+    background: url("../src/CSS3_logo.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #js-icon {
+    background: url("../src/javascript.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #webpack-icon {
+    background: url("../src/webpack-icon.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #jest-icon {
+    background: url("../src/jest-js-icon.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #react-icon {
+    background: url("../src/React-icon.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #node-icon {
+    background: url("../src/nodejs-icon-svgrepo-com.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #git-icon {
+    background: url("../src/Git_icon.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #mongodb-icon {
+    background: url("../src/mongodb-icon.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #solidity-icon {
+    background: url("../src/solidity-svgrepo-com.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #truffle-icon {
+    background: url("../src/truffle-seeklogo.com 2.svg");
+    height: 3em;
+    width: 3em;
+    background-size: cover;
+  }
+
+  #hardhat-icon {
+    background: url("../src/hardhat-seeklogo.com.svg");
+    height: 2em;
+    width: 3em;
+    background-size: cover;
+  }
 
 /* desktop stuff */
 @media (hover: hover)
