@@ -142,7 +142,7 @@ html{
     opacity: 0;
     position: relative;
     transform: translateY(3rem);
-    animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2.5s) forwards;
+    animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
     color: var(--color-2);
     text-decoration-style: none;
     font-size: x-large;
@@ -190,6 +190,8 @@ html{
 
 .scroller{
     max-width: fit-content;
+    opacity: 0;
+    animation: fadeInButton 8s ease calc(var(--typewriterSpeed) + 3.5s) forwards;
 }
 
 .scroller[data-animated=true]{
