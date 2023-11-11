@@ -11,6 +11,8 @@
     --typewriterSpeed: 5s;
     --typewriterCharacters: 27;
     --border-radius: 0.7em;
+    --tech-stack-icon-height: 4em;
+    --tech-stack-icon-width: 4em;
     background-color: var(--color-1);
     color: var(--color-2);
   }
@@ -186,104 +188,140 @@ html{
     transition: opacity 100ms linear;
 }
 
-.tech-stack-carousel-card{
-    display: grid;
-    justify-content: center;
-    align-items: center;
+.scroller{
+    max-width: fit-content;
+}
+
+.scroller[data-animated=true]{
+    overflow: hidden;
+    mask: linear-gradient(
+        90deg, 
+        transparent, 
+        white 20%,
+        white 80%,
+        transparent
+        );
+    -webkit-mask: linear-gradient(
+        90deg, 
+        transparent, 
+        white 20%,
+        white 80%,
+        transparent
+        );;
+}
+
+.scroller[data-animated=true] .tech-stack-carousel-list{
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_scroll-duration, 40s) var(--_scroll-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"]{
+    --_scroll-direction: reverse;
+}
+
+.scroller[data-duration="fast"]{
+    --_scroll-duration: 10s;
+}
+
+@keyframes scroll {
+    to{
+        transform: translate(calc(-50% + 0.75rem));
+    }
 }
 
 .tech-stack-carousel-list{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    /*grid-template-columns: repeat(11, 1fr);*/
+    padding-block: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .tech-stack-icon{
-    height: 80px;
+    height: 10rem;
 }
 
 #html-icon {
     background: url("../src/HTML5_Badge.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #css-icon {
     background: url("../src/CSS3_logo.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #js-icon {
     background: url("../src/javascript.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #webpack-icon {
     background: url("../src/webpack-icon.svg");
-    height: 3em;
-    width: 3em;
+    height: calc(var(--tech-stack-icon-height) + 0.5rem);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #jest-icon {
     background: url("../src/jest-js-icon.svg");
-    height: 3em;
-    width: 3em;
+    height: calc(var(--tech-stack-icon-height) + 0.5rem);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #react-icon {
     background: url("../src/React-icon.svg");
-    height: 3em;
-    width: 3em;
+    height: calc(var(--tech-stack-icon-height) - 0.5rem);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #node-icon {
     background: url("../src/nodejs-icon-svgrepo-com.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #git-icon {
     background: url("../src/Git_icon.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #mongodb-icon {
     background: url("../src/mongodb-icon.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #solidity-icon {
     background: url("../src/solidity-svgrepo-com.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #truffle-icon {
     background: url("../src/truffle-seeklogo.com 2.svg");
-    height: 3em;
-    width: 3em;
+    height: var(--tech-stack-icon-height);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #hardhat-icon {
     background: url("../src/hardhat-seeklogo.com.svg");
-    height: 2em;
-    width: 3em;
+    height: calc(var(--tech-stack-icon-height) - 1.25rem);
+    width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
