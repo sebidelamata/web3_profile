@@ -11,8 +11,19 @@ require("svg-url-loader!./mongodb-icon.svg");
 require("svg-url-loader!./solidity-svgrepo-com.svg");
 require("svg-url-loader!./truffle-seeklogo.com 2.svg");
 require("svg-url-loader!./hardhat-seeklogo.com.svg");
+import movFile1 from './battleShipPreviewVideo.mov';
 
-// infinite scroller
+let project1Video = document.getElementById('project-video-card-1');
+let video1 = document.createElement('video');
+project1Video.appendChild(video1);
+video1.src = movFile1;
+video1.type = 'video/mp4';
+video1.autoplay = true;
+video1.loop = true;
+video1.muted = true;
+video1.playsInline = true;
+
+// infinite scroller for tech stack icons
 const scrollers = document.querySelectorAll('.scroller');
 // only apply to users who dont have reduce motion turned on
 const addAnimation = () => {

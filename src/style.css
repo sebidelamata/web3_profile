@@ -2,17 +2,23 @@
 :root {
     margin: 0;
     padding: 0;
-    font-family: "Roboto";
+    font-family: 'Roboto Mono', monospace;
     line-height: 1.5;
     text-decoration: none;
     --color-1: rgb(10, 6, 37);
     --color-2: rgb(181, 194, 202);
     --color-3: rgb(232, 189, 110);
+    --color-4: rgb(10, 10, 21);
     --typewriterSpeed: 5s;
     --typewriterCharacters: 27;
     --border-radius: 0.7em;
     --tech-stack-icon-height: 4em;
     --tech-stack-icon-width: 4em;
+    --num-project-cards: 4;
+    --project-card-height: 100vh;
+    --project-card-top-padding: 1.5em;
+    --project-card-margin: 4vw;
+    --name-block-2-start-time: 1.7s;
     background-color: var(--color-1);
     color: var(--color-2);
   }
@@ -33,10 +39,13 @@
 
   ul {
     list-style-type: none;
+    padding-left: 0;
   }
 
 body{
     display: grid;
+    align-items: center;
+    justify-content: center;
 }
 
 html{
@@ -45,6 +54,8 @@ html{
 
 #hero{
     display: grid;
+    height:100vh;
+    grid-template-rows: 30% 10% 60%;
 }
 
 .hero-card{
@@ -52,12 +63,14 @@ html{
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-rows: 35% 15% 50%;
+    grid-template-rows: 35% 15%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .hero-text{
     display: grid;
-    grid-template-rows: 55% 45%;
+    grid-template-rows: 35% 65%;
     gap: 15%;
     justify-content: center;
     align-items: center;
@@ -68,11 +81,47 @@ html{
     align-items: center;
     justify-content: center;
     font-size: xx-large;
-    padding: 24px;
+    padding: 0.5em;
     border-radius: var(--border-radius);
     border-width: 1px;
     border-color: var(--color-2);
     border-style: solid;
+    gap: 0.5em;
+}
+
+#hero-intro-name-block-1{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    text-align: right;
+}
+
+#hero-intro-name-block-1-inner{
+    display: grid;
+    grid-template-columns: max-content max-content;
+    text-align: right;
+    justify-content: right;
+}
+
+#hero-intro-name-block-1-inner-1{
+    opacity: 0;
+    animation: fadeInButton 2s ease 0s forwards;
+}
+
+#hero-intro-name-block-1-inner-2{
+    opacity: 0;
+    animation: fadeInButton 2s ease 0.7s forwards;
+}
+
+#hero-intro-name-block-2{
+    display: grid;
+    opacity: 0;
+    grid-template-columns: 100% 0%;
+    text-align: left;
+    animation: fadeInButton 2s ease var(--name-block-2-start-time) forwards;
+}
+
+#name-highlight{
+    color: var(--color-3);
 }
 
 .hero-intro-title-card{
@@ -86,7 +135,7 @@ html{
     display: grid;
     align-items: center;
     justify-content: center;
-    font-size: x-large;
+    font-size: 140%;
     position: relative;
     place-content: center;
     text-align: center;
@@ -103,12 +152,12 @@ html{
 }
 .hero-intro-title::before{
     background-color: var(--color-1);
-    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) 1s forwards;
+    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) calc(2s + var(--name-block-2-start-time)) forwards;
 }
 .hero-intro-title::after{
     width: .125em;
     background-color: var(--color-2);
-    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) 1s forwards,
+    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) calc(2s + var(--name-block-2-start-time)) forwards,
         blink 530ms steps(var(--typewriterCharacters)) infinite;
 }
 
@@ -142,7 +191,7 @@ html{
     opacity: 0;
     position: relative;
     transform: translateY(3rem);
-    animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
+    animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s + var(--name-block-2-start-time)) forwards;
     color: var(--color-2);
     text-decoration-style: none;
     font-size: x-large;
@@ -188,10 +237,14 @@ html{
     transition: opacity 100ms linear;
 }
 
+#scroll-symbol{
+    font-size: 150%;
+}
+
 .scroller{
     max-width: fit-content;
     opacity: 0;
-    animation: fadeInButton 8s ease calc(var(--typewriterSpeed) + 3.5s) forwards;
+    animation: fadeInButton 8s ease calc(var(--typewriterSpeed) + 3s + var(--name-block-2-start-time)) forwards;
 }
 
 .scroller[data-animated=true]{
@@ -238,6 +291,8 @@ html{
     gap: 1rem;
     flex-wrap: wrap;
 }
+
+
 
 .tech-stack-icon{
     height: 10rem;
@@ -346,4 +401,80 @@ html{
         opacity: 1;
     }
 
+}
+
+/* Projects section */
+
+#projects{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(var(--num-project-cards), var(--project-card-height));
+    gap: var(--project-card-margin);
+    padding-bottom: calc(var(--num-project-cards) * var(--project-card-top-padding));
+    margin-bottom: var(--project-card-margin);
+}
+
+#projects-title{
+    font-size: x-large;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-2);
+    text-decoration-style: none;
+    font-size: xx-large;
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
+        0 0 0.25em var(--color-2);
+}
+
+#project-card-1{
+    --index: 1;
+}
+#project-card-2{
+    --index: 2;
+}
+#project-card-3{
+    --index: 3;
+}
+#project-card-4{
+    --index: 4;
+}
+
+.project-card{
+    position: sticky;
+    background-color: var(--color-1);
+    border-radius: var(--border-radius);
+    opacity: 0.95;
+    top: 0;
+    padding-top: calc(var(--index) * var(--project-card-top-padding));
+    box-shadow: 0 0 30px 0 var(--color-4);
+    height: var(--project-card-height);
+    display: grid;
+    grid-template-rows: max-content 1fr;
+}
+
+.project-description-card{
+    color: var(--color-2);
+    text-decoration-style: none;
+    font-size: large;
+    display: inline-block;
+    cursor: pointer;
+    border: var(--color-2) 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: var(--border-radius);
+
+    box-shadow: inset 0 0 0.5em 0 var(--color-2),
+        0 0 0.5em 0 var(--color-2);
+
+}
+
+#project-video-card-1 {
+  }
+
+video{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

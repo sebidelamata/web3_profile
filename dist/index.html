@@ -4,19 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebi de la Mata | Full-Stack Web3 Development</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+    >
 <script defer src="/runtime.bundle.js"></script><script defer src="/main.bundle.js"></script></head>
 <body>
     <section id="hero" class="hero">
         <div class="hero-card">
             <div class="hero-text">
-                <div class="hero-intro-name">Hi, I'm Sebi de la Mata</div>
+                <div class="hero-intro-name">
+                    <div id="hero-intro-name-block-1">
+                        <div></div>
+                        <div id="hero-intro-name-block-1-inner">
+                            <div id="hero-intro-name-block-1-inner-1">Hi, </div>
+                            <div id="hero-intro-name-block-1-inner-2">I'm</div>
+                        </div>
+                    </div>
+                    <div id="hero-intro-name-block-2">
+                        <div id="name-highlight"><strong>Sebi de la Mata</strong></div>
+                        <div></div>
+                    </div>
+                </div>
                 <div class="hero-intro-title-card">
                     <div></div>
                     <div class="hero-intro-title">Full-Stack Web3 Development</div>
                     <div></div>
                 </div>
             </div>
-            <div class="tech-stack-carousel-scroller scroller" data-duration="fast">
+            <div class="tech-stack-carousel-scroller scroller">
                 <ul class="tech-stack-carousel-list">
                     <li>
                         <div id="html-icon" class="tech-stack-icon"></div>
@@ -61,7 +76,7 @@
                 <button type="button" class="scroll-button">
                     <a href="#projects">
                         <span>Check Out My Work</span>
-                        <div>icon</div>
+                        <div id="scroll-symbol">&dHar;</div>
                     </a>
                 </button>
                 <div></div>
@@ -70,22 +85,23 @@
     </section>
     <div class="main">
         <div class="projects-list-card">
+            <div id="projects-title"><strong>Projects</strong></div>
             <ul class="projects-lists" id="projects">
-                <li class="project-card">
-                    <div class="project-description-card">
-                        <div class="project-description-title">Project Title</div>
+                <li class="project-card" id="project-card-1">
+                    <div class="project-description-card" id="project-description-card-1">
+                        <div class="project-description-title">Battleship</div>
                         <div class="project-description-content">
-                            A short description of the project. Just a few sentences should be enought to describe this.
+                            A vanilla Javascript-based game of battleship using TDD and Jest as well as Webpack.
                         </div>
                         <div class="project-card-footer">
-                            <button type="button" class="live-app-link">Live Application</button>
-                            <button type="button" class="repository-link">Github</button>
+                            <button type="button" class="live-app-link"><a href="https://sebidelamata.github.io/battleship/" target="_blank">Live Application</a></button>
+                            <button type="button" class="repository-link"><a href="https://github.com/sebidelamata/battleship" target="_blank">Github</a></button>
                         </div>
                     </div>
-                    <div class="project-video-card">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-1"></div>
                 </li>
-                <li>
-                    <div class="project-description-card">
+                <li class="project-card" id="project-card-2">
+                    <div class="project-description-card" id="project-description-card-2">
                         <div class="project-description-title">Project Title</div>
                         <div class="project-description-content">
                             A short description of the project. Just a few sentences should be enought to describe this.
@@ -95,10 +111,10 @@
                             <button type="button" class="repository-link">Github</button>
                         </div>
                     </div>
-                    <div class="project-video-card">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-2">A video preview will go here</div>
                 </li>
-                <li>
-                    <div class="project-description-card">
+                <li class="project-card" id="project-card-3">
+                    <div class="project-description-card" id="project-description-card-3">
                         <div class="project-description-title">Project Title</div>
                         <div class="project-description-content">
                             A short description of the project. Just a few sentences should be enought to describe this.
@@ -108,10 +124,10 @@
                             <button type="button" class="repository-link">Github</button>
                         </div>
                     </div>
-                    <div class="project-video-card">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-3">A video preview will go here</div>
                 </li>
-                <li>
-                    <div class="project-description-card">
+                <li class="project-card" id="project-card-4">
+                    <div class="project-description-card" id="project-description-card-4">
                         <div class="project-description-title">Project Title</div>
                         <div class="project-description-content">
                             A short description of the project. Just a few sentences should be enought to describe this.
@@ -121,7 +137,7 @@
                             <button type="button" class="repository-link">Github</button>
                         </div>
                     </div>
-                    <div class="project-video-card">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-4">A video preview will go here</div>
                 </li>
             </ul>
         </div>
