@@ -281,7 +281,7 @@ html{
 
 @keyframes scroll {
     to{
-        transform: translate(calc(-50% + 0.75rem));
+        transform: translate(calc(-50% - 0.4rem));
     }
 }
 
@@ -510,4 +510,44 @@ video{
     width: 2em;
     justify-content: center;
     align-items: center;
+}
+
+.contact-title{
+    font-size: x-large;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-3);
+    text-decoration-style: none;
+    font-size: xx-large;
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
+        0 0 0.25em var(--color-3);
+
+    border-radius: var(--border-radius);
+    border-color: var(--color-3);
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.5em;
+    width: fit-content;
+}
+
+.contact-card{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    place-items: center;
+}
+
+#contact-form{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--color-1);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-3);
+    font-size: x-large;
 }
