@@ -94,80 +94,74 @@
                             A vanilla Javascript-based game of battleship using TDD and Jest as well as Webpack.
                         </div>
                         <div class="project-card-footer">
-                            <button type="button" class="live-app-link"><a href="https://sebidelamata.github.io/battleship/" target="_blank">Live Application</a></button>
-                            <button type="button" class="repository-link"><a href="https://github.com/sebidelamata/battleship" target="_blank">Github</a></button>
+                            <a href="https://sebidelamata.github.io/battleship/" target="_blank">
+                                <button type="button" class="live-app-link">Live Application</button>
+                            </a>
+                            <a href="https://github.com/sebidelamata/battleship" target="_blank">
+                                <button type="button" class="repository-link"></button>
+                            </a>
                         </div>
                     </div>
                     <div class="project-video-card" id="project-video-card-1"></div>
                 </li>
                 <li class="project-card" id="project-card-2">
                     <div class="project-description-card" id="project-description-card-2">
-                        <div class="project-description-title">Project Title</div>
+                        <div class="project-description-title">Weather App</div>
                         <div class="project-description-content">
-                            A short description of the project. Just a few sentences should be enought to describe this.
+                            A weather app written in vanilla JavaScript using async functions and webpack.
                         </div>
                         <div class="project-card-footer">
-                            <button type="button" class="live-app-link">Live Application</button>
-                            <button type="button" class="repository-link">Github</button>
+                            <a href="https://sebidelamata.github.io/weatherApp/" target="_blank">
+                                <button type="button" class="live-app-link">Live Application</button>
+                            </a>
+                            <a href="https://github.com/sebidelamata/weatherApp" target="_blank">
+                                <button type="button" class="repository-link"></button>
+                            </a>
                         </div>
                     </div>
-                    <div class="project-video-card" id="project-video-card-2">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-2"></div>
                 </li>
                 <li class="project-card" id="project-card-3">
                     <div class="project-description-card" id="project-description-card-3">
-                        <div class="project-description-title">Project Title</div>
+                        <div class="project-description-title">2dü</div>
                         <div class="project-description-content">
-                            A short description of the project. Just a few sentences should be enought to describe this.
+                            A vanilla JavaScript to-do list application built with Webpack.
                         </div>
                         <div class="project-card-footer">
-                            <button type="button" class="live-app-link">Live Application</button>
-                            <button type="button" class="repository-link">Github</button>
+                            <a href="https://sebidelamata.github.io/toDoList/" target="_blank">
+                                <button type="button" class="live-app-link">Live Application</button>
+                            </a>
+                            <a href="https://github.com/sebidelamata/toDoList" target="_blank">
+                                <button type="button" class="repository-link"></button>
+                            </a>
                         </div>
                     </div>
-                    <div class="project-video-card" id="project-video-card-3">A video preview will go here</div>
-                </li>
-                <li class="project-card" id="project-card-4">
-                    <div class="project-description-card" id="project-description-card-4">
-                        <div class="project-description-title">Project Title</div>
-                        <div class="project-description-content">
-                            A short description of the project. Just a few sentences should be enought to describe this.
-                        </div>
-                        <div class="project-card-footer">
-                            <button type="button" class="live-app-link">Live Application</button>
-                            <button type="button" class="repository-link">Github</button>
-                        </div>
-                    </div>
-                    <div class="project-video-card" id="project-video-card-4">A video preview will go here</div>
+                    <div class="project-video-card" id="project-video-card-3"></div>
                 </li>
             </ul>
         </div>
         <div class="contact-card">
-            <div class="contact-title">Get In Touch</div>
-            <div class="contact-description">
-                If there is anything you would like to discuss further, don't hesitate to reach out to me personally.
-            </div>
-            <form 
-                action="mailto:miguel.sebastian.de.la.mata@gmail.com"
-                method="post"
-                enctype="text/plain">
-                Name<br>
-                <input type="text" name="name"><br>
-                Email<br>
-                <input type="text" name="mail"><br>
-                Message<br>
-                <input type="text" name="message"><br>
-                <input type="submit" value="Send">
-            </form>
-            <div class="resume-button-card">
-                <button class="resume-button" type="button">
-                    <a href="#resume">
-                        <span>Resume</span>
-                    </a>
-                </button>
+            <button class="contact-title"><strong>Get In Touch</strong></button>
+            <div id="contact-form">
+                <div class="contact-description">
+                    If there is anything you would like to discuss further, don't hesitate to reach out to me personally.
+                </div>
+                <form 
+                    action="mailto:miguel.sebastian.de.la.mata@gmail.com"
+                    method="post"
+                    enctype="text/plain">
+                    Name<br>
+                    <input type="text" name="name"><br>
+                    Email<br>
+                    <input type="text" name="mail"><br>
+                    Message<br>
+                    <textarea id="message" name="message"></textarea><br>
+                    <input type="submit" value="Send">
+                </form>
             </div>
         </div>
         <div class="scroll-to-top-card">
-            <button class="scroll-to-top-button" type="button">
+            <button class="scroll-to-top-button scroll-button" type="button">
                 <a href="#hero">
                     <span>Back To Top</span>
                 </a>
@@ -177,16 +171,19 @@
     <footer>
         <ul class="links-list">
             <li class="links-list-icon">
-                <button id="github-button" type="button">
-                    <a href="https://github.com/sebidelamata" target="_blank">
-                        <span>Github</span>
-                    </a>
-                </button>
+                <a href="https://github.com/sebidelamata" target="_blank">
+                    <button id="github-button" type="button"></button>
+                </a>
             </li>
             <li class="links-list-icon">
-                <button id="linkedin-button" type="button">
-                    <a href="https://www.linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/" target="_blank">
-                        <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/" target="_blank">
+                    <button id="linkedin-button" type="button"></button>        
+                </a>
+            </li>
+            <li>
+                <button class="resume-button" type="button">
+                    <a href="#resume">
+                        <span>Resume</span>
                     </a>
                 </button>
             </li>

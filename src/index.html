@@ -73,12 +73,12 @@
             </div>
             <div class="scroll-button-card">
                 <div></div>
-                <button type="button" class="scroll-button">
-                    <a href="#projects">
+                <a href="#projects">
+                    <button type="button" class="scroll-button">
                         <span>Check Out My Work</span>
                         <div id="scroll-symbol">&dHar;</div>
-                    </a>
-                </button>
+                    </button>
+                </a>
                 <div></div>
             </div>
         </div>
@@ -102,7 +102,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="project-video-card" id="project-video-card-1"></div>
+                    <div class="project-video-card" id="project-video-card-1">
+                        <iframe src="https://www.youtube.com/embed/AqNxUMlHDXA?autoplay=1&mute=1&loop=1&playlist=AqNxUMlHDXA" title="battleShipPreviewVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </li>
                 <li class="project-card" id="project-card-2">
                     <div class="project-description-card" id="project-description-card-2">
@@ -119,7 +121,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="project-video-card" id="project-video-card-2"></div>
+                    <div class="project-video-card" id="project-video-card-2">
+                        <iframe src="https://www.youtube.com/embed/KHuj7lDrl5E?autoplay=1&mute=1&loop=1&playlist=KHuj7lDrl5E" title="weatherApp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </li>
                 <li class="project-card" id="project-card-3">
                     <div class="project-description-card" id="project-description-card-3">
@@ -136,7 +140,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="project-video-card" id="project-video-card-3"></div>
+                    <div class="project-video-card" id="project-video-card-3">
+                        <iframe src="https://www.youtube.com/embed/NnLBLz3f8HQ?autoplay=1&mute=1&loop=1&playlist=NnLBLz3f8HQ" title="todo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -151,45 +157,37 @@
                     method="post"
                     enctype="text/plain">
                     Name<br>
-                    <input type="text" name="name"><br>
+                    <input type="text" name="name" placeholder="Rusty Shackleford"><br>
                     Email<br>
-                    <input type="text" name="mail"><br>
+                    <input type="email" name="mail" placeholder="you@example.com"><br>
                     Message<br>
-                    <input type="text" name="message"><br>
+                    <textarea id="message" name="message" placeholder="Hello, ..."></textarea><br>
                     <input type="submit" value="Send">
                 </form>
             </div>
-            <div class="resume-button-card">
-                <button class="resume-button" type="button">
-                    <a href="#resume">
-                        <span>Resume</span>
-                    </a>
-                </button>
-            </div>
         </div>
         <div class="scroll-to-top-card">
-            <button class="scroll-to-top-button" type="button">
-                <a href="#hero">
-                    <span>Back To Top</span>
-                </a>
-            </button>
+            <a href="#hero">
+                <button class="scroll-to-top-button scroll-button" type="button">Back To Top</button>
+            </a>
         </div>
     </div>
     <footer>
         <ul class="links-list">
             <li class="links-list-icon">
-                <button id="github-button" type="button">
-                    <a href="https://github.com/sebidelamata" target="_blank">
-                        <span>Github</span>
-                    </a>
-                </button>
+                <a href="https://github.com/sebidelamata" target="_blank">
+                    <button id="github-button" type="button"></button>
+                </a>
             </li>
             <li class="links-list-icon">
-                <button id="linkedin-button" type="button">
-                    <a href="https://www.linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/" target="_blank">
-                        <span>LinkedIn</span>
-                    </a>
-                </button>
+                <a href="https://www.linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/" target="_blank">
+                    <button id="linkedin-button" type="button"></button>        
+                </a>
+            </li>
+            <li>
+                <a href="https://sebidelamata.github.io/datascienceblog/assets/delaMataResume.pdf" target="_blank">
+                    <button class="resume-button" type="button">Resume</button>
+                </a>
             </li>
         </ul>
     </footer>
