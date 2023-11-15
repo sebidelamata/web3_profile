@@ -88,7 +88,7 @@ html{
     border-color: var(--color-2);
     border-style: solid;
     gap: 0.5em;
-    padding-top: 0.5em;
+    padding-top: 1.5em;
 }
 
 #hero-intro-name-block-1{
