@@ -9,7 +9,7 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "server": "node server.js",
-    "build": "webpack",
+    "build": "webpack --mode production && rm -rf dist && webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
