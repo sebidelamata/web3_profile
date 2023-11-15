@@ -299,84 +299,84 @@ html{
 }
 
 #html-icon {
-    background: url(/5804150e47fbeb132a5d.svg);
+    background: url(5804150e47fbeb132a5d.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #css-icon {
-    background: url(/6ec1697a406483c72ccf.svg);
+    background: url(6ec1697a406483c72ccf.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #js-icon {
-    background: url(/b561c63179195aea872a.svg);
+    background: url(b561c63179195aea872a.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #webpack-icon {
-    background: url(/f8f137829c39f4dd75e5.svg);
+    background: url(f8f137829c39f4dd75e5.svg);
     height: calc(var(--tech-stack-icon-height) + 0.5rem);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #jest-icon {
-    background: url(/52555cbaeacbbffc7a74.svg);
+    background: url(52555cbaeacbbffc7a74.svg);
     height: calc(var(--tech-stack-icon-height) + 0.5rem);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #react-icon {
-    background: url(/928f956d9c8ebcffb98a.svg);
+    background: url(928f956d9c8ebcffb98a.svg);
     height: calc(var(--tech-stack-icon-height) - 0.5rem);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #node-icon {
-    background: url(/e7e718538ada32a8dc2b.svg);
+    background: url(e7e718538ada32a8dc2b.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #git-icon {
-    background: url(/29ee81f3816dc8c467d2.svg);
+    background: url(29ee81f3816dc8c467d2.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #mongodb-icon {
-    background: url(/1aca075d5cce0819fea7.svg);
+    background: url(1aca075d5cce0819fea7.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #solidity-icon {
-    background: url(/2bd035789524bdc0a68a.svg);
+    background: url(2bd035789524bdc0a68a.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #truffle-icon {
-    background: url(/c44069b1585ec212ee73.svg);
+    background: url(c44069b1585ec212ee73.svg);
     height: var(--tech-stack-icon-height);
     width: var(--tech-stack-icon-width);
     background-size: cover;
   }
 
   #hardhat-icon {
-    background: url(/1498fcd21d440a32094b.svg);
+    background: url(1498fcd21d440a32094b.svg);
     height: calc(var(--tech-stack-icon-height) - 1.25rem);
     width: var(--tech-stack-icon-width);
     background-size: cover;
@@ -505,7 +505,7 @@ iframe{
 
 .repository-link,
 #github-button{
-    background: url(/97ed8e7eef60d61ca469.svg);
+    background: url(97ed8e7eef60d61ca469.svg);
     background-size: cover;
     background-position: center bottom;
     height: 2em;
@@ -661,7 +661,7 @@ input[type="submit"]::after{
 }
 
 #linkedin-button{
-    background: url(/a236a02cbeb24525fd3b.svg);
+    background: url(a236a02cbeb24525fd3b.svg);
     background-size: cover;
     background-position: center bottom;
     height: 2em;
