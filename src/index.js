@@ -1,4 +1,4 @@
-//import './style.css';
+import './style.css';
 require("svg-url-loader!./HTML5_Badge.svg");
 require("svg-url-loader!./CSS3_logo.svg");
 require("svg-url-loader!./javascript.svg");
