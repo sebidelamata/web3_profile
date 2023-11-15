@@ -21,9 +21,9 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'images/[hash][ext][query]',
+    assetModuleFilename: '[hash][ext][query]',
     clean: true,
-    publicPath: '/',
+    publicPath: '/web3_profile/',
   },
   optimization: {
     runtimeChunk: 'single',
