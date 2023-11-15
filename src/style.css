@@ -64,7 +64,7 @@ html{
     align-items: center;
     justify-content: center;
     grid-template-rows: 35% 15%;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
