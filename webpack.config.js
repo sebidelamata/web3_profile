@@ -14,9 +14,6 @@ module.exports = {
       title: 'Sebi de la Mata | Full-Stack Web3 Development',
       template: './src/index.html',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
-    }),
   ],
   output: {
     filename: '[name].bundle.js',
@@ -32,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [ 'css-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
