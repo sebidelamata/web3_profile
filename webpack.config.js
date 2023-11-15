@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -12,6 +13,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Sebi de la Mata | Full-Stack Web3 Development',
       template: './src/index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
     }),
   ],
   output: {
@@ -28,7 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
