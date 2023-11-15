@@ -63,7 +63,7 @@ html{
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-rows: 35% 15%;
+    grid-template-rows: max-content max-content;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -74,7 +74,7 @@ html{
     gap: 15%;
     justify-content: center;
     align-items: center;
-    padding-top: 0.5em;
+    padding-top: 3em;
 }
 
 .hero-intro-name{
@@ -88,7 +88,6 @@ html{
     border-color: var(--color-2);
     border-style: solid;
     gap: 0.5em;
-    padding-top: 1.5em;
 }
 
 #hero-intro-name-block-1{
