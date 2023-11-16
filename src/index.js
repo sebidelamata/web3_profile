@@ -20,21 +20,15 @@ const addAnimation = () => {
         scroller.setAttribute('data-animated', true);
 
         const scrollerList = scroller.querySelector(".tech-stack-carousel-list");
-        const scrollerWidth = scrollerList.offsetWidth;
-        const iconWidth = scrollerList.firstElementChild.offsetWidth;
-        
-        // Calculate the number of icons needed to fill the space
-        const numIcons = Math.ceil(scrollerWidth / iconWidth) + 1;
+        const scrollerContent = Array.from(scrollerList.children);
 
-        // Create and append new icons
-        for (let i = 0; i < numIcons; i++) {
-            const icon = document.createElement('li');
-            const iconClone = scrollerList.firstElementChild.cloneNode(true);
-            icon.appendChild(iconClone);
-            scrollerList.appendChild(icon);
-        }
+        scrollerContent.forEach((item) => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute('aria-hidden', true);
+            scrollerList.appendChild(duplicatedItem);
+        })
     });
-};
+}
 
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     addAnimation();
