@@ -1,35 +1,27 @@
 {
   "name": "web3_profile",
-  "version": "1.0.0",
-  "description": "",
-  "private": "true",
-  "homepage": "https://github.com/sebidelamata/web3_profile",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
-    "start": "webpack serve --open",
-    "server": "node server.js",
-    "build": "webpack --mode production && rm -rf dist && webpack --mode production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  },
   "devDependencies": {
-    "css-loader": "^6.8.1",
-    "express": "^4.18.2",
-    "gh-pages": "^6.0.0",
-    "html-loader": "^4.2.0",
-    "html-webpack-inline-svg-plugin": "^2.3.0",
-    "html-webpack-plugin": "^5.5.3",
-    "mini-css-extract-plugin": "^2.7.6",
-    "style-loader": "^3.3.3",
-    "svg-inline-loader": "^0.8.2",
-    "svg-url-loader": "^8.0.0",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-middleware": "^6.1.1",
-    "webpack-dev-server": "^4.15.1"
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.1.4"
   }
 }
