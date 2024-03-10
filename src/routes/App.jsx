@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <body>
-       <section id="hero" className="hero">
+    <div>
+        <Navbar></Navbar>
+        <section id="hero" className="hero">
         <div className="hero-card">
             <div className="hero-text">
                 <div className="hero-intro-name">
@@ -79,7 +80,7 @@ function App() {
             </div>
         </div>
       </section>
-    </body>
+    </div>
   )
 }
 

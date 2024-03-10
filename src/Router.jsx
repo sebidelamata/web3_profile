@@ -3,6 +3,7 @@ import App from './routes/App.jsx'
 import Projects from './routes/Projects.jsx'
 import Mint from './routes/Mint.jsx'
 import Resume from './routes/Resume.jsx'
+import { EthersProvider } from './EthersProvider.jsx'
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -24,7 +25,11 @@ const Router = () => {
         },
     ]);
 
-    return <RouterProvider router={router} />;
+    return(
+        <EthersProvider>
+            <RouterProvider router={router} />
+        </EthersProvider>
+    )
 }
 
 export default Router
