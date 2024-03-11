@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Navigate } from 'react-router'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import TechStackCarousel from '../components/TechStackCarousel'
