@@ -671,3 +671,19 @@ input[type="submit"]::after{
   justify-content: right;
   align-items: center;
 }
+
+.success-message{
+  display: grid;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  background-color: var(--color-1);
+  border-radius: 0.5em;
+  border-color: var(--color-2);
+  border-width: 1px;
+  border-style: solid;
+  color: var(--color-2);
+  padding: 0.5em;
+  font-weight: 900;
+  font-size: x-large;
+}

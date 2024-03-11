@@ -1,8 +1,10 @@
 import emailjs from '@emailjs/browser'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 
 const Contacts = () => {
+
+    const [successMessage, setSuccessMessage] = useState(false)
 
     const form = useRef();
 
@@ -18,7 +20,8 @@ const Contacts = () => {
             }
         )
         .then(() => {
-            console.log('SUCCESS!');
+            console.log('SUCCESS!')
+            setSuccessMessage(true)
             },
             (error) => {
             console.log('FAILED...', error);
@@ -26,13 +29,19 @@ const Contacts = () => {
         );
     };
 
+    if(successMessage === true){
+        setTimeout(() => {
+            setSuccessMessage(false)
+        }, 5000)
+    }
+
 
     return(
         <div className="contact-card">
             <button className="contact-title"><strong>Get In Touch</strong></button>
             <div id="contact-form">
                 <div className="contact-description">
-                    If there is anything you would like to discuss further, don't hesitate to reach out to me personally.
+                    If there is anything you would like to discuss further, don&apos;t hesitate to reach out to me personally.
                 </div>
                 <form ref={form} onSubmit={sendEmail}>
                     <label htmlFor="name">Name</label><br/>
@@ -44,6 +53,12 @@ const Contacts = () => {
                     <input type="submit" value="Send"/>
                 </form>
             </div>
+            {
+                successMessage === false &&
+                <div className='success-message'>
+                    Message Sent. We&apos;ll be in contact with you shortly.
+                </div>
+            }
         </div>
     )
 }
