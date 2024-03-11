@@ -5,6 +5,9 @@ import Hero from '../components/Hero'
 import TechStackCarousel from '../components/TechStackCarousel'
 import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
 import Projects from './Projects'
+import Contacts from '../components/Contacts'
+import ScrollTopButton from '../components/ScrollTopButton'
+import Footer from '../components/Footer'
 
 function App() {
 
@@ -20,7 +23,10 @@ function App() {
       <div className='main'>
               <ScrollToProjectsCard></ScrollToProjectsCard>
               <Projects></Projects>
+              <Contacts></Contacts>
+              <ScrollTopButton></ScrollTopButton>
       </div>
+      <Footer></Footer>
     </div>
   )
 }
