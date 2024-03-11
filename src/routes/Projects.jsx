@@ -1,6 +1,8 @@
+
 import ProjectCard from "../components/ProjectCard"
 
 const Projects = () => {
+
     return(
         <div className="projects-list-card">
             <div id="projects-title"><strong>Projects</strong></div>

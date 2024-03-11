@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Navigate } from 'react-router'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import TechStackCarousel from '../components/TechStackCarousel'
 import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
+import Projects from './Projects'
 
 function App() {
 
@@ -13,9 +15,12 @@ function App() {
           <div className="hero-card">
             <Hero></Hero>
             <TechStackCarousel></TechStackCarousel>
-            <ScrollToProjectsCard></ScrollToProjectsCard>
         </div>
       </section>
+      <div className='main'>
+              <ScrollToProjectsCard></ScrollToProjectsCard>
+              <Projects></Projects>
+      </div>
     </div>
   )
 }
