@@ -41,7 +41,7 @@ export const EthersProvider = ({children}) => {
       useEffect(() => {
         loadBlockchainData()
       }, [])
-
+      
     return (
         <AccountContext.Provider value={ account }>
             <AccountUpdateContext.Provider value={ setAccount }>
