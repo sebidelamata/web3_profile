@@ -1,5 +1,7 @@
 import emailjs from '@emailjs/browser'
 import { useRef, useState, useEffect } from 'react'
+import SuccessBanner from './SuccesBanner'
+import Scheduler from './Scheduler'
 
 
 const Contacts = () => {
@@ -39,6 +41,7 @@ const Contacts = () => {
     return(
         <div className="contact-card">
             <button className="contact-title"><strong>Get In Touch</strong></button>
+            <Scheduler></Scheduler>
             <div id="contact-form">
                 <div className="contact-description">
                     If there is anything you would like to discuss further, don&apos;t hesitate to reach out to me personally.
@@ -55,10 +58,7 @@ const Contacts = () => {
             </div>
             {
                 successMessage === true &&
-                <div className='success-message'>
-                    Message Sent. We&apos;ll be in contact with you shortly.
-                    <div className='progress-bar'></div>
-                </div>
+                <SuccessBanner></SuccessBanner>
             }
         </div>
     )
