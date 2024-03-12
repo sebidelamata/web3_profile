@@ -569,6 +569,8 @@ iframe{
 
 input[type=text],
 input[type=email],
+input[type=text]:focus,
+input[type=email]:focus,
 #form-name,
 textarea{
   padding: 0.5em;
@@ -686,4 +688,52 @@ input[type="submit"]::after{
   padding: 0.5em;
   font-weight: 900;
   font-size: x-large;
+  animation: slideIn 1.25s forwards, slideOut 1s 2.75s forwards;
+}
+
+.progress-bar{
+  height: 8px;
+  background-color: var(--color-3);
+  animation: increaseWidth 3s linear forwards; 
+}
+
+@keyframes increaseWidth {
+  from { width: 0%; } 
+  to { width: 100%; } 
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-200%);
+  }
+  25% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-15%);
+  }
+  75% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-5%);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(-5%);
+  }
+  25% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-15%);
+  }
+  75% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
 }

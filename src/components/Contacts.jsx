@@ -54,9 +54,10 @@ const Contacts = () => {
                 </form>
             </div>
             {
-                successMessage === false &&
+                successMessage === true &&
                 <div className='success-message'>
                     Message Sent. We&apos;ll be in contact with you shortly.
+                    <div className='progress-bar'></div>
                 </div>
             }
         </div>
