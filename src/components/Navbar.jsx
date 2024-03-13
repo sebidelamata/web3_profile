@@ -16,32 +16,29 @@ const Navbar = () => {
         document.addEventListener('mousedown', handler)
 
         return() =>{
-            document.removeEventListener('mousedown', handler)
+            document.removeEventListener('mousedown', handler);
         }
     },[])
 
     return(
-        <nav className="navbar">
-            <button className="icon-button" onClick={() => setOpen(!open)}>
+        <nav className="navbar" ref={menuRef}>
+            <button className="icon-button" onClick={() => {setOpen(!open)}}>
                 <strong>Ξ</strong>
             </button>
-            {
-                open === true &&
-                <ul className="navbar-list" ref={menuRef}>
-                    <li className="navbar-list-item">
-                        <Link to={'/'}>Home</Link>
-                    </li>
-                    <li className="navbar-list-item">
-                        <Link to={'/blog'}>Blog</Link>
-                    </li>
-                    <li className="navbar-list-item">
-                        <Link to={'/resume'}>Resume</Link>
-                    </li>
-                    <li className="navbar-list-item">
-                        <Link to={'/mint'}>Mint</Link>
-                    </li>
-                </ul>
-            }
+            <ul className={`navbar-list ${open ? 'active' : 'inactive'}`}>
+                <li className="navbar-list-item">
+                    <Link to={'/'}>Home</Link>
+                </li>
+                <li className="navbar-list-item">
+                    <Link to={'/blog'}>Blog</Link>
+                </li>
+                <li className="navbar-list-item">
+                    <Link to={'/resume'}>Resume</Link>
+                </li>
+                <li className="navbar-list-item">
+                    <Link to={'/mint'}>Mint</Link>
+                </li>
+            </ul>
         </nav>
     )
 }
