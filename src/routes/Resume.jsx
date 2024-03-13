@@ -1,6 +1,11 @@
+import Navbar from "../components/Navbar"
+
 const Resume = () => {
     return(
-        <div>Resume not implemented</div>
+        <>
+            <Navbar></Navbar>
+            <div>Resume not implemented</div>
+        </>
     )
 }
 

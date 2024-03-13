@@ -1,12 +1,12 @@
 import Navbar from "../components/Navbar"
 
-const Mint = () => {
+const Blog = () => {
     return(
         <>
             <Navbar></Navbar>
-            <div>Mint not implemented</div>
+            <div>blog not implemented</div>
         </>
     )
 }
 
-export default Mint
+export default Blog
