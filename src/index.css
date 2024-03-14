@@ -496,7 +496,7 @@ html{
   z-index: 2;
   background-color: var(--color-1);
   opacity: 0;
-  transition: opacity var(--transition-speed), right calc(var(--transition-speed)*2);
+  transition: opacity var(--transition-speed), right calc(var(--transition-speed)*3);
   box-shadow:0 0 5px 1px var(--color-2);
 }
 
@@ -522,7 +522,7 @@ html{
   padding: var(--large-container-padding);
   box-shadow:0 0 15px 4px var(--color-2);
   opacity: 0;
-  transition: opacity var(--transition-speed), left calc(var(--transition-speed)*2);
+  transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
 }
 
 .project-description-card.show {
@@ -541,7 +541,7 @@ iframe{
 
 .project-card-footer{
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 4fr 1fr;
   gap: 3em;
   position: absolute;
   bottom: 8svh;
@@ -554,6 +554,7 @@ iframe{
   padding: var(--button-padding) var(--button-padding-side);
   border-radius: var(--border-radius);
   transition: scale var(--transition-speed) ease, filter var(--transition-speed) ease;
+  font-size: x-large;
 }
 
 .repository-link,
@@ -561,8 +562,8 @@ iframe{
   background: url("/github-mark-white.svg");
   background-size: cover;
   background-position: center bottom;
-  height: 2em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
   justify-content: center;
   align-items: center;
   transition: filter var(--transition-speed) ease, scale var(--transition-speed) ease;

@@ -16,7 +16,7 @@ const ProjectCard = ({
         const rect = projectCard.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
       
-        if (rect.top < (windowHeight*0.25) && rect.bottom >= (windowHeight*0.25)) {
+        if (rect.top < (windowHeight*0.2) && rect.bottom >= (windowHeight*0.2)) {
           // Card is in view
           descriptionCard.classList.add('show');
           videoCard.classList.add('show');
