@@ -36,6 +36,7 @@ const Mint = () => {
         <>
             <Navbar></Navbar>
             <div className="minting-body">
+                <h1>Mint Guestbook NFT</h1>
                 <button onClick={mintNFT} className="mint-button">
                     {
                     loading ? "Minting..." : "Mint NFT"

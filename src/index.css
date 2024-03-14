@@ -191,11 +191,10 @@ html{
 }
 
 .scroll-button,
-.scheduler-button{
-  opacity: 0;
+.scheduler-button,
+.mint-button{
   position: relative;
   transform: translateY(3rem);
-  animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s + var(--name-block-2-start-time)) forwards;
   color: var(--color-2);
   text-decoration-style: none;
   font-size: x-large;
@@ -204,16 +203,27 @@ html{
   border: var(--color-2) 0.125em solid;
   padding: 0.25em 1em;
   border-radius: var(--border-radius);
-
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
-      0 0 0.25em var(--color-2);
-
   box-shadow: inset 0 0 0.5em 0 var(--color-2),
       0 0 0.5em 0 var(--color-2);
 }
 
+.mint-button{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  transition: filter 1.5s;
+  animation: slideIn 1.25s forwards, fadeIn 0.5s forwards;
+}
+
+.scroll-button,
+.scheduler-button{
+  opacity: 0;
+  animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s + var(--name-block-2-start-time)) forwards;
+}
+
 .scroll-button::before,
-.scheduler-button::before{
+.scheduler-button::before,
+.mint-button::before{
   pointer-events: none;
   content: '';
   position: absolute;
@@ -229,7 +239,8 @@ html{
 }
 
 .scroll-button::after,
-.scheduler-button::after{
+.scheduler-button::after,
+.mint-button::after{
   content: '';
   position: absolute;
   top: 0;
@@ -416,6 +427,11 @@ html{
       border-style: solid;
       filter: blur(.025em);
       transition: background-color 300ms linear;
+  }
+
+  .mint-button:hover,
+  .mint-button:focus{
+    filter: brightness(1.6);
   }
 
 }
@@ -674,7 +690,8 @@ input[type="submit"]::after{
   align-items: center;
 }
 
-.success-message{
+.success-message,
+.mint-success-banner{
   display: grid;
   position: fixed;
   top: 5%;
@@ -688,6 +705,13 @@ input[type="submit"]::after{
   padding: 0.5em;
   font-weight: 900;
   font-size: x-large;
+}
+
+.mint-success-banner{
+  animation: slideIn 1.25s forwards;
+}
+
+.success-message{
   animation: slideIn 1.25s forwards, slideOut 1s 2.75s forwards;
 }
 
@@ -842,6 +866,13 @@ input[type="submit"]::after{
 
 .icon-button:hover{
   filter: brightness(1.8);
+}
+
+.minting-body{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: min(3em);
 }
 
 /*desktop stuff*/
