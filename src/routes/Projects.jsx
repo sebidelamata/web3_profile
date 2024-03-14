@@ -4,7 +4,7 @@ import ProjectCard from "../components/ProjectCard"
 const Projects = () => {
 
     return(
-        <div className="projects-list-card">
+        <div id="projects-list-card">
             <div id="projects-title"><strong>Projects</strong></div>
             <ul className="projects-lists" id="projects">
                 <li className="project-card" id="project-card-1">
@@ -15,6 +15,7 @@ const Projects = () => {
                         repositoryLink={'https://github.com/sebidelamata/battleship'} 
                         videoLink={'https://www.youtube.com/embed/AqNxUMlHDXA?autoplay=1&mute=1&loop=1&playlist=AqNxUMlHDXA'}
                         videoTitle={'battleShipPreviewVideo'}
+                        cardNumber={1}
                     />
                 </li>
                 <li className="project-card" id="project-card-2">
@@ -25,6 +26,7 @@ const Projects = () => {
                         repositoryLink={'https://sebidelamata.github.io/weatherApp/'} 
                         videoLink={'https://www.youtube.com/embed/KHuj7lDrl5E?autoplay=1&mute=1&loop=1&playlist=KHuj7lDrl5E'}
                         videoTitle={'weatherApp'}
+                        cardNumber={2}
                     />
                 </li>
                 <li className="project-card" id="project-card-3">
@@ -35,6 +37,7 @@ const Projects = () => {
                         repositoryLink={'https://github.com/sebidelamata/toDoList'} 
                         videoLink={'https://www.youtube.com/embed/NnLBLz3f8HQ?autoplay=1&mute=1&loop=1&playlist=NnLBLz3f8HQ'}
                         videoTitle={'todo'}
+                        cardNumber={3}
                     />
                 </li>
             </ul>

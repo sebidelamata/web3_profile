@@ -5,8 +5,8 @@ const Hero = () => {
                 <div id="hero-intro-name-block-1">
                     <div></div>
                     <div id="hero-intro-name-block-1-inner">
-                        <div id="hero-intro-name-block-1-inner-1">Hi, </div>
-                        <div id="hero-intro-name-block-1-inner-2">I&apos;m</div>
+                        <h1 id="hero-intro-name-block-1-inner-1">Hi, </h1>
+                        <h1 id="hero-intro-name-block-1-inner-2">I&apos;m</h1>
                     </div>
                 </div>
                 <div id="hero-intro-name-block-2">
@@ -16,7 +16,7 @@ const Hero = () => {
             </div>
             <div className="hero-intro-title-card">
                 <div></div>
-                <div className="hero-intro-title">Full-Stack Web3 Development</div>
+                <h2 className="hero-intro-title">Full-Stack Web3 Development</h2>
                 <div></div>
             </div>
         </div>
