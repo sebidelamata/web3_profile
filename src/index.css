@@ -766,7 +766,7 @@ input[type="submit"]::after{
   transform: translateX(45%);
   background-color: var(--color-1);
   border-radius: var(--border-radius);
-  border-color: var(--color-2);
+  border-color: var(--color-3);
   border-width: 1px;
   border-style: solid;
   padding: 0.5em;
@@ -781,10 +781,10 @@ input[type="submit"]::after{
   width: 0.6em;
   transform: rotate(45deg);
   background: var(--color-1);
-  border-left-color: var(--color-2);
+  border-left-color: var(--color-3);
   border-left-width: 1px;
   border-left-style: solid;
-  border-top-color: var(--color-2);
+  border-top-color: var(--color-3);
   border-top-width: 1px;
   border-top-style: solid;
 }
@@ -808,7 +808,7 @@ input[type="submit"]::after{
   display: flex;
   align-items: center;
   justify-content: center; 
-  color: var(--color-3);
+  color: var(--color-2);
   padding: 0.1em;
   transition: filter 0.5s, border-bottom 0.5s;
   margin: 0.5em;
@@ -816,7 +816,7 @@ input[type="submit"]::after{
 
 .navbar-list-item:hover{
   filter: brightness(1.2);
-  border-bottom: solid 0.5em var(--color-3);
+  border-bottom: solid 0.5em var(--color-2);
   font-weight: 900;
   transform: (scale(1.1));
 }
