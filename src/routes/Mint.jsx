@@ -14,14 +14,15 @@ const Mint = () => {
 
     const mintNFT = async () => {
         try{
+            setMinted(false)
             setLoading(true)
             const signer = await provider.getSigner()
             console.log(signer.address)
-            const contractAddress = '0x61989B222F0B93796E5c5f21CC44d95CAADe1B16'
+            const contractAddress = '0x95c5BF4AbB29b89f8ee34dCcE2E3aa70Af468B44'
             const contractABI = portfolioNFTArtifact.abi
             console.log(contractABI)
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const tx = await contract.safeMint(signer.address);
+            const tx = await contract.safeMint(signer.address, 'test');
             await tx.wait()
             setMinted(tx)
         } catch(err) {
@@ -34,10 +35,25 @@ const Mint = () => {
     return(
         <>
             <Navbar></Navbar>
-            <div>Mint not implemented</div>
-            <button onClick={mintNFT}>
-                {loading ? "Minting..." : "Mint NFT"}
-            </button>
+            <div className="minting-body">
+                <button onClick={mintNFT} className="mint-button">
+                    {
+                    loading ? "Minting..." : "Mint NFT"
+                    }
+                </button>
+                {
+                    minted &&
+                    <div className="mint-success-banner">
+                        <div className="mint-success-message">Successfully Minted!</div>
+                        <a 
+                        href={`https://sepolia.arbiscan.io/tx/${minted.hash}`}
+                        target="_blank"
+                        >
+                            View Transaction
+                        </a>
+                    </div>
+                }
+            </div>
             {console.log(minted)}
         </>
     )
