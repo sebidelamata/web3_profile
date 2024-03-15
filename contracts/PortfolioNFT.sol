@@ -13,6 +13,12 @@ contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
         Ownable(initialOwner)
         {}
 
+    // 
+
+    // track wallets
+    address[] public walletsArray;
+    mapping (address => uint) public walletNumMints;
+
     // The following functions are overrides required by Solidity.
 
     function tokenURI(uint256 tokenId)
@@ -35,7 +41,7 @@ contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
 
     uint256 private _tokenIdCounter;
 
-    function safeMint(address _receiver, string memory _tokenURI) public onlyOwner {
+    function safeMint(address _receiver, string memory _tokenURI) public whenNotPaused{
         uint256 tokenId = _tokenIdCounter;
         _safeMint(_receiver, tokenId);
         _setTokenURI(tokenId, _tokenURI);
@@ -44,5 +50,13 @@ contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
 
     function totalSupply() public view returns (uint256){
         return _tokenIdCounter;
+    }
+
+    function getAllMintedWallets() external view returns (address[] memory) {
+        return walletsArray;
+    }
+
+    function getWalletMints(address wallet) external view returns (uint256){
+        return walletNumMints[wallet];
     }
 }

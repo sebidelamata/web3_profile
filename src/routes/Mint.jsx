@@ -18,7 +18,7 @@ const Mint = () => {
             setLoading(true)
             const signer = await provider.getSigner()
             console.log(signer.address)
-            const contractAddress = '0x95c5BF4AbB29b89f8ee34dCcE2E3aa70Af468B44'
+            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
             const contractABI = portfolioNFTArtifact.abi
             console.log(contractABI)
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -39,7 +39,7 @@ const Mint = () => {
                 <h1>Mint Guestbook NFT</h1>
                 <button onClick={mintNFT} className="mint-button">
                     {
-                    loading ? "Minting..." : "Mint NFT"
+                    loading ? "Minting..." : "Free Mint"
                     }
                 </button>
                 {

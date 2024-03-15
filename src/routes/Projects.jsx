@@ -5,7 +5,7 @@ const Projects = () => {
 
     return(
         <div id="projects-list-card">
-            <div id="projects-title"><strong>Projects</strong></div>
+            <h2 id="projects-title"><strong>Projects</strong></h2>
             <ul className="projects-lists" id="projects">
                 <li className="project-card" id="project-card-1">
                     <ProjectCard

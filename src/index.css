@@ -55,16 +55,19 @@ body{
   display: grid;
   align-items: center;
   justify-content: center;
+  width: 100vw;
 }
 
 html{
   scroll-behavior: smooth;
+  width: 100vw;
 }
 
 #hero{
   display: grid;
   height:75svh;
   grid-template-rows: 30% 10% 60%;
+  width: 100vw;
 }
 
 .hero-card{
@@ -75,6 +78,7 @@ html{
   grid-template-rows: max-content max-content;
   overflow-y: hidden;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 .hero-text{
@@ -83,6 +87,7 @@ html{
   gap: 15%;
   justify-content: center;
   align-items: center;
+  padding: 0;
   padding-top: 5em;
 }
 
@@ -194,6 +199,13 @@ html{
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr max-content 1fr;
+  height: 8svh;
+}
+
+.scroll-link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scroll-button,
@@ -206,9 +218,10 @@ html{
   font-size: var(--large-button-font-size);
   display: inline-block;
   cursor: pointer;
-  border: var(--color-2) 0.125em solid;
+  border: var(--color-2) var(--border-width) solid;
   padding: var(--button-padding) var(--button-padding-side);
   border-radius: var(--border-radius);
+  border-width: var(--border-width);
   transition: transform var(--transition-speed) ease;
 }
 
@@ -224,7 +237,16 @@ html{
 .scheduler-button{
   opacity: 0;
   animation: fadeInButton 2s ease calc(var(--typewriterSpeed) + 2s + var(--name-block-2-start-time)) forwards;
-  transition: filter var(--transition-speed);
+  transition: filter var(--transition-speed), scale var(--transition-speed), transform var(--transition-speed);
+  width: 80%;
+  height: 30%;
+}
+
+.scheduler-button{
+  position: relative;
+  left: var(--large-container-padding);
+  padding: var(--button-padding) var(--button-padding-side);
+  height: 40%;
 }
 
 .scroll-button{
@@ -255,7 +277,6 @@ html{
   left: 0;
   bottom: 0;
   right: 0;
-  box-shadow: 0 0 2em 0.5em var(--color-2);
   opacity: 0;
   z-index: -1;
   transition: opacity var(--transition-speed) linear;
@@ -410,7 +431,9 @@ html{
 @media (hover: hover)
 {
   .scroll-button:hover,
-  .scroll-button:focus{
+  .scroll-button:focus,
+  .scheduler-button:hover,
+  .scheduler-button:focus{
       filter: brightness(1.2);
       transform: translateY(2.8rem); 
       scale: 1.01;
@@ -450,29 +473,30 @@ html{
 #projects{
   display: grid;
   grid-template-columns: 1fr;
+  width: 100vw;
 }
 
 #projects-title{
-  font-size: x-large;
   display: grid;
   justify-content: center;
   align-items: center;
   color: var(--color-2);
   text-decoration-style: none;
   font-size: xx-large;
-
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
-      0 0 0.25em var(--color-2);
+  margin: var(--large-container-padding);
 }
 
 .project-card{
   background-color: var(--color-1);
-  border-radius: var(--border-radius);
-  opacity: 0.95;
-  box-shadow: 0 0 30px 0 var(--color-4);
   height: var(--project-card-height);
   width: 96vw;
   position: relative;
+  overflow: hidden;
+}
+
+.projects-lists{
+  padding: 0;
+  margin: 0;
 }
 
 .project-description-card{
@@ -531,7 +555,7 @@ html{
 }
 .project-video-card.show {
   opacity: 1;
-  left: 0;
+  left: 0.5em;
 }
 
 iframe{
@@ -581,6 +605,7 @@ iframe{
   align-items: center;
   grid-template-rows: max-content max-content max-content;
   gap: 8em;
+  width: 100vw;
 }
 
 .contact-title{
@@ -591,9 +616,6 @@ iframe{
   color: var(--color-2);
   text-decoration-style: none;
   font-size: xx-large;
-
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
-      0 0 0.25em var(--color-2);
 }
 
 .contact-card{
@@ -605,6 +627,7 @@ iframe{
   height: max-content;
   grid-template-rows: repeat(3, auto);
   gap: 3em;
+  width: 100vw;
 }
 
 #contact-form{
@@ -620,24 +643,53 @@ iframe{
 
 .contact-description{
   color: var(--color-2);
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: center;
+  justify-content: center;
+  height: 40svh;
+  overflow: hidden;
+}
+
+.contact-description-description{
+  width: 45%;
+  position: absolute;
+  right: 0%;
 }
 
 #contact-form:before, #contact-form:after {
   box-sizing: border-box;
 }
 
+.form-line-one{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: calc(var(--large-container-padding)*5);
+  padding: var(--large-container-padding);
+  justify-content: center;
+  align-items: center;
+}
+
 input[type=text],
 input[type=email],
 input[type=text]:focus,
 input[type=email]:focus,
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
 #form-name,
 textarea{
   padding: var(--large-container-padding);
   margin: 0.5em 0;
-  border: 0;
-  background-color: var(--color-1);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  background-color: var(--color-1) !important;
   color: var(--color-2);
-  box-shadow:0 0 15px 4px var(--color-2);
   font-size: large;
   font-weight: bold;
   border-radius: var(--border-radius);
@@ -918,16 +970,6 @@ input[type="submit"]::after{
   gap: min(3em);
 }
 
-/*desktop stuff*/
-@media screen and (min-width: 1024px) {
-  .contact-card{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    place-items: center;
-    height: max-content;
-    grid-template-rows: repeat(3, auto);
-    gap: 3em;
-  }
+.links-list{
+  width: 100vw;
 }
