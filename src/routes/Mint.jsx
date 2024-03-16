@@ -32,6 +32,10 @@ const Mint = () => {
         }
     }
 
+    const exitSuccessBanner = () => {
+        setMinted(false)
+    }
+
     return(
         <>
             <Navbar></Navbar>
@@ -46,12 +50,18 @@ const Mint = () => {
                     minted &&
                     <div className="mint-success-banner">
                         <div className="mint-success-message">Successfully Minted!</div>
-                        <a 
-                        href={`https://sepolia.arbiscan.io/tx/${minted.hash}`}
-                        target="_blank"
-                        >
-                            View Transaction
-                        </a>
+                        <div className="mint-success-row-two">
+                            <a 
+                            href={`https://sepolia.arbiscan.io/tx/${minted.hash}`}
+                            target="_blank"
+                            className="view-tx"
+                            >
+                                View Transaction
+                            </a>
+                            <div className="exit-success-banner" onClick={exitSuccessBanner}>
+                                ✕
+                            </div>
+                        </div>
                     </div>
                 }
             </div>
