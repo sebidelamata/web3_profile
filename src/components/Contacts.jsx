@@ -55,7 +55,7 @@ const Contacts = () => {
                     </div>
                     <label htmlFor="message">Message</label><br/>
                     <textarea id="message" name="message" placeholder="Hello, ..." required/><br/>
-                    <input type="submit" value="Send"/>
+                    <input className="form-submit" type="submit" value="Send"/>
                 </form>
             </div>
             {

@@ -38,6 +38,9 @@ const Navbar = () => {
                 <li className="navbar-list-item">
                     <Link to={'/mint'}>Mint</Link>
                 </li>
+                <li className="navbar-list-item">
+                    <w3m-button size="sm" label="Connect" balance="hide"/>
+                </li>
             </ul>
         </nav>
     )

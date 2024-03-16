@@ -12,8 +12,12 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@web3modal/ethers": "^4.1.1",
     "dotenv": "^16.4.5",
     "ethers": "^6.11.1",
+    "hardhat": "^2.22.1",
     "react": "^18.2.0",
     "react-calendly": "^4.3.0",
     "react-dom": "^18.2.0",
