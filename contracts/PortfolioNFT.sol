@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
 
     constructor(address initialOwner) 
-        ERC721("Sebi's MERNS Monsters", "MERNS")
+        ERC721("Sebi&apos;s MERNS Monsters", "MERNS")
         Ownable(initialOwner)
         {}
 

@@ -40,7 +40,7 @@ const Contacts = () => {
 
     return(
         <div className="contact-card">
-            <button className="contact-title"><h2><strong>Get In Touch</strong></h2></button>
+            <button className="contact-title"><h2><strong id='contact-title-title'>Get In Touch</strong></h2></button>
             <div id="contact-form">
                 <div className="contact-description">
                     <Scheduler></Scheduler>
