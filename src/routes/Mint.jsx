@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useProvider, useAccount } from "../EthersProvider";
 import Navbar from "../components/Navbar"
 import { ethers } from "ethers";
-import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/MERNS.json';
+import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 
 const Mint = () => {
     
     const [minted, setMinted] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [mintedMetaData, setMintedMetadata] = useState(null)
 
     const provider = useProvider();
     const account = useAccount();
@@ -17,12 +18,10 @@ const Mint = () => {
             setMinted(false)
             setLoading(true)
             const signer = await provider.getSigner()
-            console.log(signer.address)
             const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
             const contractABI = portfolioNFTArtifact.abi
-            console.log(contractABI)
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const tx = await contract.safeMint(signer.address, 'test');
+            const tx = await contract.safeMint(signer.address);
             await tx.wait()
             setMinted(tx)
         } catch(err) {
@@ -31,6 +30,23 @@ const Mint = () => {
             setLoading(false);
         }
     }
+
+    const viewMetaData = async () => {
+        try{
+            const signer = await provider.getSigner()
+            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+            const contractABI = portfolioNFTArtifact.abi
+            const contract = new ethers.Contract(contractAddress, contractABI, signer)
+            const uri = await contract.tokenURI(0)
+            setMintedMetadata(uri)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        viewMetaData()
+    },[minted, loading, provider, account])
 
     const exitSuccessBanner = () => {
         setMinted(false)
@@ -65,7 +81,6 @@ const Mint = () => {
                     </div>
                 }
             </div>
-            {console.log(minted)}
         </>
     )
 }

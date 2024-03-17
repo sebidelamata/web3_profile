@@ -2,14 +2,19 @@ const hre = require("hardhat");
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+require('dotenv').config();
 
 async function main() {
+
+    // deploy to blockchain
     const [deployer] = await hre.ethers.getSigners();
-    const NFT = await hre.ethers.getContractFactory("MERNS");
+    const NFT = await hre.ethers.getContractFactory("BiP");
     const nft = await NFT.deploy(deployer);
     await nft.waitForDeployment();
     const contractAddress = await nft.getAddress()
-    console.log("MERNS contract deployed to:", contractAddress);
+    console.log("Boxers in Predicaments contract deployed to:", contractAddress);
+    await nft.setBaseTokenUri(process.env.VITE_IPFS_METADATA_BASE_URI)
+    console.log(await nft.getBaseURI())
 
     const envFilePath = '.env';
     const parsedEnv = dotenv.parse(fs.readFileSync(envFilePath));

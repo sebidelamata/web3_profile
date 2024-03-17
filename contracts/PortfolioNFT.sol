@@ -6,29 +6,28 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
+contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
 
-    constructor(address initialOwner) 
+    uint256 public maxSupply;
+    uint256 public totalSupply;
+    uint256 public maxPerWallet;
+    string public baseTokenUriString;
+    address payable public withdrawWallet;
+    mapping (address => uint256) public walletMints;
+
+
+    constructor(address initialOwner) payable
         ERC721("Boxers in Predicaments", "BiP")
         Ownable(initialOwner)
-        {}
+        {
+            totalSupply = 0;
+            maxSupply = 138;
+            maxPerWallet = 1;
+        }
 
-    // 
-
-    // track wallets
-    address[] public walletsArray;
-    mapping (address => uint) public walletNumMints;
+    //
 
     // The following functions are overrides required by Solidity.
-
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
-        return super.tokenURI(tokenId);
-    }
 
     function supportsInterface(bytes4 interfaceId)
         public
@@ -39,24 +38,38 @@ contract MERNS is ERC721, Pausable, Ownable, ERC721URIStorage {
         return super.supportsInterface(interfaceId);
     }
 
-    uint256 private _tokenIdCounter;
+    function setBaseTokenUri(string calldata _baseURI) external onlyOwner{
+        baseTokenUriString = _baseURI;
+    }
 
-    function safeMint(address _receiver, string memory _tokenURI) public whenNotPaused{
-        uint256 tokenId = _tokenIdCounter;
+    function tokenURI(uint256 _tokenID) public view override(ERC721, ERC721URIStorage) returns (string memory){
+        require(_tokenID <= totalSupply, "Token does not exist");
+        return string(abi.encodePacked(baseTokenUriString, Strings.toString(_tokenID), ".json"));
+    }
+
+    function withdraw() external onlyOwner{
+        (bool success,) = withdrawWallet.call{value: address(this).balance }('');
+        require(success, 'withdraw failed');
+    }
+
+    function safeMint(address _receiver) public whenNotPaused{
+        require(totalSupply < maxSupply);
+        require(walletMints[msg.sender] < maxPerWallet, "Already minted max per wallet");
+        uint256 tokenId = totalSupply;
+        totalSupply++;
         _safeMint(_receiver, tokenId);
-        _setTokenURI(tokenId, _tokenURI);
-        _tokenIdCounter += 1;
+        tokenURI(tokenId);
     }
 
-    function totalSupply() public view returns (uint256){
-        return _tokenIdCounter;
-    }
-
-    function getAllMintedWallets() external view returns (address[] memory) {
-        return walletsArray;
+    function getTotalSupply() public view returns (uint256){
+        return totalSupply;
     }
 
     function getWalletMints(address wallet) external view returns (uint256){
-        return walletNumMints[wallet];
+        return walletMints[wallet];
+    }
+
+    function getBaseURI() public view returns (string memory){
+        return baseTokenUriString;
     }
 }
