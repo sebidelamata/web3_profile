@@ -14,6 +14,7 @@ contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
     string public baseTokenUriString;
     address payable public withdrawWallet;
     mapping (address => uint256) public walletMints;
+    mapping (address => uint256[]) private walletTokenIDs;
 
 
     constructor(address initialOwner) payable
@@ -22,7 +23,7 @@ contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
         {
             totalSupply = 0;
             maxSupply = 138;
-            maxPerWallet = 1;
+            maxPerWallet = 2;
         }
 
     //
@@ -56,6 +57,8 @@ contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
         require(totalSupply < maxSupply);
         require(walletMints[msg.sender] < maxPerWallet, "Already minted max per wallet");
         uint256 tokenId = totalSupply;
+        walletMints[msg.sender]++;
+        walletTokenIDs[msg.sender].push(tokenId);
         totalSupply++;
         _safeMint(_receiver, tokenId);
         tokenURI(tokenId);
@@ -67,6 +70,10 @@ contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
 
     function getWalletMints(address wallet) external view returns (uint256){
         return walletMints[wallet];
+    }
+
+    function getWalletTokenIDs(address wallet) external view returns (uint256[] memory) {
+        return walletTokenIDs[wallet];
     }
 
     function getBaseURI() public view returns (string memory){

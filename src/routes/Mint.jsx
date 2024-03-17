@@ -8,13 +8,38 @@ const Mint = () => {
     
     const [minted, setMinted] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [walletMints, setWalletMints] = useState(null)
+    const [tokenIDs, setTokenIDs] = useState([])
     const [mintedMetaData, setMintedMetadata] = useState(null)
 
     const provider = useProvider();
     const account = useAccount();
 
+    const loadAccountData = async () => {
+        try{
+            const signer = await provider.getSigner()
+            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+            const contractABI = portfolioNFTArtifact.abi
+            const contract = new ethers.Contract(contractAddress, contractABI, signer);
+            const walletMints = await contract.getWalletMints(signer.address);
+            setWalletMints(parseInt(walletMints))
+            
+            const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
+            const tokenIDsArray = Object.values(_tokenIDs).map(value => parseInt(value))
+            setTokenIDs(tokenIDsArray)
+            console.log(tokenIDsArray)
+
+            for(let i=0; i<=tokenIDs.length; i++){
+                console.log(i)
+            }
+        } catch(err){
+            console.log(err)
+        }
+    }
+
     const mintNFT = async () => {
         try{
+            if(walletMints >= 2){return}
             setMinted(false)
             setLoading(true)
             const signer = await provider.getSigner()
@@ -31,13 +56,13 @@ const Mint = () => {
         }
     }
 
-    const viewMetaData = async () => {
+    const viewMetaData = async (tokenID) => {
         try{
             const signer = await provider.getSigner()
             const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
             const contractABI = portfolioNFTArtifact.abi
             const contract = new ethers.Contract(contractAddress, contractABI, signer)
-            const uri = await contract.tokenURI(0)
+            const uri = await contract.tokenURI(tokenID)
             setMintedMetadata(uri)
         } catch(err) {
             console.log(err)
@@ -45,8 +70,8 @@ const Mint = () => {
     }
 
     useEffect(() => {
-        viewMetaData()
-    },[minted, loading, provider, account])
+        loadAccountData()
+    }, [provider, account, minted])
 
     const exitSuccessBanner = () => {
         setMinted(false)
@@ -59,7 +84,11 @@ const Mint = () => {
                 <h1>Mint Guestbook NFT</h1>
                 <button onClick={mintNFT} className="mint-button">
                     {
-                    loading ? "Minting..." : "Free Mint"
+                        walletMints >= 2 
+                        ? "Max Minted"
+                        : loading 
+                        ? "Minting..." 
+                        : "Free Mint"
                     }
                 </button>
                 {
@@ -81,6 +110,7 @@ const Mint = () => {
                     </div>
                 }
             </div>
+            {console.log(tokenIDs)}
         </>
     )
 }
