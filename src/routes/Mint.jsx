@@ -3,14 +3,14 @@ import { useProvider, useAccount } from "../EthersProvider";
 import Navbar from "../components/Navbar"
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
+import UserNFTPortfolio from "../components/UserNFTPortfolio";
 
 const Mint = () => {
     
     const [minted, setMinted] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [mintLoading, setMintLoading] = useState(false);
+
     const [walletMints, setWalletMints] = useState(null)
-    const [tokenIDs, setTokenIDs] = useState([])
-    const [mintedMetaData, setMintedMetadata] = useState(null)
 
     const provider = useProvider();
     const account = useAccount();
@@ -22,16 +22,8 @@ const Mint = () => {
             const contractABI = portfolioNFTArtifact.abi
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
             const walletMints = await contract.getWalletMints(signer.address);
-            setWalletMints(parseInt(walletMints))
+            setWalletMints(parseInt(await walletMints))
             
-            const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
-            const tokenIDsArray = Object.values(_tokenIDs).map(value => parseInt(value))
-            setTokenIDs(tokenIDsArray)
-            console.log(tokenIDsArray)
-
-            for(let i=0; i<=tokenIDs.length; i++){
-                console.log(i)
-            }
         } catch(err){
             console.log(err)
         }
@@ -52,20 +44,7 @@ const Mint = () => {
         } catch(err) {
             console.error(err);
         } finally {
-            setLoading(false);
-        }
-    }
-
-    const viewMetaData = async (tokenID) => {
-        try{
-            const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer)
-            const uri = await contract.tokenURI(tokenID)
-            setMintedMetadata(uri)
-        } catch(err) {
-            console.log(err)
+            setMintLoading(false);
         }
     }
 
@@ -86,7 +65,7 @@ const Mint = () => {
                     {
                         walletMints >= 2 
                         ? "Max Minted"
-                        : loading 
+                        : mintLoading 
                         ? "Minting..." 
                         : "Free Mint"
                     }
@@ -110,7 +89,11 @@ const Mint = () => {
                     </div>
                 }
             </div>
-            {console.log(tokenIDs)}
+            {
+                walletMints !== null &&
+                walletMints > 0 &&
+                <UserNFTPortfolio />
+            }
         </>
     )
 }

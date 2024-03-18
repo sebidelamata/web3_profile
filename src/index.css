@@ -1019,3 +1019,62 @@ input[type="submit"]::after{
 .links-list{
   width: 100vw;
 }
+
+.user-nft-portfolio-title{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-nft-card{
+  height: 100svh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: var(--large-container-padding);
+}
+
+.nft-title{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.nft-image{
+  display: grid;
+  object-fit: scale-down;
+  height: 40svh;
+}
+
+.nft-description-and-attributes{
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: var(--large-container-padding);
+}
+
+.nft-description{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: x-large;
+}
+
+.nft-attribute{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.nft-attribute-name,
+.nft-attribute-value{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.nft-attribute-name{
+  font-size: large;
+  font-weight: bold;
+}
