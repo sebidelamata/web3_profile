@@ -9,6 +9,7 @@
   --color-2: rgb(181, 194, 202);
   --color-3: rgb(232, 189, 110);
   --color-4: rgb(10, 10, 21);
+  --color-5: rgb(10, 6, 37, 0.8);
   --typewriterSpeed: 5s;
   --typewriterCharacters: 27;
   --border-radius: 0.7em;
@@ -1020,18 +1021,84 @@ input[type="submit"]::after{
   width: 100vw;
 }
 
-.user-nft-portfolio-title{
+.user-nft-portfolio-container{
   display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-5);
+  z-index: 999; 
+  overflow-y: auto;
   justify-content: center;
   align-items: center;
 }
 
+.user-nft-portfolio-title{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  border-width: var(--border-width);
+  border-color: var(--color-2);
+  border-style: solid;
+  height: 12svh;
+  background-color: var(--color-1);
+  z-index: 1000;
+  opacity: 1;
+  transform: translateY(-16svh);
+  padding: var(--large-container-padding);
+}
+
+.close-portfolio-button{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  position: fixed;
+  top: calc(var(--large-container-padding)*6);
+  right: calc(var(--large-container-padding)*10);
+  width: 3vw;
+  height: 3vw;
+  font-size: x-large;
+  transition: scale var(--transition-speed), filter var(--transition-speed);
+  opacity: 1;
+}
+
+.close-portfolio-button:hover{
+  scale: 1.1;
+  filter: brightness(1.2);
+}
+
+.user-nft-portfolio-x{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 50%;
+  transform: translateY(-75%);
+}
+
+.user-nft-portfolio-list{
+  display: grid;
+  gap: var(--large-container-padding);
+}
+
 .user-nft-card{
-  height: 100svh;
   display: grid;
   justify-content: center;
   align-items: center;
   padding: var(--large-container-padding);
+  background-color: var(--color-1);
+  z-index: 1000;
+  opacity: 1;
 }
 
 .nft-title{
@@ -1042,16 +1109,83 @@ input[type="submit"]::after{
   font-size: xx-large;
 }
 
+.nft-links-list{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-items: center;
+}
+
+.arbiscan-logo,
+.opensea-logo{
+  display: grid;
+  object-fit: contain;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  transition: scale var(--transition-speed), filter var(--transition-speed);
+}
+.arbiscan-logo:hover,
+.opensea-logo:hover{
+  scale: 1.1;
+  filter: brightness(1.2);
+}
+
+.arbiscan-logo{
+  height: 8svh;
+}
+
+.opensea-logo{
+  max-height: 8svh;
+}
+
+.nft-image-container{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  top: 18svh;
+  right: -20%;
+  position: absolute;
+  transition: opacity var(--transition-speed), right calc(var(--transition-speed)*3);
+}
+
+.nft-image-container.show{
+  opacity: 1;
+  right: 6%;
+}
+
 .nft-image{
   display: grid;
+  justify-content: center;
+  align-items: center;
   object-fit: scale-down;
   height: 40svh;
+  border-radius: var(--border-radius);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
 }
 
 .nft-description-and-attributes{
   display: grid;
   grid-template-rows: repeat(2, auto);
   gap: var(--large-container-padding);
+  opacity: 0;
+  position: absolute;
+  border-radius: var(--border-radius);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  padding: var(--large-container-padding);
+  bottom: 22svh;
+  left: -20%;
+  width: 40vw;
+  transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
+}
+.nft-description-and-attributes.show{
+  opacity: 1;
+  left: 10%;
 }
 
 .nft-description{
@@ -1059,12 +1193,19 @@ input[type="submit"]::after{
   justify-content: center;
   align-items: center;
   font-style: italic;
-  font-size: x-large;
 }
 
 .nft-attribute{
   display: grid;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: repeat(2, 1fr);
+  transition: scale var(--transition-speed), filter var(--transition-speed);
+}
+
+.nft-attribute:hover{
+  filter: brightness(1.2);
+  scale: 1.1;
 }
 
 .nft-attribute-name,
@@ -1077,4 +1218,24 @@ input[type="submit"]::after{
 .nft-attribute-name{
   font-size: large;
   font-weight: bold;
+}
+
+.select-nft-row{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  font-size: xx-large;
+}
+
+.select-nft-row>button{
+  transition: filter var(--transition-speed), scale var(--transition-speed);
+}
+
+.select-nft-row>button:hover{
+  filter: brightness(1.2);
+  scale: 1.1;
 }

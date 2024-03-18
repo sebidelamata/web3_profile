@@ -12,6 +12,8 @@ const Mint = () => {
 
     const [walletMints, setWalletMints] = useState(null)
 
+    const [showPortfolio, setShowPortfolio] = useState(false)
+
     const provider = useProvider();
     const account = useAccount();
 
@@ -92,7 +94,17 @@ const Mint = () => {
             {
                 walletMints !== null &&
                 walletMints > 0 &&
-                <UserNFTPortfolio />
+                <div className="view-yours-container">
+                    <button onClick={() => setShowPortfolio(true)}>
+                        Your Boxers
+                    </button>
+                </div>
+            }
+            {
+                walletMints !== null &&
+                walletMints > 0 &&
+                showPortfolio === true &&
+                <UserNFTPortfolio setShowPortfolio={setShowPortfolio}/>
             }
         </>
     )
