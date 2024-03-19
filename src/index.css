@@ -226,11 +226,18 @@ html{
   transition: transform var(--transition-speed) ease;
 }
 
+.mint-button-container{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
 .mint-button{
   display: grid;
   justify-content: center;
   align-items: center;
-  transition: filter 1.5s;
+  width: 20vw;
+  transition: filter var(--transition-speed), scale var(--transition-speed);
   animation: slideIn 1.25s forwards, fadeIn 0.5s forwards;
 }
 
@@ -465,6 +472,7 @@ html{
   .mint-button:hover,
   .mint-button:focus{
     filter: brightness(1.6);
+    scale: 1.02;
   }
 
 }
@@ -1015,6 +1023,36 @@ input[type="submit"]::after{
   justify-content: center;
   align-items: center;
   gap: min(3em);
+}
+
+.minting-title{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection-description{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  position: relative;
+  font-size: large;
+}
+
+.nft-previews{
+  display: grid;
+  text-align: center;
+  justify-content: center;
+}
+
+.mint-supply{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  grid-template-columns: repeat(2, auto);
+  gap: 1em;
 }
 
 .links-list{
