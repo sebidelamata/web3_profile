@@ -4,7 +4,12 @@ const Resume = () => {
     return(
         <>
             <Navbar></Navbar>
-            <div>Resume not implemented</div>
+            <div>
+               <iframe 
+               src="https://sebidelamata.github.io/datascienceblog/assets/delaMataResume.pdf" 
+               frameBorder="0"
+               className="resume-doc"></iframe>
+            </div>
         </>
     )
 }

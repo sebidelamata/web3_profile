@@ -1038,6 +1038,14 @@ input[type="submit"]::after{
   width: 60vw;
   font-size: large;
   transform: translateX(25%);
+  border-radius: var(--border-radius);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  z-index: 2000;
+  background-color: var(--color-1);
+  padding: var(--large-container-padding);
+  box-shadow:0 0 15px 4px var(--color-2);
 }
 
 .nft-previews{
@@ -1067,7 +1075,7 @@ input[type="submit"]::after{
   width: 100%;
   height: 100%;
   background-color: var(--color-5);
-  z-index: 999; 
+  z-index: 9999; 
   overflow-y: auto;
   justify-content: center;
   align-items: center;
@@ -1278,6 +1286,11 @@ input[type="submit"]::after{
   scale: 1.1;
 }
 
+.nft-previews-container{
+  display: grid;
+  max-height: 10svh;
+}
+
 .nft-previews-card-image{
   display: grid;
   object-fit: contain;
@@ -1341,7 +1354,7 @@ input[type="submit"]::after{
   position: relative;
   left: -10vw;
   bottom: 10svh;
-  animation: driftAnimation 15s linear infinite 10s;
+  animation: driftAnimation 15s linear infinite 3s;
 }
 
 #nft-previews-card-3{
@@ -1384,4 +1397,9 @@ input[type="submit"]::after{
   border-width: var(--border-width);
   border-style: solid;
   padding: var(--button-padding) var(--button-padding-side);
+}
+
+.resume-doc{
+  display: grid;
+  height: 100svh;
 }

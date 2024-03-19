@@ -33,13 +33,13 @@ const Navbar = () => {
                     <Link to={'/blog'}>Blog</Link>
                 </li> */}
                 <li className="navbar-list-item">
-                    <Link to={'/resume'}>Resume</Link>
-                </li>
-                <li className="navbar-list-item">
                     <Link to={'/mint'}>Mint</Link>
                 </li>
                 <li className="navbar-list-item">
                     <w3m-button size="sm" label="Connect" balance="hide"/>
+                </li>
+                <li className="navbar-list-item">
+                    <Link to={'/resume'}>Resume</Link>
                 </li>
             </ul>
         </nav>
