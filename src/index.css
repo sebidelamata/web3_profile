@@ -1035,9 +1035,9 @@ input[type="submit"]::after{
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 50vw;
-  position: relative;
+  width: 60vw;
   font-size: large;
+  transform: translateX(25%);
 }
 
 .nft-previews{
@@ -1276,4 +1276,112 @@ input[type="submit"]::after{
 .select-nft-row>button:hover{
   filter: brightness(1.2);
   scale: 1.1;
+}
+
+.nft-previews-card-image{
+  display: grid;
+  object-fit: contain;
+  width: 30vw;
+  border-radius: var(--border-radius);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  box-shadow:0 0 15px 4px var(--color-2);
+}
+
+.nft-previews-card-name{
+  position: relative;
+  top: 19vw;
+  left: 2vw;
+  font-size: x-large;
+}
+
+.nft-previews-card{
+  position: relative;
+  left: -40em; 
+}
+
+@keyframes driftAnimation {
+  0% {
+      transform: translateX(-20em);
+      opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+      transform: translateX(calc(100% + 20em));
+      opacity: 0;
+  }
+}
+
+.nft-previews-list{
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
+  overflow: hidden;
+}
+
+#nft-previews-card-0{
+  position: relative;
+  left: -5vw;
+  animation: driftAnimation 30s linear infinite 5s;
+}
+
+#nft-previews-card-1{
+  position: relative;
+  left: 200vw;
+  animation: driftAnimation 25s linear infinite 3s;
+}
+
+#nft-previews-card-2{
+  position: relative;
+  left: -10vw;
+  bottom: 10svh;
+  animation: driftAnimation 15s linear infinite 10s;
+}
+
+#nft-previews-card-3{
+  position: relative;
+  left: -50vw;
+  bottom: 20svh;
+  animation: driftAnimation 25s linear infinite 1s;
+}
+
+#nft-previews-card-4{
+  position: relative;
+  left: 60vw;
+  bottom: 20svh;
+  animation: driftAnimation 22s linear infinite 5s;
+}
+
+#nft-previews-card-5{
+  position: relative;
+  bottom: 20svh;
+  left: -25vw;
+  animation: driftAnimation 19s linear infinite 3s;
+}
+
+.view-yours-container{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  transition: filter var(--transition-speed), scale var(--transition-speed);
+  padding-bottom: 5svh;
+}
+.view-yours-container:hover{
+  filter: brightness(1.2);
+  scale: 1.1;
+}
+
+.view-yours-container-button{
+  border-radius: var(--border-radius);
+  border-color: var(--color-2);
+  border-width: var(--border-width);
+  border-style: solid;
+  padding: var(--button-padding) var(--button-padding-side);
 }

@@ -80,11 +80,13 @@ const Mint = () => {
             <Navbar></Navbar>
             <div className="minting-body">
                 <h1 className="minting-title">Mint Boxers in Predicaments NFT</h1>
+                <NFTPreviews/>
                 <div className="collection-description">
                 Thank you for taking the time to explore my website. As a gesture of appreciation, I&lsquo;m delighted to extend an exclusive offer: a complimentary mint of a commemorative NFT from the esteemed collection, Boxers in Predicaments.
-                    <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet. Additionally, a nominal 5% royalty fee applies to any future resale, enabling ongoing support for the artistic endeavor. Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
+                    <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. The contracts are deployed to Arbitrum and the images are deployed to IPFS for decentralized and tamper-proof data-hosting.
+                    <br></br><br></br>To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet. Additionally, a nominal 5% royalty fee applies to any future resale, enabling ongoing support for the artistic endeavor.
+                    <br></br><br></br>Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
                 </div>
-                <NFTPreviews/>
                 <div className="mint-button-container">
                     <button onClick={mintNFT} className="mint-button">
                         {
@@ -96,9 +98,12 @@ const Mint = () => {
                         }
                     </button>
                 </div>
-                <h3 className="mint-supply">
-                    <strong>{totalSupply}</strong> {`/ 138 Boxers Minted`}
-                </h3>
+                {
+                    totalSupply &&
+                    <h3 className="mint-supply">
+                        <strong>{totalSupply}</strong> {`/ 138 Boxers Minted`}
+                    </h3>
+                }
                 {
                     minted &&
                     <div className="mint-success-banner">
@@ -122,8 +127,8 @@ const Mint = () => {
                 walletMints !== null &&
                 walletMints > 0 &&
                 <div className="view-yours-container">
-                    <button onClick={() => setShowPortfolio(true)}>
-                        Your Boxers
+                    <button onClick={() => setShowPortfolio(true)} className="view-yours-container-button">
+                        View Your Boxers
                     </button>
                 </div>
             }

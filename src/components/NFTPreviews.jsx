@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useProvider, useAccount } from "../EthersProvider";
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
+import NFTPreviewsCard from "./NFTPreviewsCard";
 
 
 const NFTPreviews = () => {
@@ -33,9 +34,9 @@ const NFTPreviews = () => {
     const createRandomIndexArray = () => {
         if(maxSupply !== null){
             let localArray = [];
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 6; i++) {
                 let randomNumber = Math.floor(Math.random() * maxSupply);
-                if(localArray.includes(randomNumber)) {
+                while(localArray.includes(randomNumber)) {
                     randomNumber = Math.floor(Math.random() * maxSupply);
                 }
                 localArray.push(randomNumber);
@@ -91,8 +92,17 @@ const NFTPreviews = () => {
     console.log(maxSupply)
     console.log(randomMetadata)
     return(
-        <div className="nft-previews">
-            nft previews
+        <div className="nft-previews-container">
+            <ul className="nft-previews-list">
+                {
+                    randomMetadata &&
+                    randomMetadata.map((metadata, index) => (
+                        <li key={metadata.image} className="nft-previews-card" id={`nft-previews-card-${index}`}>
+                            <NFTPreviewsCard metadata={metadata}/>
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
     )
 }
