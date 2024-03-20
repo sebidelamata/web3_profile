@@ -31,7 +31,7 @@ const Projects = () => {
                 </li>
                 <li className="project-card" id="project-card-3">
                     <ProjectCard
-                        title={'REPO'} 
+                        title={'Gaping Pond'} 
                         description={"GapingPond is a whitelabel NFT Marketplace that uses DeFiLlamma and OpenSea APIs to filter NFTs by volume on Ethereum. GapingPond provides metrics and interactive charts unavailable on OpenSea alone."} 
                         applicationLink={'https://shoppingcart-e1v.pages.dev/'}
                         repositoryLink={'https://github.com/sebidelamata/shoppingCart'} 
