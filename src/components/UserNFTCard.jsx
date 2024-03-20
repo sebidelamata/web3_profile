@@ -24,7 +24,7 @@ const UserNFTCard = ({metadata, tokenID}) => {
                     </li>
                     <li className="open-sea-link">
                         <a 
-                        href={`https://opensea.io/`}
+                        href={`https://testnets.opensea.io/assets/arbitrum-sepolia/${import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS}/${tokenID}`}
                         target="_blank"
                         >
                             <img 

@@ -10,7 +10,7 @@ const Projects = () => {
                 <li className="project-card" id="project-card-1">
                     <ProjectCard
                         title={'Web3 Portfolio NFT'} 
-                        description={'A full-stack Web3 App using React and Hardhat. Users can mint a commemorative NFT with Generative AI art and metadata pinned to IPFS.'} 
+                        description={'Web3 application leveraging React and Hardhat. Users have the ability to mint commemorative NFTs, showcasing unique generative AI artwork with metadata securely pinned to IPFS'} 
                         applicationLink={'/mint'}
                         repositoryLink={'https://github.com/sebidelamata/web3_profile'} 
                         videoLink={'https://youtube.com/embed/dEuhGtQ2Bko?autoplay=1&mute=1&loop=1'}

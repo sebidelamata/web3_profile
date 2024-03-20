@@ -88,15 +88,26 @@ const Mint = () => {
                     <br></br><br></br>Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
                 </div>
                 <div className="mint-button-container">
-                    <button onClick={mintNFT} className="mint-button">
-                        {
-                            walletMints >= 2 
-                            ? "Max Minted"
-                            : mintLoading 
-                            ? "Minting..." 
-                            : "Free Mint"
-                        }
-                    </button>
+                    {
+                        totalSupply < 138 &&
+                        <button onClick={mintNFT} className="mint-button">
+                            {
+                                walletMints >= 2 
+                                ? "Max Minted"
+                                : mintLoading 
+                                ? "Minting..." 
+                                : "Free Mint"
+                            }
+                        </button>
+                    }
+                    {
+                        totalSupply >= 138 &&
+                        <button className="mint-button">
+                            <a href="https://testnets.opensea.io/collection/boxers-in-predicaments" target="blank">
+                                Mint Completed, Make an Offer on OpenSea.
+                            </a>
+                        </button>
+                    }
                 </div>
                 {
                     totalSupply !== null &&

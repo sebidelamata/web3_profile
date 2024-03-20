@@ -1067,6 +1067,11 @@ input[type="submit"]::after{
 
 .links-list{
   width: 100vw;
+  display: grid;
+  justify-content: right;
+  position: relative;
+  right: 4vw;
+  align-items: center;
 }
 
 .user-nft-portfolio-container{
