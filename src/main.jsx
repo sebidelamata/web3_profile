@@ -28,7 +28,7 @@ const arbitrum = {
 const metadata = {
   name: 'Sebi de la Mata | Full-Stack Web3 Development',
   description: 'A Web3 Portfolio',
-  url: 'https://mywebsite.com', // origin must match your domain & subdomain
+  url: 'https://www.sebidelamata.com', // origin must match your domain & subdomain
   icons: ['https://avatars.mywebsite.com/']
 }
 

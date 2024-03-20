@@ -1461,3 +1461,7 @@ input[type="submit"]::after{
     transform: rotate(315deg);
   }
 }
+
+@media only screen and (max-width: 768px) {
+  
+}
