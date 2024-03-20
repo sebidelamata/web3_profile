@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useProvider, useAccount } from "../EthersProvider";
 import Navbar from "../components/Navbar"
 import { ethers } from "ethers";
-import portfolioNFTArtifact from '/artifacts/contracts/PortfolioNFT.sol/BiP.json';
+import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTPortfolio from "../components/UserNFTPortfolio";
 import NFTPreviews from "../components/NFTPreviews";
 import Loading from "../components/Loading";
