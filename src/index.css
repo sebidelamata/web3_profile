@@ -16,7 +16,7 @@
   --border-width: 1px;
   --tech-stack-icon-height: 4em;
   --tech-stack-icon-width: 4em;
-  --num-project-cards: 4;
+  --num-project-cards: 5;
   --project-card-height: 100svh;
   --project-card-top-padding: 1.5em;
   --project-card-margin: 4vw;
@@ -224,6 +224,7 @@ html{
   border-radius: var(--border-radius);
   border-width: var(--border-width);
   transition: transform var(--transition-speed) ease;
+  background-color: var(--color-1);
 }
 
 .mint-button-container{
@@ -824,6 +825,7 @@ input[type="submit"]::after{
   padding: var(--large-container-padding);
   font-weight: 900;
   font-size: x-large;
+  z-index: 999999;
 }
 
 .mint-success-banner{
@@ -1397,6 +1399,8 @@ input[type="submit"]::after{
   border-width: var(--border-width);
   border-style: solid;
   padding: var(--button-padding) var(--button-padding-side);
+  background-color: var(--color-1);
+  z-index: 9999;
 }
 
 .resume-doc{

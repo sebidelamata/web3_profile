@@ -9,35 +9,24 @@ const Projects = () => {
             <ul className="projects-lists" id="projects">
                 <li className="project-card" id="project-card-1">
                     <ProjectCard
-                        title={'Battleship'} 
-                        description={'A vanilla Javascript-based game of battleship using TDD and Jest as well as Webpack.'} 
-                        applicationLink={'https://sebidelamata.github.io/battleship/'}
-                        repositoryLink={'https://github.com/sebidelamata/battleship'} 
-                        videoLink={'https://www.youtube.com/embed/AqNxUMlHDXA?autoplay=1&mute=1&loop=1&playlist=AqNxUMlHDXA'}
-                        videoTitle={'battleShipPreviewVideo'}
+                        title={'Web3 Portfolio NFT'} 
+                        description={'A full-stack Web3 App using React and Hardhat. Users can mint a commemorative NFT with Generative AI art and metadata pinned to IPFS.'} 
+                        applicationLink={'/mint'}
+                        repositoryLink={'https://github.com/sebidelamata/web3_profile'} 
+                        videoLink={'https://youtube.com/embed/dEuhGtQ2Bko?autoplay=1&mute=1&loop=1'}
+                        videoTitle={'Web3 Portfolio NFT'}
                         cardNumber={1}
                     />
                 </li>
                 <li className="project-card" id="project-card-2">
                     <ProjectCard
-                        title={'Weather App'} 
-                        description={'A weather app written in vanilla JavaScript using async functions and webpack.'} 
-                        applicationLink={'https://sebidelamata.github.io/weatherApp/'}
-                        repositoryLink={'https://sebidelamata.github.io/weatherApp/'} 
-                        videoLink={'https://www.youtube.com/embed/KHuj7lDrl5E?autoplay=1&mute=1&loop=1&playlist=KHuj7lDrl5E'}
-                        videoTitle={'weatherApp'}
+                        title={'REPO'} 
+                        description={"ETH Denver 2024's 1st place Euler Bounty winner, Repo Vault provides liquidity and leverage for Pendle Principal Token (PT) holders through fixed-rate loans."} 
+                        applicationLink={'https://defi-interest-rate-swaps-frontend.vercel.app/'}
+                        repositoryLink={'https://devfolio.co/projects/repo-9d33'} 
+                        videoLink={'https://www.youtube.com/embed/_IlwpC8A_gE?start=19956&autoplay=1&mute=1&loop=1'}
+                        videoTitle={'repo'}
                         cardNumber={2}
-                    />
-                </li>
-                <li className="project-card" id="project-card-3">
-                    <ProjectCard
-                        title={'2dü'} 
-                        description={'A vanilla JavaScript to-do list application built with Webpack.'} 
-                        applicationLink={'https://sebidelamata.github.io/toDoList/'}
-                        repositoryLink={'https://github.com/sebidelamata/toDoList'} 
-                        videoLink={'https://www.youtube.com/embed/NnLBLz3f8HQ?autoplay=1&mute=1&loop=1&playlist=NnLBLz3f8HQ'}
-                        videoTitle={'todo'}
-                        cardNumber={3}
                     />
                 </li>
             </ul>

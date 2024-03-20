@@ -83,8 +83,8 @@ const Mint = () => {
                 <NFTPreviews/>
                 <div className="collection-description">
                 Thank you for taking the time to explore my website. As a gesture of appreciation, I&lsquo;m delighted to extend an exclusive offer: a complimentary mint of a commemorative NFT from the esteemed collection, Boxers in Predicaments.
-                    <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. The contracts are deployed to Arbitrum and the images are deployed to IPFS for decentralized and tamper-proof data-hosting.
-                    <br></br><br></br>To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet. Additionally, a nominal 5% royalty fee applies to any future resale, enabling ongoing support for the artistic endeavor.
+                    <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. The contracts are deployed to Arbitrum and the images are deployed to IPFS for decentralized and tamper-proof data hosting.
+                    <br></br><br></br>To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet.
                     <br></br><br></br>Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
                 </div>
                 <div className="mint-button-container">
@@ -99,7 +99,7 @@ const Mint = () => {
                     </button>
                 </div>
                 {
-                    totalSupply &&
+                    totalSupply !== null &&
                     <h3 className="mint-supply">
                         <strong>{totalSupply}</strong> {`/ 138 Boxers Minted`}
                     </h3>
