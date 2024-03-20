@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 
 const UserNFTCard = ({metadata, tokenID}) => {
-
     return(
         <div className="user-nft-card" id={`user-nft-card-${tokenID}`}>
             <div className="nft-image-container" id={`nft-image-container-${tokenID}`}>

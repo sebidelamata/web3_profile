@@ -13,7 +13,7 @@ const Projects = () => {
                         description={'Web3 application leveraging React and Hardhat. Users have the ability to mint commemorative NFTs, showcasing unique generative AI artwork with metadata securely pinned to IPFS'} 
                         applicationLink={'/mint'}
                         repositoryLink={'https://github.com/sebidelamata/web3_profile'} 
-                        videoLink={'https://youtube.com/embed/dEuhGtQ2Bko?autoplay=1&mute=1&loop=1'}
+                        videoLink={'https://www.youtube.com/embed/K-umMAg4uVQ?autoplay=1&mute=1&loop=1&playlist=K-umMAg4uVQ'}
                         videoTitle={'Web3 Portfolio NFT'}
                         cardNumber={1}
                     />
@@ -21,12 +21,23 @@ const Projects = () => {
                 <li className="project-card" id="project-card-2">
                     <ProjectCard
                         title={'REPO'} 
-                        description={"ETH Denver 2024's 1st place Euler Bounty winner, Repo Vault provides liquidity and leverage for Pendle Principal Token (PT) holders through fixed-rate loans."} 
+                        description={"ETH Denver 2024's 1st place Euler Finance Bounty winner, Repo Vault provides liquidity and leverage for Pendle Principal Token (PT) holders through fixed-rate loans."} 
                         applicationLink={'https://defi-interest-rate-swaps-frontend.vercel.app/'}
                         repositoryLink={'https://devfolio.co/projects/repo-9d33'} 
-                        videoLink={'https://www.youtube.com/embed/_IlwpC8A_gE?start=19956&autoplay=1&mute=1&loop=1'}
+                        videoLink={'https://www.youtube.com/embed/7VfPbW5x3Dw?si=DxM4wRr-ApAb5twY&autoplay=1&mute=1&loop=1&playlist=7VfPbW5x3Dw'}
                         videoTitle={'repo'}
                         cardNumber={2}
+                    />
+                </li>
+                <li className="project-card" id="project-card-3">
+                    <ProjectCard
+                        title={'REPO'} 
+                        description={"GapingPond is a whitelabel NFT Marketplace that uses DeFiLlamma and OpenSea APIs to filter NFTs by volume on Ethereum. GapingPond provides metrics and interactive charts unavailable on OpenSea alone."} 
+                        applicationLink={'https://shoppingcart-e1v.pages.dev/'}
+                        repositoryLink={'https://github.com/sebidelamata/shoppingCart'} 
+                        videoLink={'https://www.youtube.com/embed/DW4x2mfdgzE?si=NL5thjhvVo5hBQ4B&autoplay=1&mute=1&loop=1&playlist=DW4x2mfdgzE'}
+                        videoTitle={'GapingPond'}
+                        cardNumber={3}
                     />
                 </li>
             </ul>

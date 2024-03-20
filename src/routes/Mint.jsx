@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTPortfolio from "../components/UserNFTPortfolio";
 import NFTPreviews from "../components/NFTPreviews";
+import Loading from "../components/Loading";
 
 const Mint = () => {
     
@@ -82,7 +83,7 @@ const Mint = () => {
                 <h1 className="minting-title">Mint Boxers in Predicaments NFT</h1>
                 <NFTPreviews/>
                 <div className="collection-description">
-                Thank you for taking the time to explore my website. As a gesture of appreciation, I&lsquo;m delighted to extend an exclusive offer: a complimentary mint of a commemorative NFT from the esteemed collection, Boxers in Predicaments.
+                    Thank you for taking the time to explore my website. As a gesture of appreciation, I&lsquo;m delighted to extend an exclusive offer: a complimentary mint of a commemorative NFT from the esteemed collection, Boxers in Predicaments.
                     <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. The contracts are deployed to Arbitrum and the images are deployed to IPFS for decentralized and tamper-proof data hosting.
                     <br></br><br></br>To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet.
                     <br></br><br></br>Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
