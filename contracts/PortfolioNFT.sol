@@ -79,4 +79,8 @@ contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
     function getBaseURI() public view returns (string memory){
         return baseTokenUriString;
     }
+
+    function contractURI () public pure returns (string memory) {
+        return "https://ipfs.io/ipfs/QmNYnne3HLJXJPQvm1N6KaPVebzEF7QwJxhXePjyoQrf8P";
+    }
 }

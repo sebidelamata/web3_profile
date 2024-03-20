@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/migueldelamata/web3_profile/contracts/PortfolioNFT.sol": {
-      "lastModificationDate": 1710715899878,
-      "contentHash": "82ea9eb8e4d40e2ae9923adba79f11a1",
+      "lastModificationDate": 1710908986085,
+      "contentHash": "be789f0105cfe679d0e9ec6883eccc25",
       "sourceName": "contracts/PortfolioNFT.sol",
       "solcConfig": {
         "version": "0.8.24",
