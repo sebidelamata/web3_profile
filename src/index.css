@@ -1470,6 +1470,7 @@ input[type="submit"]::after{
 
   .hero-intro-title-card{
     width: 96vw;
+    font-size: small;
   }
 
   .project-description-card{
