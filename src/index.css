@@ -1489,7 +1489,7 @@ input[type="submit"]::after{
   }
 
   .project-description-content{
-    font-size: medium;
+    font-size: small;
   }
 
   .project-card-footer{
