@@ -563,10 +563,6 @@ html{
   opacity: 1;
   right: 0;
 }
-.project-video-card.show {
-  opacity: 1;
-  left: 0.5%;
-}
 
 iframe{
   width: 100%;
