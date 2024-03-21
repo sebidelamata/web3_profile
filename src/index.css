@@ -1475,12 +1475,21 @@ input[type="submit"]::after{
 
   .project-description-card{
     width: 94.5%;
-    height: 64%;
+    height: 66%;
     top: 4svh;
     right: -20%;
     position: relative;
     grid-template-columns: 53% 47%;
     grid-template-rows: 40% 60%;
+    gap: calc(var(--button-padding)*2);
+  }
+
+  .project-description-title{
+    font-size: x-large;
+  }
+
+  .project-description-content{
+    font-size: medium;
   }
 
   .project-card-footer{
