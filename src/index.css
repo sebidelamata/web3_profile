@@ -1475,7 +1475,7 @@ input[type="submit"]::after{
 
   .project-description-card{
     width: 94.5%;
-    height: 66%;
+    height: 50%;
     top: 4svh;
     right: -20%;
     position: relative;
