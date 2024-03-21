@@ -565,7 +565,7 @@ html{
 }
 .project-video-card.show {
   opacity: 1;
-  left: 0.5em;
+  left: 0.5%;
 }
 
 iframe{
@@ -1520,7 +1520,7 @@ input[type="submit"]::after{
 
   .project-video-card.show{
     opacity: 1;
-    left: 0;
+    left: -1%;
   }
 
   #contact-form{
