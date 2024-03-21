@@ -1575,16 +1575,38 @@ input[type="submit"]::after{
   .collection-description{
     width: 80%;
     left: 6%;
-    top: 20%;
+    top: 15%;
   }
 
   .navbar{
     z-index: 99999999999999;
   }
 
+  .mint-button-container{
+    position: relative;
+    top: 18svh;
+    width: 100vw;
+    right: 2vw;
+  }
+
+  .mint-button{
+    width: 80vw;
+    top: -6svh;
+    justify-content: center;
+  }
+
   .mint-supply{
+    position: relative;
     font-size: x-large;
+    top: 4svh;
+    right: 2vw;
     max-width: 100vw;
+  }
+
+  .view-yours-container{
+    position: relative;
+    top: 4svh;
+    right: 2vw;
   }
 
   .user-nft-portfolio-container{
