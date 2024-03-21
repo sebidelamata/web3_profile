@@ -1472,6 +1472,38 @@ input[type="submit"]::after{
     width: 96vw;
   }
 
+  .project-description-card{
+    width: 94.5%;
+    height: 64%;
+    top: 4svh;
+    right: -20%;
+    position: relative;
+    grid-template-columns: 53% 47%;
+    grid-template-rows: 40% 60%;
+  }
+
+  .project-card-footer{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 3em;
+    position: absolute;
+    bottom: 2svh;
+    left: calc(var(--large-container-padding)*3);
+  }
+
+  .project-video-card{
+    position: absolute;
+    width: 93%;
+    bottom: 0svh;
+    left: -20%;
+    border: var(--color-2) var(--border-width) solid;
+    border-radius: var(--border-radius);
+    padding: var(--large-container-padding);
+    box-shadow:0 0 15px 4px var(--color-2);
+    opacity: 0;
+    transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
+  }
+
 
   #contact-form{
     display: grid;
@@ -1492,11 +1524,16 @@ input[type="submit"]::after{
   .form-line-one{
     display: grid;
     grid-template-rows: repeat(4, auto);
-    gap: calc(var(--large-container-padding)*5);
+    gap: calc(var(--large-container-padding)*2);
     padding: var(--large-container-padding);
     justify-content: center;
     align-items: center;
     max-width: 100vw;
+  }
+
+  .project-description-title{
+    position: relative;
+    bottom: -30%;
   }
 
   .contact-description-description{
@@ -1509,6 +1546,9 @@ input[type="submit"]::after{
     display: grid;
     align-items: center;
     justify-content: center;
-    transform: translateY(0);
+    position: relative;
+    bottom: 20%;
+    left: 10%;
+    height: 100%;
   }
 }
