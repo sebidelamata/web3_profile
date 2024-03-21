@@ -651,36 +651,40 @@ iframe{
   height: max-content;
 }
 
-.contact-description{
-  color: var(--color-2);
-  position: relative;
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  align-items: center;
-  justify-content: center;
-  height: 40svh;
-  overflow: hidden;
-  max-width: 100vw;
-}
+@media (min-width: 769px) {
+  .contact-description{
+    color: var(--color-2);
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: center;
+    justify-content: center;
+    height: 40svh;
+    overflow: hidden;
+    max-width: 100vw;
+  }
 
-.contact-description-description{
-  width: 45%;
-  position: absolute;
-  right: 0%;
+  .contact-description-description{
+    width: 45%;
+    position: absolute;
+    right: 0%;
+  }
 }
 
 #contact-form:before, #contact-form:after {
   box-sizing: border-box;
 }
 
-.form-line-one{
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  gap: calc(var(--large-container-padding)*5);
-  padding: var(--large-container-padding);
-  justify-content: center;
-  align-items: center;
-  max-width: 100vw;
+@media (min-width: 769px) {
+  .form-line-one{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: calc(var(--large-container-padding)*5);
+    padding: var(--large-container-padding);
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+  }
 }
 
 input[type=text],
@@ -1463,5 +1467,48 @@ input[type="submit"]::after{
 }
 
 @media only screen and (max-width: 768px) {
-  
+
+  .hero-intro-title-card{
+    width: 96vw;
+  }
+
+
+  #contact-form{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-description{
+    color: var(--color-2);
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+  }
+
+  .form-line-one{
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    gap: calc(var(--large-container-padding)*5);
+    padding: var(--large-container-padding);
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+  }
+
+  .contact-description-description{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scheduler-button{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0);
+  }
 }
