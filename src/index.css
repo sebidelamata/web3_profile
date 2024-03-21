@@ -1473,6 +1473,10 @@ input[type="submit"]::after{
     font-size: small;
   }
 
+  .project-card{
+    max-height: 100svh;
+  }
+
   .project-description-card{
     width: 94.5%;
     height: 50%;
@@ -1514,6 +1518,10 @@ input[type="submit"]::after{
     transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
   }
 
+  .project-video-card.show{
+    opacity: 1;
+    left: 0;
+  }
 
   #contact-form{
     display: grid;
