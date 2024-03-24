@@ -1462,7 +1462,7 @@ input[type="submit"]::after{
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
 
   .hero-intro-title-card{
     width: 96vw;
