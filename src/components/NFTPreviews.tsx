@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useProvider, useAccount } from "../EthersProvider";
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import NFTPreviewsCard from "./NFTPreviewsCard";
 
+interface Metadata {
+    name: string;
+    image: string;
+}
 
-const NFTPreviews = () => {
+
+const NFTPreviews: React.FC = () => {
 
     const provider = useProvider();
     const account = useAccount();
 
-    const [maxSupply, setMaxSupply] = useState(null)
-    const [randomIndexArray, setRandomIndexArray] = useState([])
+    const [maxSupply, setMaxSupply] = useState<number | null>(null)
+    const [randomIndexArray, setRandomIndexArray] = useState<number[]>([])
 
-    const [randomMetadata, setRandomMetadata] = useState([])
-    const [randomMetadataLoading, setRandomMetadataLoading] = useState(false)
+    const [randomMetadata, setRandomMetadata] = useState<Metadata[]>([])
+    const [randomMetadataLoading, setRandomMetadataLoading] = useState<boolean>(false)
 
     const loadMaxSupply = async () => {
         try{
@@ -33,7 +38,7 @@ const NFTPreviews = () => {
 
     const createRandomIndexArray = () => {
         if(maxSupply !== null){
-            let localArray = [];
+            let localArray: number[] = [];
             for (let i = 0; i < 6; i++) {
                 let randomNumber = Math.floor(Math.random() * maxSupply);
                 while(localArray.includes(randomNumber)) {
@@ -46,16 +51,17 @@ const NFTPreviews = () => {
     };
 
     // fetches the actual ipfs data
-    const fetchMetaData = async (uri) => {
+    const fetchMetaData = async (uri: string): Promise<Metadata> => {
         try{
-            let metadata = await fetch(uri)
-            if (!metadata.ok) {
+            let response = await fetch(uri)
+            if (!response.ok) {
                 throw new Error('Network response was not ok');
                 }
-            metadata = await metadata.json()
+            const metadata: Metadata = await response.json()
             return metadata
         } catch(err){
             console.log(err)
+            throw err
         }
     }
 
@@ -63,7 +69,7 @@ const NFTPreviews = () => {
     const loadRandomMetaData = async () => {
 
         setRandomMetadataLoading(true)
-        let metadataArray = []
+        let metadataArray: Metadata[] = []
         for(let id of randomIndexArray){
             try{
                 const uri = `${import.meta.env.VITE_IPFS_METADATA_BASE_URI}${id}.json`
@@ -89,8 +95,6 @@ const NFTPreviews = () => {
         loadRandomMetaData()
     }, [randomIndexArray])
     
-    console.log(maxSupply)
-    console.log(randomMetadata)
     return(
         <div className="nft-previews-container">
             <ul className="nft-previews-list">

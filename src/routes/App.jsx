@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar.tsx'
 import Hero from '../components/Hero.tsx'
 import TechStackCarousel from '../components/TechStackCarousel.tsx'
 import ScrollToProjectsCard from '../components/ScrollToProjectsCard'

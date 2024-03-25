@@ -3,7 +3,7 @@ import App from './routes/App.jsx'
 import Mint from './routes/Mint.jsx'
 import Resume from './routes/Resume.jsx'
 import Blog from './routes/Blog.jsx'
-import { EthersProvider } from './EthersProvider.jsx'
+import { EthersProvider } from './EthersProvider.tsx'
 
 const Router = () => {
     const router = createBrowserRouter([

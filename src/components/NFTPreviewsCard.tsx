@@ -1,9 +1,18 @@
-import Loading from "./Loading.tsx"
-import { useState } from "react"
+import Loading from "./Loading"
+import React, { useState } from "react"
 
-const NFTPreviewsCard = ({metadata}) => {
+interface Metadata {
+    name: string;
+    image: string;
+}
 
-    const [imageLoading, setImageLoading] = useState(true)
+interface NFTPreviewsCardProps {
+    metadata: Metadata;
+}
+
+const NFTPreviewsCard: React.FC<NFTPreviewsCardProps>  = ({metadata}) => {
+
+    const [imageLoading, setImageLoading] = useState<boolean>(true)
 
 
     const handleImageLoad = () => {

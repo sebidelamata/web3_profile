@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useProvider, useAccount } from "../EthersProvider";
+import { useProvider, useAccount } from "../EthersProvider.tsx";
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTCard from "./UserNFTCard";
