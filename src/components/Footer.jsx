@@ -17,6 +17,11 @@ const Footer = () => {
                         <button className="resume-button" type="button">Resume</button>
                     </a>
                 </li>
+                <li>
+                    <div className="llc-disclaimer">
+                        &copy; 2024 Sebi de la Mata Web3 Development, LLC. All rights reserved.
+                    </div>
+                </li>
             </ul>
         </footer>
     )

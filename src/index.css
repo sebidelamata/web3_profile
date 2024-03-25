@@ -798,11 +798,18 @@ input[type="submit"]::after{
 
 .links-list{
   display: grid;
-  grid-template-columns: repeat(3, max-content);
+  grid-template-columns: repeat(4, max-content);
   gap: 1em;
   justify-content: right;
   align-items: baseline;
   padding-top: 4em;
+}
+
+.llc-disclaimer{
+  position: absolute;
+  bottom: -10%;
+  left: 5%;
+  font-size: xx-small;
 }
 
 #linkedin-button{
