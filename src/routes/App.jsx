@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import Hero from '../components/Hero'
-import TechStackCarousel from '../components/TechStackCarousel'
+import Hero from '../components/Hero.tsx'
+import TechStackCarousel from '../components/TechStackCarousel.tsx'
 import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
 import Projects from './Projects'
-import Scheduler from '../components/Scheduler'
 import Contacts from '../components/Contacts'
 import ScrollTopButton from '../components/ScrollTopButton'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer.tsx'
 
 function App() {
 

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
+import React from "react";
 
-const TechStackCarousel = () => {
+const TechStackCarousel: React.FC = () => {
 
     useEffect(() => {
         // infinite scroller for tech stack icons
@@ -8,15 +9,15 @@ const TechStackCarousel = () => {
         // only apply to users who dont have reduce motion turned on
         const addAnimation = () => {
             scrollers.forEach((scroller) => {
-                scroller.setAttribute('data-animated', true);
+                scroller.setAttribute('data-animated', 'true');
 
-                const scrollerList = scroller.querySelector(".tech-stack-carousel-list");
-                const scrollerContent = Array.from(scrollerList.children);
+                const scrollerList = scroller.querySelector<HTMLUListElement>(".tech-stack-carousel-list");
+                const scrollerContent = Array.from(scrollerList?.children || []);
 
                 scrollerContent.forEach((item) => {
-                    const duplicatedItem = item.cloneNode(true);
-                    duplicatedItem.setAttribute('aria-hidden', true);
-                    scrollerList.appendChild(duplicatedItem);
+                    const duplicatedItem = item.cloneNode(true) as HTMLElement;
+                    duplicatedItem.setAttribute('aria-hidden', 'true');
+                    scrollerList?.appendChild(duplicatedItem);
                 })
             });
         }
@@ -37,7 +38,7 @@ const TechStackCarousel = () => {
                 event.preventDefault();
             
                 // Get the target element's ID from the href attribute
-                var targetId = scrollLink.getAttribute('href').substring(1);
+                var targetId = scrollLink.getAttribute('href')?.substring(1) || '';
             
                 // Find the target element by its ID
                 var targetElement = document.getElementById(targetId);

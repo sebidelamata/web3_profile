@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser'
 import { useRef, useState, useEffect } from 'react'
 import SuccessBanner from './SuccesBanner'
-import Scheduler from './Scheduler'
+import Scheduler from './Scheduler.tsx'
 
 
 const Contacts = () => {

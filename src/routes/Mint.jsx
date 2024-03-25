@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTPortfolio from "../components/UserNFTPortfolio";
 import NFTPreviews from "../components/NFTPreviews";
-import Loading from "../components/Loading";
+import Loading from "../components/Loading.tsx";
 
 const Mint = () => {
     

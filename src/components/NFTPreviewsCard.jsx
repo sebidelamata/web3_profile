@@ -1,4 +1,4 @@
-import Loading from "./Loading"
+import Loading from "./Loading.tsx"
 import { useState } from "react"
 
 const NFTPreviewsCard = ({metadata}) => {
