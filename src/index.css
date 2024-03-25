@@ -64,6 +64,10 @@ html{
   width: 100vw;
 }
 
+w3m-modal{
+  z-index: 9999999999999;
+}
+
 #hero{
   display: grid;
   height:75svh;
