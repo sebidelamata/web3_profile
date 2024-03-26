@@ -1,7 +1,9 @@
 
-import ProjectCard from "../components/ProjectCard.tsx"
+import ProjectCard from "../components/ProjectCard"
+import React from "react"
 
-const Projects = () => {
+
+const Projects: React.FC = () => {
 
     return(
         <div id="projects-list-card">
