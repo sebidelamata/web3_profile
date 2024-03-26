@@ -1,5 +1,6 @@
+import React from "react"
 
-const ScrollToProjectsCard = () => {
+const ScrollToProjectsCard: React.FC = () => {
     return(
         <div className="scroll-button-card">
             <div></div>
