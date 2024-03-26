@@ -1,6 +1,23 @@
-import { useState, useEffect } from "react"
+import React from "react"
 
-const UserNFTCard = ({metadata, tokenID}) => {
+interface Attribute {
+    trait_type: string;
+    value: string;
+  }
+  
+  interface Metadata {
+    name: string;
+    image: string;
+    description: string;
+    attributes: Attribute[];
+  }
+  
+  interface UserNFTCardProps {
+    metadata: Metadata;
+    tokenID: number;
+  }
+
+const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID}) => {
     return(
         <div className="user-nft-card" id={`user-nft-card-${tokenID}`}>
             <div className="nft-image-container" id={`nft-image-container-${tokenID}`}>
