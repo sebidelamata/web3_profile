@@ -12,13 +12,13 @@ const Navbar: React.FC = () => {
             }
         };
 
-        if (menuRef.current) {
-            menuRef.current.addEventListener('mousedown', handler);
+        if (document) {
+            document.addEventListener('mousedown', handler);
         }
 
         return () => {
-            if (menuRef.current) {
-                menuRef.current.removeEventListener('mousedown', handler);
+            if (document) {
+                document.removeEventListener('mousedown', handler);
             }
         };
     }, []);
