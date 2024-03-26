@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar.tsx'
 import Hero from '../components/Hero.tsx'
 import TechStackCarousel from '../components/TechStackCarousel.tsx'
-import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
+import ScrollToProjectsCard from '../components/ScrollToProjectsCard.tsx'
 import Projects from './Projects'
 import Contacts from '../components/Contacts'
-import ScrollTopButton from '../components/ScrollTopButton'
+import ScrollTopButton from '../components/ScrollTopButton.tsx'
 import Footer from '../components/Footer.tsx'
 
 function App() {
