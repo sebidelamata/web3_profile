@@ -16,7 +16,7 @@ interface UserNFTPortfolioProps {
     setShowPortfolio: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({showPortfolio, setShowPortfolio}) => {
+const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, showPortfolio}) => {
 
     const provider = useProvider();
     const account = useAccount();

@@ -1,33 +1,35 @@
-import { useEffect, useState } from "react"
-import { useProvider, useAccount } from "../EthersProvider.tsx";
-import Navbar from "../components/Navbar.tsx"
+import React, { useEffect, useState } from "react"
+import { useProvider, useAccount } from "../EthersProvider";
+import Navbar from "../components/Navbar"
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTPortfolio from "../components/UserNFTPortfolio";
-import NFTPreviews from "../components/NFTPreviews.tsx";
+import NFTPreviews from "../components/NFTPreviews";
 
-const Mint = () => {
+const Mint: React.FC = () => {
     
-    const [minted, setMinted] = useState(null);
-    const [mintLoading, setMintLoading] = useState(false);
+    const [minted, setMinted] = useState<ethers.TransactionReceipt | null>(null);
+    const [mintLoading, setMintLoading] = useState<boolean>(false);
 
-    const [totalSupply, setTotalSupply] = useState(null)
+    const [totalSupply, setTotalSupply] = useState<number | null>(null)
 
-    const [walletMints, setWalletMints] = useState(null)
+    const [walletMints, setWalletMints] = useState<number | null>(null)
 
-    const [showPortfolio, setShowPortfolio] = useState(false)
+    const [showPortfolio, setShowPortfolio] = useState<boolean>(false)
 
     const provider = useProvider();
     const account = useAccount();
 
     const getTotalSupply = async () => {
         try{
-            const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const totalSupply = await contract.totalSupply()
-            setTotalSupply(parseInt(totalSupply))
+            if(provider){
+                const signer = await provider.getSigner()
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractABI = portfolioNFTArtifact.abi
+                const contract = new ethers.Contract(contractAddress, contractABI, signer);
+                const totalSupply = await contract.totalSupply()
+                setTotalSupply(parseInt(totalSupply))
+            }
         } catch(err){
             console.log(err)
         }
@@ -35,12 +37,14 @@ const Mint = () => {
 
     const loadAccountData = async () => {
         try{
-            const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const walletMints = await contract.getWalletMints(signer.address);
-            setWalletMints(parseInt(await walletMints))
+            if(provider){
+                const signer = await provider.getSigner()
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractABI = portfolioNFTArtifact.abi
+                const contract = new ethers.Contract(contractAddress, contractABI, signer);
+                const walletMints = await contract.getWalletMints(signer.address);
+                setWalletMints(parseInt(await walletMints))
+            }
             
         } catch(err){
             console.log(err)
@@ -49,16 +53,18 @@ const Mint = () => {
 
     const mintNFT = async () => {
         try{
-            if(walletMints >= 2){return}
-            setMinted(false)
-            setMintLoading(true)
-            const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const tx = await contract.safeMint(signer.address);
-            await tx.wait()
-            setMinted(tx)
+            if(!walletMints || walletMints >= 2){return}
+            if(provider){
+                setMinted(null)
+                setMintLoading(true)
+                const signer = await provider.getSigner()
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractABI = portfolioNFTArtifact.abi
+                const contract = new ethers.Contract(contractAddress, contractABI, signer);
+                const tx = await contract.safeMint(signer.address);
+                await tx.wait()
+                setMinted(tx)
+            }
         } catch(err) {
             console.error(err);
         } finally {
@@ -72,7 +78,7 @@ const Mint = () => {
     }, [provider, account, minted])
 
     const exitSuccessBanner = () => {
-        setMinted(false)
+        setMinted(null)
     }
     
     return(
@@ -105,9 +111,10 @@ const Mint = () => {
                 </div>
                 <div className="mint-button-container">
                     {
-                        totalSupply < 138 &&
+                        totalSupply && totalSupply < 138 &&
                         <button onClick={mintNFT} className="mint-button">
                             {
+                                walletMints &&
                                 walletMints >= 2 
                                 ? "Max Minted"
                                 : mintLoading 
@@ -117,6 +124,7 @@ const Mint = () => {
                         </button>
                     }
                     {
+                        totalSupply &&
                         totalSupply >= 138 &&
                         <button className="mint-button">
                             <a href="https://testnets.opensea.io/collection/boxers-in-predicaments" target="blank">
@@ -163,7 +171,7 @@ const Mint = () => {
                 walletMints !== null &&
                 walletMints > 0 &&
                 showPortfolio === true &&
-                <UserNFTPortfolio setShowPortfolio={setShowPortfolio}/>
+                <UserNFTPortfolio setShowPortfolio={setShowPortfolio} showPortfolio={showPortfolio}/>
             }
         </>
     )
