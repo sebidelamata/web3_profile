@@ -836,6 +836,21 @@ input[type="submit"]::after{
   align-items: center;
 }
 
+.collection-description-footer{
+  font-weight: bold;
+  color: var(--color-3);
+  text-align: right;
+}
+
+.collection-description-footer>div{
+  transition: filter var(--transition-speed), scale var(--transition-speed);
+}
+
+.collection-description-footer>div:hover{
+  filter: brightness(1.2);
+  scale: 1.01;
+}
+
 .success-message,
 .mint-success-banner{
   display: grid;

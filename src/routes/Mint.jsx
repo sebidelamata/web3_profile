@@ -87,6 +87,22 @@ const Mint = () => {
                     <br></br><br></br>This collection comprises 138 meticulously crafted art pieces generated through cutting-edge AI technology. The contracts are deployed to Arbitrum and the images are deployed to IPFS for decentralized and tamper-proof data hosting.
                     <br></br><br></br>To ensure fairness and accessibility, there&lsquo;s a limit of two mints per wallet.
                     <br></br><br></br>Feel free to reach out if you have any questions or if there&lsquo;s anything else I can assist you with. Your interest is truly valued.
+                    <br></br><br></br>
+                    <div className="collection-description-footer">
+                        <div>
+                            <a 
+                            href="https://testnets.opensea.io/collection/boxers-in-predicaments" 
+                            target="_blank"
+                            >View Collection on OpenSea</a>
+                        </div>
+                        <br></br>
+                        <div>
+                            <a 
+                            href={`https://sepolia.arbiscan.io/token/${import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS}`} 
+                            target="_blank"
+                            >View Verified and Published Contract on Arbiscan</a>
+                        </div>
+                    </div>
                 </div>
                 <div className="mint-button-container">
                     {
