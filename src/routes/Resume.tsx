@@ -1,6 +1,7 @@
-import Navbar from "../components/Navbar.tsx"
+import Navbar from "../components/Navbar"
+import React from "react"
 
-const Resume = () => {
+const Resume: React.FC = () => {
     return(
         <>
             <Navbar></Navbar>
