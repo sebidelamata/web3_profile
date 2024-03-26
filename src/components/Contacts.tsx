@@ -1,24 +1,24 @@
 import emailjs from '@emailjs/browser'
-import { useRef, useState, useEffect } from 'react'
-import SuccessBanner from './SuccesBanner'
-import Scheduler from './Scheduler.tsx'
+import React, { useRef, useState, useEffect } from 'react'
+import SuccessBanner from './SuccessBanner'
+import Scheduler from './Scheduler'
 
 
-const Contacts = () => {
+const Contacts: React.FC = () => {
 
-    const [successMessage, setSuccessMessage] = useState(false)
+    const [successMessage, setSuccessMessage] = useState<boolean>(false)
 
-    const form = useRef();
+    const form = useRef<HTMLFormElement>(null);
 
-    const sendEmail = (e) => {
+    const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         emailjs.sendForm(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID, 
-            import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
-            form.current, 
+            import.meta.env.VITE_EMAILJS_SERVICE_ID as string, 
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string, 
+            form.current as HTMLFormElement, 
             {
-                publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+                publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string,
             }
         )
         .then(() => {
