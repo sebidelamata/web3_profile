@@ -34,7 +34,7 @@ export const EthersProvider = ({ children }: EthersProviderProps): JSX.Element =
 
             window.ethereum.on('accountsChanged', async (): Promise<void> => {
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const updatedAccount = ethers.utils.getAddress(accounts[0]);
+                const updatedAccount = ethers.getAddress(accounts[0]);
                 setAccount(updatedAccount);
             })
         } else {
