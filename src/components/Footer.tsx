@@ -5,6 +5,11 @@ const Footer: React.FC = () => {
         <footer>
             <ul className="links-list">
                 <li className="links-list-icon">
+                    <a href="https://t.me/sebidelamata" target="_blank">
+                        <button id="telegram-button" type="button"></button>
+                    </a>
+                </li>
+                <li className="links-list-icon">
                     <a href="https://github.com/sebidelamata" target="_blank">
                         <button id="github-button" type="button"></button>
                     </a>

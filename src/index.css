@@ -802,7 +802,7 @@ input[type="submit"]::after{
 
 .links-list{
   display: grid;
-  grid-template-columns: repeat(4, max-content);
+  grid-template-columns: repeat(5, max-content);
   gap: 1em;
   justify-content: right;
   align-items: baseline;
@@ -818,6 +818,16 @@ input[type="submit"]::after{
 
 #linkedin-button{
   background: url("/LinkedIn_icon.svg");
+  background-size: cover;
+  background-position: center bottom;
+  height: 2em;
+  width: 2em;
+  justify-content: right;
+  align-items: center;
+}
+
+#telegram-button{
+  background: url("https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg");
   background-size: cover;
   background-position: center bottom;
   height: 2em;
