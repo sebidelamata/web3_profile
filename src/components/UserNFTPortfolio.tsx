@@ -1,18 +1,30 @@
-import { useEffect, useState } from "react"
-import { useProvider, useAccount } from "../EthersProvider.tsx";
+import React, { useEffect, useState } from "react"
+import { useProvider, useAccount } from "../EthersProvider";
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTCard from "./UserNFTCard";
 
-const UserNFTPortfolio = ({showPortfolio, setShowPortfolio}) => {
+interface Metadata {
+    name: string;
+    image: string;
+    description: string;
+    attributes: { trait_type: string; value: string }[];
+}
+
+interface UserNFTPortfolioProps {
+    showPortfolio: boolean;
+    setShowPortfolio: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({showPortfolio, setShowPortfolio}) => {
 
     const provider = useProvider();
     const account = useAccount();
 
-    const [tokenIDs, setTokenIDs] = useState([])
+    const [tokenIDs, setTokenIDs] = useState<number[]>([])
     const [tokenIDsLoading, setTokenIDsLoading] = useState(true)
 
-    const [mintedMetaData, setMintedMetadata] = useState([])
+    const [mintedMetaData, setMintedMetadata] = useState<Metadata[]>([])
     const [mintedMetadataLoading, setMintedMetadataLoading] = useState(true)
 
     const [selectedIndex, setSelectedIndex] = useState(0)
@@ -22,22 +34,30 @@ const UserNFTPortfolio = ({showPortfolio, setShowPortfolio}) => {
         if(selectedIndex >= tokenIDs.length - 1){
             const descriptionCard = document.getElementById(`nft-description-card-${selectedIndex}`);
             const imageCard = document.getElementById(`nft-image-container-${selectedIndex}`);
-            descriptionCard.classList.remove('show');
-            imageCard.classList.remove('show');
+            if(descriptionCard && imageCard){
+                descriptionCard.classList.remove('show');
+                imageCard.classList.remove('show');
+            }
             const nextDescriptionCard = document.getElementById(`nft-description-card-${0}`);
             const nextImageCard = document.getElementById(`nft-image-container-${0}`);
-            nextDescriptionCard.classList.add('show');
-            nextImageCard.classList.add('show');
+            if(nextDescriptionCard && nextImageCard){
+                nextDescriptionCard.classList.add('show');
+                nextImageCard.classList.add('show');
+            }
             setSelectedIndex(0)
         } else {
             const descriptionCard = document.getElementById(`nft-description-card-${selectedIndex}`);
             const imageCard = document.getElementById(`nft-image-container-${selectedIndex}`);
+            if(descriptionCard && imageCard){
             descriptionCard.classList.remove('show');
             imageCard.classList.remove('show');
+            }
             const nextDescriptionCard = document.getElementById(`nft-description-card-${selectedIndex + 1}`);
             const nextImageCard = document.getElementById(`nft-image-container-${selectedIndex + 1}`);
-            nextDescriptionCard.classList.add('show');
-            nextImageCard.classList.add('show');
+            if(nextDescriptionCard && nextImageCard){
+                nextDescriptionCard.classList.add('show');
+                nextImageCard.classList.add('show');
+            }
             setSelectedIndex(selectedIndex + 1)
         }
     }
@@ -46,48 +66,58 @@ const UserNFTPortfolio = ({showPortfolio, setShowPortfolio}) => {
         if(selectedIndex <= 0){
             const descriptionCard = document.getElementById(`nft-description-card-${selectedIndex}`);
             const imageCard = document.getElementById(`nft-image-container-${selectedIndex}`);
+            if (descriptionCard && imageCard) {
             descriptionCard.classList.remove('show');
             imageCard.classList.remove('show');
+            }
             const nextDescriptionCard = document.getElementById(`nft-description-card-${tokenIDs.length - 1}`);
             const nextImageCard = document.getElementById(`nft-image-container-${tokenIDs.length - 1}`);
+            if (nextDescriptionCard && nextImageCard) {
             nextDescriptionCard.classList.add('show');
             nextImageCard.classList.add('show');
+            }
             setSelectedIndex(tokenIDs.length - 1)
         } else {
             const descriptionCard = document.getElementById(`nft-description-card-${selectedIndex}`);
             const imageCard = document.getElementById(`nft-image-container-${selectedIndex}`);
+            if(descriptionCard && imageCard){
             descriptionCard.classList.remove('show');
             imageCard.classList.remove('show');
+            }
             const nextDescriptionCard = document.getElementById(`nft-description-card-${selectedIndex - 1}`);
             const nextImageCard = document.getElementById(`nft-image-container-${selectedIndex - 1}`);
+            if(nextDescriptionCard && nextImageCard){
             nextDescriptionCard.classList.add('show');
             nextImageCard.classList.add('show');
+            }
             setSelectedIndex(selectedIndex - 1)
         }
     }
 
     // fetches the actual ipfs data
-    const fetchMetaData = async (uri) => {
+    const fetchMetaData = async (uri: string): Promise<Metadata> => {
         try{
-            let metadata = await fetch(uri)
-            if (!metadata.ok) {
+            let response = await fetch(uri)
+            if (!response.ok) {
                 throw new Error('Network response was not ok');
                 }
-            metadata = await metadata.json()
+            const metadata: Metadata = await response.json()
             return metadata
         } catch(err){
             console.log(err)
+            throw err
         }
     }
 
     // load the uri of the ipfs metadata for each token in the collection
     const loadNFTPortfolioMetaData = async () => {
+        if (!provider) return
 
         let metadataArray = []
         for(let token of tokenIDs){
             try{
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer)
                 const uri = await contract.tokenURI(token)
@@ -105,13 +135,14 @@ const UserNFTPortfolio = ({showPortfolio, setShowPortfolio}) => {
     const loadPortfolioIDs = async () => {
         
         try{
+            if (!provider) return
             const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+            const contractAddress: string = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
             const contractABI = portfolioNFTArtifact.abi
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
             
             const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
-            const tokenIDsArray = Object.values(await _tokenIDs).map(value => parseInt(value))
+            const tokenIDsArray = Object.values(await _tokenIDs).map((value: unknown) => parseInt(value as string))
             setTokenIDs(tokenIDsArray)
         } catch(err){
             console.log(err)
