@@ -1,4 +1,6 @@
-const ScrollTopButton = () => {
+import React from "react"
+
+const ScrollTopButton: React.FC = () => {
     return(
         <div className="scroll-to-top-card">
             <a href="#hero" className="scroll-link">
