@@ -5,7 +5,17 @@ import Router from './Router'
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
 
 // 1. Get projectId
-const projectId = import.meta.env.VITE_WALLET_CONNECT_KEY
+const projectId: string | undefined = import.meta.env.VITE_WALLET_CONNECT_KEY
+
+// Define ChainsType
+type ChainsType = {
+  chainId: number;
+  name: string;
+  currency: string;
+  explorerUrl: string;
+  rpcUrl: string;
+}[];
+
 
 // 2. Set chains
 const arbitrumSepolia = {
@@ -41,7 +51,7 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 createWeb3Modal({
   ethersConfig,
-  chains: [arbitrumSepolia, arbitrum],
+  chains: [arbitrumSepolia, arbitrum] as ChainsType,
   projectId,
   enableOnramp: true,
   enableAnalytics: true,
@@ -53,8 +63,14 @@ createWeb3Modal({
   }
 })
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
-)
+const rootElement = document.getElementById('root');
+
+if(rootElement){
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <Router />
+    </React.StrictMode>,
+  )
+} else {
+  console.error("Root element not found. Make sure you have an element with id 'root' in your HTML file.");
+}
