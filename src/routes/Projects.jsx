@@ -1,5 +1,5 @@
 
-import ProjectCard from "../components/ProjectCard"
+import ProjectCard from "../components/ProjectCard.tsx"
 
 const Projects = () => {
 

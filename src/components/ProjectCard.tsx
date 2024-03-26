@@ -1,4 +1,16 @@
-const ProjectCard = ({ 
+import React, {useEffect} from "react";
+
+interface ProjectCardProps {
+    title: string;
+    description: string;
+    applicationLink: string;
+    repositoryLink: string;
+    videoLink: string;
+    videoTitle: string;
+    cardNumber: number;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ 
     title, 
     description, 
     applicationLink, 
@@ -13,17 +25,18 @@ const ProjectCard = ({
         const descriptionCard = document.getElementById(`project-description-card-${cardNumber}`);
         const videoCard = document.getElementById(`project-video-card-${cardNumber}`);
       
-        const rect = projectCard.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      
-        if (rect.top < (windowHeight*0.2) && rect.bottom >= (windowHeight*0.2)) {
-          // Card is in view
-          descriptionCard.classList.add('show');
-          videoCard.classList.add('show');
-        } else {
-          // Card is out of view
-          descriptionCard.classList.remove('show');
-          videoCard.classList.remove('show');
+        if(projectCard && descriptionCard && videoCard){
+            const rect = projectCard.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            if (rect.top < (windowHeight*0.2) && rect.bottom >= (windowHeight*0.2)) {
+                // Card is in view
+                descriptionCard.classList.add('show');
+                videoCard.classList.add('show');
+            } else {
+                // Card is out of view
+                descriptionCard.classList.remove('show');
+                videoCard.classList.remove('show');
+            }
         }
       });
 
