@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
-import Navbar from '../components/Navbar.tsx'
-import Hero from '../components/Hero.tsx'
-import TechStackCarousel from '../components/TechStackCarousel.tsx'
-import ScrollToProjectsCard from '../components/ScrollToProjectsCard.tsx'
+import React, { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'
+import Hero from '../components/Hero'
+import TechStackCarousel from '../components/TechStackCarousel'
+import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
 import Projects from './Projects'
 import Contacts from '../components/Contacts'
-import ScrollTopButton from '../components/ScrollTopButton.tsx'
-import Footer from '../components/Footer.tsx'
+import ScrollTopButton from '../components/ScrollTopButton'
+import Footer from '../components/Footer'
 
-function App() {
+const App:React.FC = () => {
 
   return (
     <div>
