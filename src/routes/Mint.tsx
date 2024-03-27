@@ -27,6 +27,7 @@ const Mint: React.FC = () => {
                 const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
+                console.log(contract)
                 const totalSupply = await contract.totalSupply()
                 setTotalSupply(parseInt(totalSupply))
             }

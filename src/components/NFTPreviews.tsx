@@ -23,13 +23,14 @@ const NFTPreviews: React.FC = () => {
 
     const loadMaxSupply = async () => {
         try{
-            const signer = await provider.getSigner()
-            const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            const _maxSupply = await contract.maxSupply();
-            setMaxSupply(parseInt(await _maxSupply))
-            
+            if(provider){
+                const signer = await provider.getSigner()
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractABI = portfolioNFTArtifact.abi
+                const contract = new ethers.Contract(contractAddress, contractABI, signer);
+                const _maxSupply = await contract.maxSupply();
+                setMaxSupply(parseInt(await _maxSupply))
+            }
         } catch(err){
             console.log(err)
         }

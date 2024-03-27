@@ -1,9 +1,10 @@
 
+
+/// <reference types="vite/client" />
+
 interface Window {
     ethereum?: any
 }
-
-/// <reference types="vite/client" />
 
 interface W3MButtonProps {
     size: string;
@@ -19,16 +20,18 @@ declare namespace JSX {
     }
 }
 
+interface ImportMetaEnv {
+    readonly VITE_EMAILJS_PUBLIC_KEY: string;
+    readonly VITE_EMAILJS_SERVICE_ID: string;
+    readonly VITE_EMAILJS_TEMPLATE_ID: string;
+    readonly VITE_WALLET_CONNECT_KEY: string;
+    readonly VITE_INFURA_TESTNET_RPC: string;
+    readonly VITE_TESTNET_DEV_ACCOUNT0_KEY: string;
+    readonly VITE_IPFS_METADATA_BASE_URI: string;
+    readonly VITE_ARBISCAN_API_KEY: string;
+    readonly VITE_TESTNET_CONTRACT_ADDRESS: string;
+  }
+
 interface ImportMeta {
-    env: {
-        VITE_EMAILJS_PUBLIC_KEY: string;
-        VITE_EMAILJS_SERVICE_ID: string;
-        VITE_EMAILJS_TEMPLATE_ID: string;
-        VITE_WALLET_CONNECT_KEY: string;
-        VITE_INFURA_TESTNET_RPC: string;
-        VITE_TESTNET_DEV_ACCOUNT0_KEY: string;
-        VITE_IPFS_METADATA_BASE_URI: string;
-        VITE_ARBISCAN_API_KEY: string;
-        VITE_TESTNET_CONTRACT_ADDRESS: string;
-    };
+    readonly env: ImportMetaEnv
   }
