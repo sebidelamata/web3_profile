@@ -24,7 +24,7 @@ const Mint: React.FC = () => {
         try{
             if(provider){
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 console.log(contract)

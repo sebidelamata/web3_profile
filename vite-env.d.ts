@@ -31,7 +31,3 @@ interface ImportMetaEnv {
     readonly VITE_ARBISCAN_API_KEY: string;
     readonly VITE_TESTNET_CONTRACT_ADDRESS: string;
   }
-
-interface ImportMeta {
-    readonly env: ImportMetaEnv
-  }
