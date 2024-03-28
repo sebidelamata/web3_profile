@@ -28,8 +28,8 @@ const Mint: React.FC = () => {
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const result: any = await contract.totalSupply()
-                let totalSupply = result.toString()
-                setTotalSupply(parseInt(totalSupply))
+                let totalSupply = await result.toString()
+                setTotalSupply(parseInt(await totalSupply))
             }
         } catch(err){
             console.log(err)
@@ -45,7 +45,7 @@ const Mint: React.FC = () => {
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const response = await contract.getWalletMints(signer.address);
                 const walletMints = await response.toString()
-                setWalletMints(parseInt(walletMints))
+                setWalletMints(parseInt(await walletMints))
             }
             
         } catch(err){
