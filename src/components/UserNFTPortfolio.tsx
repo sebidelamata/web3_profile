@@ -169,7 +169,7 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
             }
         });
     }, [tokenIDsLoading]);
-
+    
     return(
         <div className="user-nft-portfolio-container">
             <h1 className="user-nft-portfolio-title">Your Boxers in Predicaments</h1>
@@ -181,7 +181,7 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
                     mintedMetadataLoading === false &&
                     mintedMetaData.map((metadata, index) => (
                         <li key={metadata.image} className="user-nft-portfolio-item">
-                            <UserNFTCard metadata={metadata} tokenID={tokenIDs[index]}/>
+                            <UserNFTCard metadata={metadata} tokenID={tokenIDs[index]} index={index}/>
                         </li>
                     ))
                 }

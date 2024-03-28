@@ -15,12 +15,14 @@ interface Attribute {
   interface UserNFTCardProps {
     metadata: Metadata;
     tokenID: number;
+    index: number;
   }
 
-const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID}) => {
+const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID, index}) => {
+    
     return(
-        <div className="user-nft-card" id={`user-nft-card-${tokenID}`}>
-            <div className="nft-image-container" id={`nft-image-container-${tokenID}`}>
+        <div className="user-nft-card" id={`user-nft-card-${index}`}>
+            <div className="nft-image-container" id={`nft-image-container-${index}`}>
                 <h2 className="nft-title">
                     {metadata.name}
                 </h2>
@@ -51,7 +53,7 @@ const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID}) => {
                     </li>
                 </ul>
             </div>
-            <div className="nft-description-and-attributes" id={`nft-description-card-${tokenID}`}>
+            <div className="nft-description-and-attributes" id={`nft-description-card-${index}`}>
                 <h3 className="nft-description">
                     {metadata.description}
                 </h3>

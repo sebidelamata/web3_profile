@@ -84,7 +84,6 @@ const Mint: React.FC = () => {
     const exitSuccessBanner = () => {
         setMinted(null)
     }
-    
     return(
         <>
             <Navbar></Navbar>
