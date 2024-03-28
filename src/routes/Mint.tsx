@@ -27,8 +27,8 @@ const Mint: React.FC = () => {
                 const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
-                console.log(contract)
-                const totalSupply = await contract.totalSupply()
+                const result: any = await contract.totalSupply()
+                let totalSupply = result.toString()
                 setTotalSupply(parseInt(totalSupply))
             }
         } catch(err){
@@ -43,8 +43,9 @@ const Mint: React.FC = () => {
                 const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
-                const walletMints = await contract.getWalletMints(signer.address);
-                setWalletMints(parseInt(await walletMints))
+                const response = await contract.getWalletMints(signer.address);
+                const walletMints = await response.toString()
+                setWalletMints(parseInt(walletMints))
             }
             
         } catch(err){
@@ -54,7 +55,9 @@ const Mint: React.FC = () => {
 
     const mintNFT = async () => {
         try{
-            if(!walletMints || walletMints >= 2){return}
+            console.log(walletMints)
+            if(walletMints === null || walletMints >= 2){return}
+            console.log('hi')
             if(provider){
                 setMinted(null)
                 setMintLoading(true)

@@ -28,12 +28,12 @@ export const EthersProvider = ({ children }: EthersProviderProps): JSX.Element =
     const [account, setAccount] = useState<AccountType>(null);
 
     const loadBlockchainData = async (): Promise<void> => {
-        if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
-            const browserProvider = new ethers.BrowserProvider(window.ethereum);
+        if (typeof window !== 'undefined' && window.ethereum) {
+            const browserProvider = new ethers.BrowserProvider(window.ethereum as any);
             setProvider(browserProvider);
 
             window.ethereum.on('accountsChanged', async (): Promise<void> => {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const accounts = await window.ethereum?.request({ method: 'eth_requestAccounts' });
                 const updatedAccount = ethers.getAddress(accounts[0]);
                 setAccount(updatedAccount);
             })
@@ -43,7 +43,11 @@ export const EthersProvider = ({ children }: EthersProviderProps): JSX.Element =
     };
 
     useEffect(() => {
-        loadBlockchainData();
+        if (typeof window !== 'undefined' && window.ethereum !== undefined) {
+            loadBlockchainData();
+        } else {
+            console.error('Window object or Ethereum provider is not available.');
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
