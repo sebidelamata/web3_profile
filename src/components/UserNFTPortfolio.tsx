@@ -3,6 +3,7 @@ import { useProvider, useAccount } from "../EthersProvider";
 import { ethers } from "ethers";
 import portfolioNFTArtifact from '../../artifacts/contracts/PortfolioNFT.sol/BiP.json';
 import UserNFTCard from "./UserNFTCard";
+import Loading from "./Loading";
 
 interface Metadata {
     name: string;
@@ -163,12 +164,15 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
         loadNFTPortfolioMetaData().then(() => {
             const descriptionCard = document.getElementById(`nft-description-card-0`);
             const imageCard = document.getElementById(`nft-image-container-0`);
-            if (descriptionCard && imageCard) {
+            if (descriptionCard && imageCard && selectedIndex === 0) {
                 descriptionCard.classList.add('show');
                 imageCard.classList.add('show');
+            } else {
+                descriptionCard?.classList.remove('show');
+                imageCard?.classList.remove('show');
             }
         });
-    }, [tokenIDsLoading]);
+    }, [mintedMetaData]);
     
     return(
         <div className="user-nft-portfolio-container">
@@ -176,16 +180,20 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
             <button onClick={() => setShowPortfolio(false)} className="close-portfolio-button">
                 <h1 className="user-nft-portfolio-x">✕</h1>
             </button>
-            <ul className="user-nft-portfolio-list">
-                {   
-                    mintedMetadataLoading === false &&
-                    mintedMetaData.map((metadata, index) => (
-                        <li key={metadata.image} className="user-nft-portfolio-item">
-                            <UserNFTCard metadata={metadata} tokenID={tokenIDs[index]} index={index}/>
-                        </li>
-                    ))
-                }
-            </ul>
+            {
+                mintedMetadataLoading === true ?
+                <Loading/> :
+                <ul className="user-nft-portfolio-list">
+                    {   
+                        mintedMetadataLoading === false &&
+                        mintedMetaData.map((metadata, index) => (
+                            <li key={metadata.image} className="user-nft-portfolio-item">
+                                <UserNFTCard metadata={metadata} tokenID={tokenIDs[index]} index={index}/>
+                            </li>
+                        ))
+                    }
+                </ul>
+            }
             <div className="select-nft-row">
                 <button 
                 className="select-prev"
