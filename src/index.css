@@ -1605,7 +1605,7 @@ input[type="submit"]::after{
 
   .project-description-title{
     position: relative;
-    bottom: -30%;
+    bottom: -20%;
   }
 
   .contact-description-description{
