@@ -588,7 +588,7 @@ iframe{
   gap: 3em;
   position: absolute;
   bottom: 3svh;
-  right: calc(var(--large-container-padding)*12);
+  right: 10%;
 }
 
 .live-app-link{
@@ -598,6 +598,7 @@ iframe{
   border-radius: var(--border-radius);
   transition: scale var(--transition-speed) ease, filter var(--transition-speed) ease;
   font-size: x-large;
+  height: 90%;
 }
 
 .repository-link,
