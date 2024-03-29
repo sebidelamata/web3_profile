@@ -1747,4 +1747,8 @@ input[type="submit"]::after{
     width: 100vw;
     font-size: large;
   }
+
+  .llc-disclaimer{
+    bottom: -14%;
+  }
 }
