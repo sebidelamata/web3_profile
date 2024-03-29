@@ -587,8 +587,8 @@ iframe{
   grid-template-columns: 4fr 1fr;
   gap: 3em;
   position: absolute;
-  bottom: 8svh;
-  right: calc(var(--large-container-padding)*3);
+  bottom: 3svh;
+  right: calc(var(--large-container-padding)*12);
 }
 
 .live-app-link{
