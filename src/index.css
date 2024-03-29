@@ -831,6 +831,7 @@ input[type="submit"]::after{
   width: 2em;
   justify-content: right;
   align-items: center;
+  transition: filter var(--transition-speed), scale var(--transition-speed);
 }
 
 #telegram-button{
@@ -841,6 +842,13 @@ input[type="submit"]::after{
   width: 2em;
   justify-content: right;
   align-items: center;
+  transition: filter var(--transition-speed), scale var(--transition-speed);
+}
+
+#telegram-button:hover,
+#linkedin-button:hover{
+  filter: brightness(1.1);
+  scale: 1.1;
 }
 
 .collection-description-footer{
