@@ -1557,7 +1557,7 @@ input[type="submit"]::after{
     right: -20%;
     position: relative;
     grid-template-columns: 40% 60%;
-    grid-template-rows: 70% 30%;
+    grid-template-rows: 60% 40%;
     gap: calc(var(--button-padding)*2);
   }
 
