@@ -34,7 +34,7 @@ const Projects: React.FC = () => {
                 <li className="project-card" id="project-card-3">
                     <ProjectCard
                         title={'Gaping Pond'} 
-                        description={"GapingPond is a whitelabel NFT Marketplace using DeFiLlamma and OpenSea APIs to filter by volume on Ethereum. GapingPond provides metrics and interactive charts unavailable on OpenSea."} 
+                        description={"GapingPond is a whitelabel NFT Marketplace using DeFiLlamma and OpenSea APIs. GapingPond provides metrics and interactive charts unavailable on OpenSea."} 
                         applicationLink={'https://shoppingcart-e1v.pages.dev/'}
                         repositoryLink={'https://github.com/sebidelamata/shoppingCart'} 
                         videoLink={'https://www.youtube.com/embed/DW4x2mfdgzE?si=NL5thjhvVo5hBQ4B&autoplay=1&mute=1&loop=1&playlist=DW4x2mfdgzE'}
