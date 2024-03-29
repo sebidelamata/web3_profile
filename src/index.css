@@ -29,6 +29,7 @@
   --button-padding-side: 1em;
   --large-button-font-size: xx-large;
   --transition-speed: 0.5s;
+  --container-box-shadow-thicknes: 5px;
   background-color: var(--color-1);
   color: var(--color-2);
 }
@@ -105,6 +106,7 @@ w3m-modal{
   border-width: var(--border-width);
   border-color: var(--color-2);
   border-style: solid;
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
 }
 
 #hero-intro-name-block-1{
@@ -227,6 +229,7 @@ w3m-modal{
   padding: var(--button-padding) var(--button-padding-side);
   border-radius: var(--border-radius);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   transition: transform var(--transition-speed) ease;
   background-color: var(--color-1);
 }
@@ -469,6 +472,7 @@ w3m-modal{
       border-color: var(--color-3);
       border-width: var(--border-width);
       border-style: solid;
+      box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-3);
       filter: brightness(1.1);
       scale: 1.01;
       transition: background-color var(--transition-speed) linear;
@@ -535,7 +539,7 @@ w3m-modal{
   background-color: var(--color-1);
   opacity: 0;
   transition: opacity var(--transition-speed), right calc(var(--transition-speed)*3);
-  box-shadow:0 0 5px 1px var(--color-2);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
 }
 
 .project-description-title{
@@ -558,7 +562,7 @@ w3m-modal{
   border: var(--color-2) var(--border-width) solid;
   border-radius: var(--border-radius);
   padding: var(--large-container-padding);
-  box-shadow:0 0 5px 1px var(--color-2);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   opacity: 0;
   transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
 }
@@ -717,6 +721,7 @@ textarea{
   margin: 0.5em 0;
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   background-color: var(--color-1) !important;
   color: var(--color-2);
@@ -863,6 +868,7 @@ input[type="submit"]::after{
   border-radius: 0.5em;
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   color: var(--color-2);
   padding: var(--large-container-padding);
@@ -982,6 +988,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-color: var(--color-3);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-3);
   border-style: solid;
   padding: var(--large-container-padding);
 }
@@ -1087,6 +1094,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   z-index: 2000;
   background-color: var(--color-1);
@@ -1140,6 +1148,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-width: var(--border-width);
   border-color: var(--color-2);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   height: 12svh;
   background-color: var(--color-1);
@@ -1157,6 +1166,7 @@ input[type="submit"]::after{
   border-radius: 50%;
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   position: fixed;
   top: calc(var(--large-container-padding)*6);
@@ -1276,6 +1286,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
 }
 
@@ -1288,6 +1299,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   padding: var(--large-container-padding);
   bottom: 22svh;
@@ -1365,6 +1377,7 @@ input[type="submit"]::after{
   border-radius: var(--border-radius);
   border-color: var(--color-2);
   border-width: var(--border-width);
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   border-style: solid;
   box-shadow:0 0 15px 4px var(--color-2);
 }
@@ -1464,6 +1477,7 @@ input[type="submit"]::after{
   border-color: var(--color-2);
   border-width: var(--border-width);
   border-style: solid;
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
   padding: var(--button-padding) var(--button-padding-side);
   background-color: var(--color-1);
   z-index: 9999;
@@ -1567,7 +1581,7 @@ input[type="submit"]::after{
     border: var(--color-2) var(--border-width) solid;
     border-radius: var(--border-radius);
     padding: var(--large-container-padding);
-    box-shadow:0 0 5px 1px var(--color-2);
+    box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-2);
     opacity: 0;
     transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
   }
