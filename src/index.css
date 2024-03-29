@@ -263,6 +263,10 @@ w3m-modal{
   left: var(--large-container-padding);
   padding: var(--button-padding) var(--button-padding-side);
   height: 40%;
+  color: var(--color-1);
+  border: var(--color-3) var(--border-width) solid;
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-3);
+  background-color: var(--color-3);
 }
 
 .scroll-button{
