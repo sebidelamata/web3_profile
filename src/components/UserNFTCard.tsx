@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useState} from "react"
+import Loading from "./Loading";
 
 interface Attribute {
     trait_type: string;
@@ -19,6 +20,12 @@ interface Attribute {
   }
 
 const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID, index}) => {
+
+    const [loading, setLoading] = useState(true)
+
+    const handleLoad = () => {
+        setLoading(false)
+    }
     
     return(
         <div className="user-nft-card" id={`user-nft-card-${index}`}>
@@ -26,7 +33,17 @@ const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID, index}) => 
                 <h2 className="nft-title">
                     {metadata.name}
                 </h2>
-                <img className="nft-image" src={metadata.image} alt={metadata.description} />
+                {
+                    loading &&
+                    <Loading/>
+                }
+                <img 
+                className="nft-image" 
+                src={metadata.image} 
+                alt={metadata.description} 
+                onLoad={handleLoad}
+                style={{ display: loading ? 'none' : 'grid' }} 
+                />
                 <ul className="nft-links-list">
                     <li className="arbiscan-link">
                         <a 
