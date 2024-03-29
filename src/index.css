@@ -558,7 +558,7 @@ w3m-modal{
   border: var(--color-2) var(--border-width) solid;
   border-radius: var(--border-radius);
   padding: var(--large-container-padding);
-  box-shadow:0 0 15px 4px var(--color-2);
+  box-shadow:0 0 5px 1px var(--color-2);
   opacity: 0;
   transition: opacity var(--transition-speed), left calc(var(--transition-speed)*3);
 }
