@@ -807,6 +807,8 @@ input[type="submit"]::after{
   justify-content: right;
   align-items: baseline;
   padding-top: 4em;
+  position: relative;
+  left: 0vw;
 }
 
 .llc-disclaimer{
@@ -1113,7 +1115,7 @@ input[type="submit"]::after{
   display: grid;
   justify-content: right;
   position: relative;
-  right: 4vw;
+  right: -2vw;
   align-items: center;
 }
 
@@ -1450,6 +1452,7 @@ input[type="submit"]::after{
   font-size: x-large;
   transition: filter var(--transition-speed), scale var(--transition-speed);
   padding-bottom: 5svh;
+  width: 100vw;
 }
 .view-yours-container:hover{
   filter: brightness(1.2);
@@ -1505,6 +1508,15 @@ input[type="submit"]::after{
 
 @media (max-width: 768px) {
 
+  body{
+    position: absolute;
+    display: grid;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0;
+  }
+
   .hero-intro-title-card{
     width: 96vw;
     font-size: small;
@@ -1512,10 +1524,11 @@ input[type="submit"]::after{
 
   .project-card{
     max-height: 100svh;
+    width: 100vw;
   }
 
   .project-description-card{
-    width: 94.5%;
+    width: 90%;
     height: 50%;
     top: 4svh;
     right: -20%;
@@ -1523,6 +1536,10 @@ input[type="submit"]::after{
     grid-template-columns: 53% 47%;
     grid-template-rows: 40% 60%;
     gap: calc(var(--button-padding)*2);
+  }
+
+  .project-description-card.show{
+    right: -2%;
   }
 
   .project-description-title{
@@ -1557,7 +1574,7 @@ input[type="submit"]::after{
 
   .project-video-card.show{
     opacity: 1;
-    left: -1%;
+    left: 1.2%;
   }
 
   #contact-form{
@@ -1615,19 +1632,21 @@ input[type="submit"]::after{
 
   .collection-description{
     width: 80%;
-    left: 6%;
+    left: 8%;
     top: 15%;
   }
 
   .navbar{
     z-index: 99999999999999;
+    top: 2%;
+    left: 0.5%;
   }
 
   .mint-button-container{
     position: relative;
-    top: 18svh;
+    top: 22svh;
     width: 100vw;
-    right: 2vw;
+    right: 0vw;
   }
 
   .mint-button{
@@ -1639,15 +1658,16 @@ input[type="submit"]::after{
   .mint-supply{
     position: relative;
     font-size: x-large;
-    top: 4svh;
-    right: 2vw;
+    top: 8svh;
+    right: 0vw;
     max-width: 100vw;
   }
 
   .view-yours-container{
     position: relative;
-    top: 4svh;
-    right: 2vw;
+    top: 8svh;
+    right: 0vw;
+    width: 100vw;
   }
 
   .user-nft-portfolio-container{
