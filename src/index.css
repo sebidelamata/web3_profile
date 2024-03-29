@@ -523,7 +523,7 @@ w3m-modal{
   font-size: large;
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 80% 20%;
+  grid-template-rows: 70% 30%;
   cursor: pointer;
   border: var(--color-2) var(--border-width) solid;
   padding: var(--button-padding) var(--button-padding-side);
@@ -1556,7 +1556,7 @@ input[type="submit"]::after{
     top: 4svh;
     right: -20%;
     position: relative;
-    grid-template-columns: 53% 47%;
+    grid-template-columns: 70% 30%;
     grid-template-rows: 40% 60%;
     gap: calc(var(--button-padding)*2);
   }
