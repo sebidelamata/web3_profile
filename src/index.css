@@ -380,6 +380,13 @@ w3m-modal{
   background-size: cover;
 }
 
+#ts-icon {
+  background: url("/typescript.svg");
+  height: var(--tech-stack-icon-height);
+  width: var(--tech-stack-icon-width);
+  background-size: cover;
+}
+
 #webpack-icon {
   background: url("/webpack-icon.svg");
   height: calc(var(--tech-stack-icon-height) + 0.5rem);

@@ -65,6 +65,9 @@ const TechStackCarousel: React.FC = () => {
                     <div id="js-icon" className="tech-stack-icon"></div>
                 </li>
                 <li>
+                    <div id="ts-icon" className="tech-stack-icon"></div>
+                </li>
+                <li>
                     <div id="webpack-icon" className="tech-stack-icon"></div>
                 </li>
                 <li>
