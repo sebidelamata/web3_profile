@@ -425,6 +425,13 @@ w3m-modal{
   background-size: cover;
 }
 
+#vite-icon {
+  background: url("/vite-icon.svg");
+  height: calc(var(--tech-stack-icon-height) - 0.5rem);
+  width: var(--tech-stack-icon-width);
+  background-size: cover;
+}
+
 #node-icon {
   background: url("/nodejs-icon-svgrepo-com.svg");
   height: var(--tech-stack-icon-height);
