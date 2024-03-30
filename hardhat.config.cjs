@@ -10,5 +10,5 @@ module.exports = {
       url: process.env.VITE_INFURA_TESTNET_RPC,
       accounts: [process.env.VITE_TESTNET_DEV_ACCOUNT0_KEY],
     }
-  }
+  },
 };
