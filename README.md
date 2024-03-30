@@ -4,7 +4,7 @@ This project is a Web3 Full-stack portfolio built with React, Vite, Typescript, 
 
 The portfolio app offers the first users the ability to print a commemorative NFT from a collection of 138 pieces entitled "Boxers in Predicaments" and deployed to Arbitrum One network. These pieces feature boxers in scenarios that capture their inner essence. The collection was created using stable diffusion generative models. The collection metadata and images have been deployed to IPFS to preserve their integrity. The collection metadata is of standard format for visual art NFT marketplaces such as OpenSea. The contract for "Boxers in Predicaments" is published and verified on Arbiscan.
 
-## Running Locally
+## Installing Locally
 
 To run locally, first clone, then `cd <yourDirectory>/web3_profile`.
 
@@ -20,7 +20,4 @@ If you would like to deploy to Arbitrum One, adjust your arbitrumDeploy.js file 
 
 ## Running Client
 
-To run the frontend app locally, run `npm run dev`. The application should be available on port 9999.
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run the frontend app locally, run `npm run dev`. The application should be available on [port 9999](http://localhost:9999/).
