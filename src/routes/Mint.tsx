@@ -88,12 +88,6 @@ const Mint: React.FC = () => {
         <>
             <Navbar></Navbar>
             <div className="minting-body">
-                {
-                    !provider?.getSigner() &&
-                    <h4 className="not-connected-message">
-                       Please Connect Wallet
-                    </h4>
-                }
                 <h1 className="minting-title">Mint Boxers in Predicaments NFT</h1>
                 <NFTPreviews/>
                 <div className="collection-description">
