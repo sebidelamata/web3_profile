@@ -1,8 +1,10 @@
 # Web3 Portfolio NFT
 
-This project is a Web3 Full-stack portfolio built with React, Vite, Typescript, Hardhat, and Solidity.
+![Boxer NFT](https://ipfs.io/ipfs/QmZ9jpBCcaC8izFoNiqRtrXq7d5pHnAFSy71hqVE29GWEk/23.png)
 
-The portfolio app offers the first users the ability to print a commemorative NFT from a collection of 138 pieces entitled "Boxers in Predicaments" and deployed to Arbitrum One network. These pieces feature boxers in scenarios that capture their inner essence. The collection was created using stable diffusion generative models. The collection metadata and images have been deployed to IPFS to preserve their integrity. The collection metadata is of standard format for visual art NFT marketplaces such as OpenSea. The contract for "Boxers in Predicaments" is published and verified on Arbiscan.
+This project is a Web3 Full-stack portfolio built with [React](https://react.dev/reference/react), [Vite](https://vitejs.dev/), [Typescript](https://www.typescriptlang.org/), [Hardhat](https://hardhat.org/), and [Solidity](https://soliditylang.org/).
+
+The portfolio app offers the first users the ability to print a commemorative NFT from a collection of 138 pieces entitled "Boxers in Predicaments" and deployed to [Arbitrum](https://arbitrum.io/) One network. These pieces feature boxers in scenarios that capture their inner essence. The collection was created using stable diffusion generative models. The collection metadata and images have been deployed to [IPFS](https://ipfs.tech/) to preserve their integrity. The collection metadata is of standard format for visual art NFT marketplaces such as [OpenSea](https://testnets.opensea.io/collection/boxers-in-predicaments). The contract for "Boxers in Predicaments" is published and verified on [Arbiscan](https://sepolia.arbiscan.io/token/0x252Be76A5d39f610E63D9c4d246077A61CCE078B).
 
 ## Installing Locally
 
