@@ -1,6 +1,6 @@
 # Web3 Portfolio NFT
 
-This project is a Web3 Full-stack portfolio built with React, Typescript, Hardhat, and Solidity.
+This project is a Web3 Full-stack portfolio built with React, Vite, Typescript, Hardhat, and Solidity.
 
 The portfolio app offers the first users the ability to print a commemorative NFT from a collection of 138 pieces entitled "Boxers in Predicaments" and deployed to Arbitrum One network. These pieces feature boxers in scenarios that capture their inner essence. The collection was created using stable diffusion generative models. The collection metadata and images have been deployed to IPFS to preserve their integrity. The collection metadata is of standard format for visual art NFT marketplaces such as OpenSea. The contract for "Boxers in Predicaments" is published and verified on Arbiscan.
 
