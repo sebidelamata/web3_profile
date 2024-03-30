@@ -359,7 +359,7 @@ w3m-modal{
 
 @keyframes scroll {
   to{
-      transform: translate(calc(-50% - 0.4rem));
+      transform: translate(calc(-50% + 0.5rem));
   }
 }
 
