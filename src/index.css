@@ -267,6 +267,18 @@ w3m-modal{
   border: var(--color-3) var(--border-width) solid;
   box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-3);
   background-color: var(--color-3);
+  transition: filter var(--transition-speed), scale var(--transition-speed), background-color var(--transition-speed);
+}
+
+.scheduler-button:hover{
+  color: var(--color-3);
+  background-color: var(--color-1);
+  border-color: var(--color-3);
+  border-width: var(--border-width);
+  border-style: solid;
+  box-shadow:0 0 var(--container-box-shadow-thicknes) 1px var(--color-3);
+  filter: brightness(1.1);
+  scale: 1.01;
 }
 
 .scroll-button{
