@@ -24,7 +24,7 @@ Adjust your package.json file to reflect your testnet deployment:
             &nbsp;...,
             &nbsp;"scripts": {
                 &nbsp;&nbsp;...,
-                &nbsp;&nbsp;"testnetVerify": "npx hardhat verify --network arbitrumSepolia <contractAddress> <ownerAddress>",
+                &nbsp;&nbsp;"testnetVerify": "npx hardhat verify --network arbitrumSepolia &lt;contractAddress&gt; &lt;ownerAddress&gt;",
                 &nbsp;&nbsp;...
             &nbsp;},
             &nbsp;...
