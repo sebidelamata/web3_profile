@@ -1670,12 +1670,13 @@ input[type="submit"]::after{
 
   .scheduler-button{
     display: grid;
-    /* align-items: center;
-    justify-content: center; */
+    align-items: center;
+    justify-content: center;
     position: relative;
     bottom: 20%;
     left: 10%;
     height: 100%;
+    padding: var(--button-padding) var(--button-padding-side);
   }
 
   .minting-title{
