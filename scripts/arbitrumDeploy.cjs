@@ -18,7 +18,7 @@ async function main() {
 
     const envFilePath = '.env';
     const parsedEnv = dotenv.parse(fs.readFileSync(envFilePath));
-    const envVariableName = 'VITE_TESTNET_CONTRACT_ADDRESS';
+    const envVariableName = 'VITE_ARBITRUM_CONTRACT_ADDRESS';
     if (envVariableName in parsedEnv) {
         delete parsedEnv[envVariableName];
     }
