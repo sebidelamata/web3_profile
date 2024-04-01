@@ -19,7 +19,7 @@ To create your own collection, create metadata according to standarm NFT art for
 Adjust your testnetDeploy.js file to reflect your metadata tokenURI. run `npm run testnetDeploy`. Adjust React app if necessary to run on Arbitrum Sepolia.
 
 Adjust your package.json file to reflect your testnet deployment:
-    ```json 
+    ``` 
         {
             "scripts": {
                 ...,
