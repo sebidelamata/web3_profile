@@ -21,12 +21,12 @@ Adjust your testnetDeploy.js file to reflect your metadata tokenURI. run `npm ru
 Adjust your package.json file to reflect your testnet deployment:
     <pre>
         {
-            "scripts": {
-                ...,
-                "testnetVerify": "npx hardhat verify --network arbitrumSepolia <contractAddress> <ownerAddress>",
-                ...
-                },
-            ...
+            &nbsp;"scripts": {
+                &nbsp;&nbsp;...,
+                &nbsp;&nbsp;"testnetVerify": "npx hardhat verify --network arbitrumSepolia <contractAddress> <ownerAddress>",
+                &nbsp;&nbsp;...
+            &nbsp;},
+            &nbsp;...
         }
     </pre>
 After making this adjustment, run 'npm run testnetVerify' to verify your deployed contract on Arbitrum Sepolia.
