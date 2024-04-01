@@ -24,7 +24,7 @@ const Mint: React.FC = () => {
         try{
             if(provider){
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
+                const contractAddress = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS as string
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const result: any = await contract.totalSupply()
@@ -40,7 +40,7 @@ const Mint: React.FC = () => {
         try{
             if(provider){
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractAddress = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const response = await contract.getWalletMints(signer.address);
@@ -62,7 +62,7 @@ const Mint: React.FC = () => {
                 setMinted(null)
                 setMintLoading(true)
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractAddress = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const tx = await contract.safeMint(signer.address);

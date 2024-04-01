@@ -18,7 +18,7 @@ module.exports = {
   etherscan: {
     apiKey: {
       arbitrumSepolia: process.env.VITE_ARBISCAN_API_KEY,
-      arbitrum: process.env.VITE_ARBISCAN_API_KEY,
+      arbitrumOne: process.env.VITE_ARBISCAN_API_KEY,
     },
     customChains: [
       {
