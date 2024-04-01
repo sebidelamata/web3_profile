@@ -554,7 +554,7 @@ w3m-modal{
   font-size: medium;
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 74% 26%;
+  grid-template-rows: 76% 24%;
   cursor: pointer;
   border: var(--color-2) var(--border-width) solid;
   padding: var(--button-padding) var(--button-padding-side);
