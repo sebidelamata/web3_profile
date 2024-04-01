@@ -551,7 +551,7 @@ w3m-modal{
 .project-description-card{
   color: var(--color-2);
   text-decoration-style: none;
-  font-size: large;
+  font-size: medium;
   display: grid;
   grid-template-columns: 40% 60%;
   grid-template-rows: 70% 30%;
