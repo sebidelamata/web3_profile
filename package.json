@@ -9,7 +9,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "testnetDeploy": "npx hardhat run scripts/testnetDeploy.cjs --network arbitrumSepolia",
-    "testnetVerify": "npx hardhat verify --network arbitrumSepolia 0xAa18a3cc59778EF1D4cCcCaca061F0a1AFd1F461 '0xF1c188c6B876D81EC335a019524A2C7b40B2c26b'"
+    "testnetVerify": "npx hardhat verify --network arbitrumSepolia 0xAa18a3cc59778EF1D4cCcCaca061F0a1AFd1F461 '0xF1c188c6B876D81EC335a019524A2C7b40B2c26b'",
+    "arbitrumDeploy": "npx hardhat run scripts/arbitrumDeploy.cjs --network arbitrum",
+    "arbitrumVerify": "npx hardhat verify --network arbitrum 0xAa18a3cc59778EF1D4cCcCaca061F0a1AFd1F461 '0xF1c188c6B876D81EC335a019524A2C7b40B2c26b'"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
