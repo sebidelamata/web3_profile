@@ -21,6 +21,7 @@ Adjust your testnetDeploy.js file to reflect your metadata tokenURI. run `npm ru
 Adjust your package.json file to reflect your testnet deployment:
     <pre>
         {
+            &nbsp;...,
             &nbsp;"scripts": {
                 &nbsp;&nbsp;...,
                 &nbsp;&nbsp;"testnetVerify": "npx hardhat verify --network arbitrumSepolia <contractAddress> <ownerAddress>",
