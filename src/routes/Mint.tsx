@@ -77,13 +77,18 @@ const Mint: React.FC = () => {
     }
 
     useEffect(() => {
-        getTotalSupply()
-        loadAccountData()
+        const fetchData = async () => {
+            await getTotalSupply();
+            await loadAccountData();
+        };
+    
+        fetchData();
     }, [provider, account, minted])
 
     const exitSuccessBanner = () => {
         setMinted(null)
     }
+    console.log(totalSupply)
     return(
         <>
             <Navbar></Navbar>
@@ -114,7 +119,8 @@ const Mint: React.FC = () => {
                 </div>
                 <div className="mint-button-container">
                     {
-                        totalSupply && totalSupply < 138 &&
+                        totalSupply !== null && 
+                        totalSupply < 138 &&
                         <button onClick={mintNFT} className="mint-button">
                             {
                                 walletMints &&
@@ -127,7 +133,7 @@ const Mint: React.FC = () => {
                         </button>
                     }
                     {
-                        totalSupply &&
+                        totalSupply !== null &&
                         totalSupply >= 138 &&
                         <button className="mint-button">
                             <a href="https://testnets.opensea.io/collection/boxers-in-predicaments" target="blank">
@@ -143,7 +149,7 @@ const Mint: React.FC = () => {
                     </h3>
                 }
                 {
-                    minted &&
+                    minted !== null &&
                     <div className="mint-success-banner">
                         <div className="mint-success-message">Successfully Minted!</div>
                         <div className="mint-success-row-two">
