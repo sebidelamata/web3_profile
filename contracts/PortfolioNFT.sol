@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
+//@author sebidelamata
 contract BiP is ERC721, Pausable, Ownable, ERC721URIStorage {
 
     uint256 public maxSupply;

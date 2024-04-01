@@ -11,4 +11,22 @@ module.exports = {
       accounts: [process.env.VITE_TESTNET_DEV_ACCOUNT0_KEY],
     }
   },
+  etherscan: {
+    apiKey: {
+      arbitrumSepolia: process.env.VITE_ARBISCAN_API_KEY,
+    },
+    customChains: [
+      {
+        network: "arbitrumSepolia",
+        chainId: process.env.VITE_TESTNET_CHAINID,
+        urls: {
+            apiURL: "https://api-sepolia.arbiscan.io/api",
+            browserURL: "https://sepolia.arbiscan.io/",
+        },
+      },
+    ],
+  },
+  sourcify: {
+    enabled: true,
+  },
 };

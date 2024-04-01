@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "testnetDeploy": "npx hardhat run scripts/testnetDeploy.cjs --network arbitrumSepolia"
+    "testnetDeploy": "npx hardhat run scripts/testnetDeploy.cjs --network arbitrumSepolia",
+    "testnetVerify": "npx hardhat verify --network arbitrumSepolia 0x833C2580C9352cA3A626A527B2872F9ACc8e2b0c '0xF1c188c6B876D81EC335a019524A2C7b40B2c26b'"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",

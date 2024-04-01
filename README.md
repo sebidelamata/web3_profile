@@ -18,6 +18,18 @@ To create your own collection, create metadata according to standarm NFT art for
 
 Adjust your testnetDeploy.js file to reflect your metadata tokenURI. run `npm run testnetDeploy`. Adjust React app if necessary to run on Arbitrum Sepolia.
 
+Adjust your package.json file to reflect your testnet deployment:
+    ``` 
+    ...,
+    "scripts": {
+        ...,
+        "testnetVerify": "npx hardhat verify --network arbitrumSepolia <contractAddress> <ownerAddress>",
+        ...
+    },
+    ...
+    ```
+After making this adjustment, run 'npm run testnetVerify' to verify your deployed contract on Arbitrum Sepolia.
+
 If you would like to deploy to Arbitrum One, adjust your arbitrumDeploy.js file to reflect your metadata tokenURI. run `npm run arbitrumDeploy`. Adjust React app if necessary to run on Arbitrum One.
 
 ## Running Client
