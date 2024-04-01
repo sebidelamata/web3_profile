@@ -1670,8 +1670,8 @@ input[type="submit"]::after{
 
   .scheduler-button{
     display: grid;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     position: relative;
     bottom: 20%;
     left: 10%;
