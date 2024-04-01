@@ -47,7 +47,7 @@ const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID, index}) => 
                 <ul className="nft-links-list">
                     <li className="arbiscan-link">
                         <a 
-                        href={`https://sepolia.arbiscan.io/token/${import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS}?a=${tokenID}`}
+                        href={`https://arbiscan.io/token/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}?a=${tokenID}`}
                         target="_blank"
                         >
                             <img 
@@ -59,7 +59,7 @@ const UserNFTCard: React.FC<UserNFTCardProps> = ({metadata, tokenID, index}) => 
                     </li>
                     <li className="open-sea-link">
                         <a 
-                        href={`https://testnets.opensea.io/assets/arbitrum-sepolia/${import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS}/${tokenID}`}
+                        href={`https://opensea.io/assets/arbitrum/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}/${tokenID}`}
                         target="_blank"
                         >
                             <img 

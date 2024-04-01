@@ -104,14 +104,14 @@ const Mint: React.FC = () => {
                     <div className="collection-description-footer">
                         <div>
                             <a 
-                            href="https://testnets.opensea.io/collection/boxers-in-predicaments" 
+                            href="https://opensea.io/collection/boxers-in-predicaments" 
                             target="_blank"
                             >View Collection on OpenSea</a>
                         </div>
                         <br></br>
                         <div>
                             <a 
-                            href={`https://sepolia.arbiscan.io/token/${import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS}`} 
+                            href={`https://arbiscan.io/token/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}`} 
                             target="_blank"
                             >View Verified and Published Contract on Arbiscan</a>
                         </div>
@@ -136,7 +136,7 @@ const Mint: React.FC = () => {
                         totalSupply !== null &&
                         totalSupply >= 138 &&
                         <button className="mint-button">
-                            <a href="https://testnets.opensea.io/collection/boxers-in-predicaments" target="blank">
+                            <a href="https://opensea.io/collection/boxers-in-predicaments" target="blank">
                                 Mint Completed, Make an Offer on OpenSea.
                             </a>
                         </button>
@@ -154,7 +154,7 @@ const Mint: React.FC = () => {
                         <div className="mint-success-message">Successfully Minted!</div>
                         <div className="mint-success-row-two">
                             <a 
-                            href={`https://sepolia.arbiscan.io/tx/${minted.hash}`}
+                            href={`https://arbiscan.io/tx/${minted.hash}`}
                             target="_blank"
                             className="view-tx"
                             >

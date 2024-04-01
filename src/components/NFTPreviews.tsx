@@ -25,7 +25,7 @@ const NFTPreviews: React.FC = () => {
         try{
             if(provider){
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS
+                const contractAddress = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer);
                 const _maxSupply = await contract.maxSupply();

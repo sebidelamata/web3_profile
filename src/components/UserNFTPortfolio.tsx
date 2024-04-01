@@ -118,7 +118,7 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
         for(let token of tokenIDs){
             try{
                 const signer = await provider.getSigner()
-                const contractAddress = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
+                const contractAddress = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS as string
                 const contractABI = portfolioNFTArtifact.abi
                 const contract = new ethers.Contract(contractAddress, contractABI, signer)
                 const uri = await contract.tokenURI(token)
@@ -138,7 +138,7 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
         try{
             if (!provider) return
             const signer = await provider.getSigner()
-            const contractAddress: string = import.meta.env.VITE_TESTNET_CONTRACT_ADDRESS as string
+            const contractAddress: string = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS as string
             const contractABI = portfolioNFTArtifact.abi
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
             
