@@ -111,7 +111,7 @@ const Mint: React.FC = () => {
                         <br></br>
                         <div>
                             <a 
-                            href={`https://arbiscan.io/token/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}`} 
+                            href={`https://arbiscan.io/address/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}`} 
                             target="_blank"
                             >View Verified and Published Contract on Arbiscan</a>
                         </div>
