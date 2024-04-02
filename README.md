@@ -34,6 +34,20 @@ After making this adjustment, run `npm run testnetVerify` to verify your deploye
 
 If you would like to deploy to Arbitrum One, adjust your arbitrumDeploy.js file to reflect your metadata tokenURI. run `npm run arbitrumDeploy`. Adjust React app if necessary to run on Arbitrum One.
 
+Adjust your package.json file to reflect your Arbitrum deployment:
+    <pre>
+        {
+            &nbsp;...,
+            &nbsp;"scripts": {
+                &nbsp;&nbsp;...,
+                &nbsp;&nbsp;"arbitrumVerify": "npx hardhat verify --network arbitrum &lt;contractAddress&gt; &lt;ownerAddress&gt;",
+                &nbsp;&nbsp;...
+            &nbsp;},
+            &nbsp;...
+        }
+    </pre>
+After making this adjustment, run `npm run arbitrumVerify` to verify your deployed contract on Arbitrum One.
+
 ## Running Client
 
 To run the frontend app locally, run `npm run dev`. The application should be available on [port 9999](http://localhost:9999/).
