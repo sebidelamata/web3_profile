@@ -15,6 +15,8 @@ const Mint: React.FC = () => {
 
     const [walletMints, setWalletMints] = useState<number | null>(null)
 
+    const [tokenIDs, setTokenIDs] = useState<number[]>([])
+
     const [showPortfolio, setShowPortfolio] = useState<boolean>(false)
 
     const provider = useProvider();
@@ -46,6 +48,9 @@ const Mint: React.FC = () => {
                 const response = await contract.getWalletMints(signer.address);
                 const walletMints = await response.toString()
                 setWalletMints(parseInt(await walletMints))
+                const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
+                const tokenIDsArray = Object.values(await _tokenIDs).map((value: unknown) => parseInt(value as string))
+                setTokenIDs(tokenIDsArray)
             }
             
         } catch(err){
@@ -168,8 +173,7 @@ const Mint: React.FC = () => {
                 }
             </div>
             {
-                walletMints !== null &&
-                walletMints > 0 &&
+                tokenIDs.length > 0 &&
                 <div className="view-yours-container">
                     <button onClick={() => setShowPortfolio(true)} className="view-yours-container-button">
                         View Your Boxers
@@ -177,8 +181,7 @@ const Mint: React.FC = () => {
                 </div>
             }
             {
-                walletMints !== null &&
-                walletMints > 0 &&
+                tokenIDs.length > 0 &&
                 showPortfolio === true &&
                 <UserNFTPortfolio setShowPortfolio={setShowPortfolio} showPortfolio={showPortfolio}/>
             }
