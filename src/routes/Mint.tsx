@@ -49,6 +49,7 @@ const Mint: React.FC = () => {
                 const walletMints = await response.toString()
                 setWalletMints(parseInt(await walletMints))
                 const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
+                console.log(_tokenIDs)
                 const tokenIDsArray = Object.values(await _tokenIDs).map((value: unknown) => parseInt(value as string))
                 setTokenIDs(tokenIDsArray)
             }
@@ -93,7 +94,7 @@ const Mint: React.FC = () => {
     const exitSuccessBanner = () => {
         setMinted(null)
     }
-    console.log(totalSupply)
+    console.log(tokenIDs)
     return(
         <>
             <Navbar></Navbar>

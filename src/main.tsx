@@ -51,7 +51,7 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 createWeb3Modal({
   ethersConfig,
-  chains: [arbitrumSepolia, arbitrum] as ChainsType,
+  chains: [arbitrum, arbitrumSepolia] as ChainsType,
   projectId,
   enableOnramp: true,
   enableAnalytics: true,
