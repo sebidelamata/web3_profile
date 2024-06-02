@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
             <ul className="projects-lists" id="projects">
                 <li className="project-card" id="project-card-1">
                     <ProjectCard
-                        title={'Open Dollar Governance Proposal App'} 
+                        title={'Open Dollar Gov Proposals'} 
                         description={'Built with Next.js, TypeScript, WalletConnect, and Ethers.js. Users view and submit proposals via Arbitrum blockchain. Features data from GitHub, decoded calldata, and user status messages.'} 
                         applicationLink={'https://propose.opendollar.com/'}
                         repositoryLink={'https://github.com/open-dollar/od-gov-proposal-app'} 
