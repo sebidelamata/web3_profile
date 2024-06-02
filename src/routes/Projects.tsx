@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
                 <li className="project-card" id="project-card-1">
                     <ProjectCard
                         title={'Open Dollar Governance Proposal App'} 
-                        description={'Built with Next.js, TypeScript, WalletConnect, and Ethers.js. Users view and submit proposals via blockchain. Features data from GitHub, decoded calldata, and user status messages.'} 
+                        description={'Built with Next.js, TypeScript, WalletConnect, and Ethers.js. Users view and submit proposals via Arbitrum blockchain. Features data from GitHub, decoded calldata, and user status messages.'} 
                         applicationLink={'https://propose.opendollar.com/'}
                         repositoryLink={'https://github.com/open-dollar/od-gov-proposal-app'} 
                         videoLink={'https://www.youtube.com/embed/NQOsW6Spuq4?autoplay=1&mute=1&loop=1&playlist=NQOsW6Spuq4'}
