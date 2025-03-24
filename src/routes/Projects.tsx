@@ -15,7 +15,7 @@ const Projects: React.FC = () => {
                         description={'AlphaPING is a DeFi chat protocol on Arbitrum, built with Next.js, React, TypeScript, Solidity, and Hardhat. It features token-gated messaging, aggregated social trading insights, sentiment analysis, integrated trading, creating a social experience.'} 
                         applicationLink={'https://www.alphaping.xyz/'}
                         repositoryLink={'https://github.com/sebidelamata/alpha-ping'} 
-                        videoLink={'https://www.youtube.com/embed/sI4y7i_BnBQ?autoplay=1&mute=1&loop=1&playlist=sI4y7i_BnBQ'}
+                        videoLink={'https://www.youtube.com/embed/sI4y7i_BnBQ?autoplay=1&mute=1&loop=1&playlist=8r9WDpqw9yJM0Efl'}
                         videoTitle={'AlphaPING'}
                         cardNumber={1}
                     />
