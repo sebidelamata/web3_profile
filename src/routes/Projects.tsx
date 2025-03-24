@@ -9,7 +9,18 @@ const Projects: React.FC = () => {
         <div id="projects-list-card">
             <h2 id="projects-title"><strong>Projects</strong></h2>
             <ul className="projects-lists" id="projects">
-                <li className="project-card" id="project-card-1">
+            <li className="project-card" id="project-card-1">
+                    <ProjectCard
+                        title={'AlphaPING'} 
+                        description={'AlphaPING is a DeFi chat protocol on Arbitrum, built with Next.js, React, TypeScript, Solidity, and Hardhat. It features token-gated messaging, aggregated social trading insights, sentiment analysis, integrated trading, creating a social experience.'} 
+                        applicationLink={'https://www.alphaping.xyz/'}
+                        repositoryLink={'https://github.com/sebidelamata/alpha-ping'} 
+                        videoLink={'https://www.youtube.com/embed/sI4y7i_BnBQ?autoplay=1&mute=1&loop=1&playlist=sI4y7i_BnBQ'}
+                        videoTitle={'Open Dollar Governance Proposal App'}
+                        cardNumber={1}
+                    />
+                </li>
+                <li className="project-card" id="project-card-2">
                     <ProjectCard
                         title={'Open Dollar Gov Proposals'} 
                         description={'Built with Next.js, TypeScript, WalletConnect, and Ethers.js. Users view and submit proposals via Arbitrum blockchain. Features data from GitHub, decoded calldata, and user status messages.'} 
@@ -20,7 +31,7 @@ const Projects: React.FC = () => {
                         cardNumber={1}
                     />
                 </li>
-                <li className="project-card" id="project-card-2">
+                <li className="project-card" id="project-card-3">
                     <ProjectCard
                         title={'Web3 Portfolio NFT'} 
                         description={'Web3 app utilizing TypeScript, React, and Hardhat. Users have the ability to mint commemorative NFTs, showcasing unique generative AI artwork with metadata securely pinned to IPFS'} 
@@ -31,7 +42,7 @@ const Projects: React.FC = () => {
                         cardNumber={2}
                     />
                 </li>
-                <li className="project-card" id="project-card-3">
+                <li className="project-card" id="project-card-4">
                     <ProjectCard
                         title={'REPO'} 
                         description={"ETH Denver 2024's 1st place Euler Finance Bounty winner, Repo Vault provides liquidity and leverage for Pendle Principal Token (PT) holders through fixed-rate loans."} 
@@ -42,7 +53,7 @@ const Projects: React.FC = () => {
                         cardNumber={3}
                     />
                 </li>
-                <li className="project-card" id="project-card-4">
+                <li className="project-card" id="project-card-5">
                     <ProjectCard
                         title={'Gaping Pond'} 
                         description={"GapingPond is a whitelabel NFT Marketplace using DeFiLlamma and OpenSea APIs. GapingPond provides metrics and interactive charts unavailable on OpenSea."} 
