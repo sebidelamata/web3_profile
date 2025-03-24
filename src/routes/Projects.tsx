@@ -16,7 +16,7 @@ const Projects: React.FC = () => {
                         applicationLink={'https://www.alphaping.xyz/'}
                         repositoryLink={'https://github.com/sebidelamata/alpha-ping'} 
                         videoLink={'https://www.youtube.com/embed/sI4y7i_BnBQ?autoplay=1&mute=1&loop=1&playlist=sI4y7i_BnBQ'}
-                        videoTitle={'Open Dollar Governance Proposal App'}
+                        videoTitle={'AlphaPING'}
                         cardNumber={1}
                     />
                 </li>
