@@ -28,7 +28,7 @@ const Projects: React.FC = () => {
                         repositoryLink={'https://github.com/open-dollar/od-gov-proposal-app'} 
                         videoLink={'https://www.youtube.com/embed/NQOsW6Spuq4?autoplay=1&mute=1&loop=1&playlist=NQOsW6Spuq4'}
                         videoTitle={'Open Dollar Governance Proposal App'}
-                        cardNumber={1}
+                        cardNumber={2}
                     />
                 </li>
                 <li className="project-card" id="project-card-3">
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
                         repositoryLink={'https://github.com/sebidelamata/web3_profile'} 
                         videoLink={'https://www.youtube.com/embed/K-umMAg4uVQ?autoplay=1&mute=1&loop=1&playlist=K-umMAg4uVQ'}
                         videoTitle={'Web3 Portfolio NFT'}
-                        cardNumber={2}
+                        cardNumber={3}
                     />
                 </li>
                 <li className="project-card" id="project-card-4">
@@ -50,7 +50,7 @@ const Projects: React.FC = () => {
                         repositoryLink={'https://devfolio.co/projects/repo-9d33'} 
                         videoLink={'https://www.youtube.com/embed/7VfPbW5x3Dw?si=DxM4wRr-ApAb5twY&autoplay=1&mute=1&loop=1&playlist=7VfPbW5x3Dw'}
                         videoTitle={'repo'}
-                        cardNumber={3}
+                        cardNumber={4}
                     />
                 </li>
                 <li className="project-card" id="project-card-5">
@@ -61,7 +61,7 @@ const Projects: React.FC = () => {
                         repositoryLink={'https://github.com/sebidelamata/shoppingCart'} 
                         videoLink={'https://www.youtube.com/embed/DW4x2mfdgzE?si=NL5thjhvVo5hBQ4B&autoplay=1&mute=1&loop=1&playlist=DW4x2mfdgzE'}
                         videoTitle={'GapingPond'}
-                        cardNumber={4}
+                        cardNumber={5}
                     />
                 </li>
             </ul>
