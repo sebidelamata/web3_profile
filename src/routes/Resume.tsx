@@ -12,7 +12,6 @@ const Resume: React.FC = () => {
                className="resume-doc"></iframe>
             </div>
         </>
-        //a comment
     )
 }
 
