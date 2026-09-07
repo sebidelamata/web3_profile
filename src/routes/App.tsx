@@ -6,6 +6,7 @@ import Projects from './Projects'
 import Contacts from '../components/Contacts'
 import Footer from '../components/Footer'
 import CrtOverlay from '../components/CrtOverlay'
+import Terminal from '../components/Terminal'
 
 const App: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ const App: React.FC = () => {
           <TechStackCarousel />
         </section>
         <section id="projects-section" className="border-t border-border py-16">
-          <Projects />
+          <Terminal onRequestPlainList={() => {}} />
         </section>
         <section id="contact" className="border-t border-border py-16">
           <Contacts />
