@@ -9,12 +9,25 @@ import UnknownOutput from "./UnknownOutput";
 import ConnectOutput from "./ConnectOutput";
 import Mint from "../routes/Mint";
 import Contacts from "./Contacts";
+import Resume from "../routes/Resume";
 
 type Line =
     | { type: "input"; content: string; id: string }
     | { type: "output"; content: React.ReactNode; id: string };
 
-const COMMANDS = ["--help", "ls stack", "ls projects", "whoami", "cat alphaping", "clear", "contact", "schedule", "connect", "mint"];
+const COMMANDS = [
+    "--help", 
+    "ls stack", 
+    "ls projects", 
+    "whoami", 
+    "cat alphaping", 
+    "clear", 
+    "contact", 
+    "resume", 
+    "schedule", 
+    "connect", 
+    "mint"
+];
 
 let idCounter = 0;
 const nextId = () => `line-${idCounter++}`;
@@ -90,6 +103,9 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 } else {
                     pushLine({ type: "output", content: <CatProjectOutput slug={arg} /> });
                 }
+                break;
+            case "resume":
+                pushLine({ type: "output", content: <Resume /> });
                 break;
             case "clear":
                 setLines([]);

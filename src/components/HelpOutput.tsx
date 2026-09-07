@@ -16,6 +16,8 @@ const HelpOutput: React.FC = () => (
             <dd className="text-fg-dim">clear the screen</dd>
             <dt className="text-accent">contact</dt>
             <dd className="text-fg-dim">send me an email</dd>
+            <dt className="text-accent">resume</dt>
+            <dd className="text-fg-dim">view my resume</dd>
             <dt className="text-accent">schedule</dt>
             <dd className="text-fg-dim">schedule a meeting</dd>
             <dt className="text-accent">connect</dt>
