@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "./components/ui/button";
+import Scheduler from "./Scheduler";
 
 export interface Project {
     slug: string;
@@ -63,7 +64,7 @@ type Line =
     | { type: "input"; content: string; id: string }
     | { type: "output"; content: React.ReactNode; id: string };
 
-const COMMANDS = ["--help", "ls projects", "whoami", "cat alphaping", "clear"];
+const COMMANDS = ["--help", "ls projects", "whoami", "cat alphaping", "clear", "contact"];
 
 let idCounter = 0;
 const nextId = () => `line-${idCounter++}`;
@@ -80,6 +81,8 @@ const HelpOutput: React.FC = () => (
             <dd className="text-fg-dim">who&apos;s behind this</dd>
             <dt className="text-accent">clear</dt>
             <dd className="text-fg-dim">clear the screen</dd>
+            <dt className="text-accent">contact</dt>
+            <dd className="text-fg-dim">schedule a meeting</dd>
             <dt className="text-accent">--help</dt>
             <dd className="text-fg-dim">show this again</dd>
         </dl>
@@ -188,6 +191,9 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 break;
             case "ls":
                 pushLine({ type: "output", content: <ListProjectsOutput onRun={run} /> });
+                break;
+            case "contact":
+                pushLine({ type: "output", content: <Scheduler/> });
                 break;
             case "cat":
                 if (!arg) {

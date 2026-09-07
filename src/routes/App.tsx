@@ -21,9 +21,6 @@ const App: React.FC = () => {
         <section id="projects-section" className="border-t border-border py-16">
           <Terminal onRequestPlainList={() => {}} />
         </section>
-        <section id="contact" className="border-t border-border py-16">
-          <Contacts />
-        </section>
       </main>
       <Footer />
     </div>

@@ -6,12 +6,18 @@ const Scheduler: React.FC = () => {
   const rootElement = document.getElementById("root") as HTMLElement;
 
   return (
-    <PopupButton
-      url="https://calendly.com/sebidelamata/discoveryourweb3vision"
-      className={buttonVariants({ variant: "accent", size: "default" })}
-      text="Schedule a meetup"
-      rootElement={rootElement}
-    />
+    <div className="flex gap-4 items-center">
+      <div>
+        If there's anything you'd like to discuss further, don't hesitate to reach out.
+      </div>
+      <PopupButton
+        url="https://calendly.com/sebidelamata/discoveryourweb3vision"
+        className={buttonVariants({ variant: "default", size: "default" })}
+        text="Schedule a meetup"
+        rootElement={rootElement}
+      />
+    </div>
+
   )
 }
 
