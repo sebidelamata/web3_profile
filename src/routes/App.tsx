@@ -16,7 +16,6 @@ const App: React.FC = () => {
       <main className="mx-auto max-w-content px-5">
         <section id="hero">
           <Hero />
-          <TechStackCarousel />
         </section>
         <section id="projects-section" className="border-t border-border py-16">
           <Terminal onRequestPlainList={() => {}} />
