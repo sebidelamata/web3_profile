@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import './globals.css'
 import Router from './Router'
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
 

@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import TechStackCarousel from '../components/TechStackCarousel'
-import ScrollToProjectsCard from '../components/ScrollToProjectsCard'
 import Projects from './Projects'
 import Contacts from '../components/Contacts'
-import ScrollTopButton from '../components/ScrollTopButton'
 import Footer from '../components/Footer'
+import CrtOverlay from '../components/CrtOverlay'
 
-const App:React.FC = () => {
-
+const App: React.FC = () => {
   return (
     <div>
-        <Navbar></Navbar>
-        <section id="hero" className="hero">
-          <div className="hero-card">
-            <Hero></Hero>
-            <TechStackCarousel></TechStackCarousel>
-        </div>
-      </section>
-      <div className='main'>
-              <ScrollToProjectsCard></ScrollToProjectsCard>
-              <Projects></Projects>
-              <Contacts></Contacts>
-              <ScrollTopButton></ScrollTopButton>
-      </div>
-      <Footer></Footer>
+      <CrtOverlay />
+      <Navbar />
+      <main className="mx-auto max-w-content px-5">
+        <section id="hero">
+          <Hero />
+          <TechStackCarousel />
+        </section>
+        <section id="projects-section" className="border-t border-border py-16">
+          <Projects />
+        </section>
+        <section id="contact" className="border-t border-border py-16">
+          <Contacts />
+        </section>
+      </main>
+      <Footer />
     </div>
   )
 }

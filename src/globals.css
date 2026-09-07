@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---- Raw palette --------------------------------------------------- */
+:root {
+  --bg: #161310;
+  --bg-raised: #1c1815;
+  --fg: #e8e0d4;
+  --fg-dim: #948a7c;
+  --accent: #c17a3f;
+  --accent-dim: #8a5a35;
+  --border: #332c24;
+  --ring: #c17a3f;
+  --radius: 0.125rem; /* 2px — deliberately flat */
+}
+
+/* ---- Register tokens as Tailwind utilities -------------------------
+   Anything used as bg-*, text-*, border-* in components must be listed
+   here or the utility class silently resolves to nothing. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-fg: var(--fg);
+  --color-fg-dim: var(--fg-dim);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* shadcn primitives (Sheet/Dialog/etc.) read these names directly */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-popover: var(--bg-raised);
+  --color-popover-foreground: var(--fg);
+  --color-card: var(--bg-raised);
+  --color-card-foreground: var(--fg);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--bg);
+  --color-muted: var(--bg-raised);
+  --color-muted-foreground: var(--fg-dim);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.4);
+
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-fg font-mono antialiased;
+  }
+}
+
+@layer utilities {
+  .prompt-label::before {
+    content: '$ ';
+    @apply text-fg-dim;
+  }
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  92.5% { opacity: 0.94; }
+  93% { opacity: 1; }
+  96% { opacity: 1; }
+  96.3% { opacity: 0.96; }
+  96.6% { opacity: 1; }
+}
+
+.animate-crt-flicker {
+  animation: crt-flicker 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
