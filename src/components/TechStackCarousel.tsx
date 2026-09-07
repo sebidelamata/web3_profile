@@ -1,9 +1,10 @@
 import React from "react";
 
 const STACK = [
-    "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js",
-    "Vite", "Node.js", "Webpack", "Jest", "Git", "MongoDB",
-    "Solidity", "Truffle", "Hardhat"
+    "Solidity", "Foundry", "Hardhat", 
+    "TypeScript", "React", "Next.js",
+    "Vite", "Node.js", "React Native", 
+    "Expo", "MongoDB", "SQL", "Python"
 ];
 
 const TechStackCarousel: React.FC = () => {
