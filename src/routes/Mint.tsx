@@ -94,10 +94,9 @@ const Mint: React.FC = () => {
     const exitSuccessBanner = () => {
         setMinted(null)
     }
-    console.log(tokenIDs)
+
     return(
         <>
-            <Navbar></Navbar>
             <div className="minting-body">
                 <h1 className="minting-title">Mint Boxers in Predicaments NFT</h1>
                 <NFTPreviews/>

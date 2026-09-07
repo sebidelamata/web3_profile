@@ -15,9 +15,13 @@ const HelpOutput: React.FC = () => (
             <dt className="text-accent">clear</dt>
             <dd className="text-fg-dim">clear the screen</dd>
             <dt className="text-accent">contact</dt>
+            <dd className="text-fg-dim">send me an email</dd>
+            <dt className="text-accent">schedule</dt>
             <dd className="text-fg-dim">schedule a meeting</dd>
             <dt className="text-accent">connect</dt>
             <dd className="text-fg-dim">connect Web3 wallet</dd>
+            <dt className="text-accent">mint</dt>
+            <dd className="text-fg-dim">mint Boxers in Predicaments NFT</dd>
             <dt className="text-accent">--help</dt>
             <dd className="text-fg-dim">show this again</dd>
         </dl>

@@ -7,12 +7,14 @@ import ListTechStackOutput from "./ListStackOutput";
 import CatProjectOutput from "./CatProjectOutput";
 import UnknownOutput from "./UnknownOutput";
 import ConnectOutput from "./ConnectOutput";
+import Mint from "../routes/Mint";
+import Contacts from "./Contacts";
 
 type Line =
     | { type: "input"; content: string; id: string }
     | { type: "output"; content: React.ReactNode; id: string };
 
-const COMMANDS = ["--help", "ls stack", "ls projects", "whoami", "cat alphaping", "clear", "contact", "connect"];
+const COMMANDS = ["--help", "ls stack", "ls projects", "whoami", "cat alphaping", "clear", "contact", "schedule", "connect", "mint"];
 
 let idCounter = 0;
 const nextId = () => `line-${idCounter++}`;
@@ -68,10 +70,16 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 }
                 break;
             case "contact":
+                pushLine({ type: "output", content: <Contacts /> });
+                break;
+            case "schedule":
                 pushLine({ type: "output", content: <Scheduler/> });
                 break;
             case "connect":
                 pushLine({ type: "output", content: <ConnectOutput /> });
+                break;
+            case "mint":
+                pushLine({ type: "output", content: <Mint /> });
                 break;
             case "cat":
                 if (!arg) {

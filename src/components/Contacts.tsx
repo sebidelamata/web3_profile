@@ -1,7 +1,6 @@
 import emailjs from '@emailjs/browser'
 import React, { useRef, useState } from 'react'
 import SuccessBanner from './SuccessBanner'
-import Scheduler from './Scheduler'
 
 const Contacts: React.FC = () => {
 
@@ -28,12 +27,6 @@ const Contacts: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-6">
-            <span className="prompt-label text-sm text-accent">contact --new</span>
-            <h2 className="text-xl font-bold">Get in touch</h2>
-            <p className="text-fg-dim">
-                If there&apos;s anything you&apos;d like to discuss further, don&apos;t hesitate to reach out.
-            </p>
-            <Scheduler />
             <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
                     <label htmlFor="form-name" className="text-sm text-fg-dim">name</label>
