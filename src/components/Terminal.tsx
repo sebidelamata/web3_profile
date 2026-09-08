@@ -24,7 +24,7 @@ const COMMANDS = [
     "clear", 
     "contact", 
     "resume", 
-    "schedule", 
+    "cron", 
     "connect", 
     "mint"
 ];
@@ -85,7 +85,7 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
             case "contact":
                 pushLine({ type: "output", content: <Contacts /> });
                 break;
-            case "schedule":
+            case "cron":
                 pushLine({ type: "output", content: <Scheduler/> });
                 break;
             case "connect":
