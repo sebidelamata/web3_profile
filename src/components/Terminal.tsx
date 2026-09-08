@@ -11,27 +11,106 @@ import Contacts from "./Contacts";
 import Resume from "../routes/Resume";
 import ListReportsOutput from "./ListReports";
 import CatReportOutput from "./CatReportOutput";
+import { REPORTS } from "../lib/Reports"; // adjust path to wherever Reports.ts actually lives
+import { PROJECTS } from "../lib/Projects"; // adjust path to wherever Projects.ts actually lives
 
 type Line =
     | { type: "input"; content: string; id: string }
     | { type: "output"; content: React.ReactNode; id: string };
 
 const COMMANDS = [
-    "--help", 
-    "ls stack", 
-    "ls projects", 
-    "whoami", 
-    "cat security/snowman-merkle-airdrop", 
-    "cat projects/alphaping", 
-    "clear", 
-    "ping", 
-    "cron", 
-    "connect", 
+    "--help",
+    "ls stack",
+    "ls security",
+    "ls projects",
+    "whoami",
+    "cat security/snowman-merkle-airdrop",
+    "cat projects/alphaping",
+    "clear",
+    "ping",
+    "cron",
+    "connect",
     "mint"
 ];
 
+const HISTORY_KEY = "delamata-terminal-history";
+const MAX_HISTORY = 100;
+
+// pseudo-directories available under "cat"
+const CAT_DIRS = ["security/", "projects/"];
+const SECURITY_SLUGS = REPORTS.map((r) => r.title);
+const PROJECT_SLUGS = PROJECTS.map((p) => p.slug);
+
 let idCounter = 0;
 const nextId = () => `line-${idCounter++}`;
+
+interface CompletionContext {
+    prefix: string; // everything before the word being completed, e.g. "cat "
+    word: string; // the partial word being completed
+    candidates: string[]; // full replacement values for `word`
+}
+
+const longestCommonPrefix = (strs: string[]): string => {
+    if (strs.length === 0) return "";
+    let prefix = strs[0];
+    for (let i = 1; i < strs.length; i++) {
+        while (!strs[i].startsWith(prefix)) {
+            prefix = prefix.slice(0, -1);
+            if (!prefix) return "";
+        }
+    }
+    return prefix;
+};
+
+// only "cat <pseudo-dir>/<slug>" gets completion — nothing else in this
+// terminal resembles a real filesystem, so we don't try to complete
+// command names (no "l" -> "ls").
+// only "cat <pseudo-dir>/<slug>" and "ls <pseudo-dir>" get completion —
+// nothing else in this terminal resembles a real filesystem, so we don't
+// try to complete command names themselves (no "l" -> "ls").
+const LS_TARGETS = ["security", "projects", "stack"];
+
+const getCompletionContext = (input: string): CompletionContext | null => {
+    const trailingSpace = /\s$/.test(input);
+    const parts = input.split(/\s+/).filter(Boolean);
+
+    if (parts[0] !== "cat" && parts[0] !== "ls") return null;
+    // still typing the command itself (e.g. "ca", "l") — not a completion target
+    if (parts.length === 1 && !trailingSpace) return null;
+
+    const word = parts.length === 2 && !trailingSpace ? parts[1] : "";
+    const prefix = `${parts[0]} `;
+
+    if (parts[0] === "ls") {
+        return {
+            prefix,
+            word,
+            candidates: LS_TARGETS.filter((t) => t.startsWith(word)),
+        };
+    }
+
+    // parts[0] === "cat"
+    if (word.includes("/")) {
+        const [dir, ...rest] = word.split("/");
+        const sub = rest.join("/");
+        let slugs: string[] = [];
+        if (dir === "security") slugs = SECURITY_SLUGS;
+        else if (dir === "projects") slugs = PROJECT_SLUGS;
+        else return { prefix, word, candidates: [] };
+
+        return {
+            prefix,
+            word,
+            candidates: slugs.filter((s) => s.startsWith(sub)).map((s) => `${dir}/${s}`),
+        };
+    }
+
+    return {
+        prefix,
+        word,
+        candidates: CAT_DIRS.filter((d) => d.startsWith(word)),
+    };
+};
 
 interface TerminalProps {
     onRequestPlainList: () => void;
@@ -44,6 +123,30 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const booted = useRef(false);
 
+    // command history state, seeded from sessionStorage
+    const [history, setHistory] = useState<string[]>(() => {
+        try {
+            const saved = sessionStorage.getItem(HISTORY_KEY);
+            return saved ? JSON.parse(saved) : [];
+        } catch {
+            return [];
+        }
+    });
+    const [historyIndex, setHistoryIndex] = useState(-1); // -1 = not browsing
+    const draftRef = useRef("");
+
+    // tracks the last input value we tab-completed against, so a second
+    // consecutive Tab (with no typing in between) can show the match list
+    const lastTabInputRef = useRef<string | null>(null);
+
+    useEffect(() => {
+        try {
+            sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        } catch {
+            // sessionStorage unavailable (private mode, etc) — fail silently
+        }
+    }, [history]);
+
     const pushLine = (line: Omit<Line, "id">) => {
         setLines((prev) => [...prev, { ...line, id: nextId() } as Line]);
     };
@@ -55,6 +158,13 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
         if (command !== "--help" || lines.length > 0) {
             pushLine({ type: "input", content: command });
         }
+
+        setHistory((prev) => {
+            if (prev[prev.length - 1] === command) return prev;
+            return [...prev, command].slice(-MAX_HISTORY);
+        });
+        setHistoryIndex(-1);
+        draftRef.current = "";
 
         const [head, ...rest] = command.split(/\s+/);
         const arg = rest.join(" ");
@@ -120,12 +230,9 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
         }
     };
 
-    // boot once: seed the terminal as if --help was already run
     useEffect(() => {
         if (booted.current) return;
         booted.current = true;
-        // pushLine({ type: "input", content: "--help" });
-        // pushLine({ type: "output", content: <HelpOutput /> });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -137,6 +244,79 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
         e.preventDefault();
         run(input);
         setInput("");
+        lastTabInputRef.current = null;
+    };
+
+    const handleTab = () => {
+        const ctx = getCompletionContext(input);
+        if (!ctx || ctx.candidates.length === 0) {
+            lastTabInputRef.current = null;
+            return;
+        }
+
+        if (ctx.candidates.length === 1) {
+            setInput(ctx.prefix + ctx.candidates[0]);
+            lastTabInputRef.current = null;
+            return;
+        }
+
+        const lcp = longestCommonPrefix(ctx.candidates);
+        const completed = ctx.prefix + lcp;
+
+        if (lcp !== ctx.word) {
+            // can extend unambiguously, even if not a full match yet
+            setInput(completed);
+            lastTabInputRef.current = completed;
+            return;
+        }
+
+        // already at the longest common prefix — second consecutive Tab
+        // shows the options, like a real shell's double-tab
+        if (lastTabInputRef.current === input) {
+            pushLine({
+                type: "output",
+                content: <p className="text-fg-dim">{ctx.candidates.join("  ")}</p>,
+            });
+        }
+        lastTabInputRef.current = input;
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+            handleTab();
+            return;
+        }
+
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (history.length === 0) return;
+
+            if (historyIndex === -1) {
+                draftRef.current = input;
+            }
+            const nextIndex = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
+
+            setHistoryIndex(nextIndex);
+            setInput(history[nextIndex]);
+        } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (historyIndex === -1) return;
+
+            const nextIndex = historyIndex + 1;
+            if (nextIndex >= history.length) {
+                setHistoryIndex(-1);
+                setInput(draftRef.current);
+            } else {
+                setHistoryIndex(nextIndex);
+                setInput(history[nextIndex]);
+            }
+        }
+
+        // any key other than Tab means we're no longer in a tab-cycle
+        if (e.key !== "Tab") {
+            lastTabInputRef.current = null;
+        }
     };
 
     const handleChipClick = (cmd: string) => {
@@ -150,7 +330,7 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 <span className="h-2.5 w-2.5 rounded-full border border-border" />
                 <span className="h-2.5 w-2.5 rounded-full border border-border" />
                 <span className="h-2.5 w-2.5 rounded-full border border-border" />
-                <span className="ml-2">sebi@delamata:~/</span>
+                <span className="ml-2">sebi@de_la_mata:~$</span>
             </div>
 
             <div
@@ -181,7 +361,11 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                     ref={inputRef}
                     type="text"
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={(e) => {
+                        setInput(e.target.value);
+                        lastTabInputRef.current = null;
+                    }}
+                    onKeyDown={handleKeyDown}
                     placeholder="type a command…"
                     autoComplete="off"
                     autoCapitalize="off"

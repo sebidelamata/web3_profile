@@ -6,7 +6,7 @@ const ListReportsOutput: React.FC<{ onRun: (cmd: string) => void }> = ({ onRun }
         {REPORTS.map((p) => (
             <button
                 key={p.id}
-                onClick={() => onRun(`cat ${p.title}`)}
+                onClick={() => onRun(`cat security/${p.title}`)}
                 className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
             >
                 {p.title}

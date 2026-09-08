@@ -6,7 +6,7 @@ const ListProjectsOutput: React.FC<{ onRun: (cmd: string) => void }> = ({ onRun 
         {PROJECTS.map((p) => (
             <button
                 key={p.slug}
-                onClick={() => onRun(`cat ${p.slug}`)}
+                onClick={() => onRun(`cat projects/${p.slug}`)}
                 className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
             >
                 {p.slug}
