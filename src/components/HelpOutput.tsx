@@ -20,7 +20,7 @@ const HelpOutput: React.FC = () => (
             <dd className="text-fg-dim">view my resume</dd>
             <dt className="text-accent">cron</dt>
             <dd className="text-fg-dim">schedule a meeting</dd>
-            <dt className="text-accent">connect</dt>
+            <dt className="text-accent">ping</dt>
             <dd className="text-fg-dim">connect Web3 wallet</dd>
             <dt className="text-accent">mint</dt>
             <dd className="text-fg-dim">mint Boxers in Predicaments NFT</dd>
