@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Scheduler from "./Scheduler";
 import HelpOutput from "./HelpOutput";
-import WhoamiOutput from "./WhoAmIOutput";
 import ListProjectsOutput from "./ListProjectsOutput";
 import ListTechStackOutput from "./ListStackOutput";
 import CatProjectOutput from "./CatProjectOutput";
@@ -23,7 +22,6 @@ const COMMANDS = [
     "cat alphaping", 
     "clear", 
     "ping", 
-    "resume", 
     "cron", 
     "connect", 
     "mint"
@@ -63,9 +61,6 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
             case "help":
                 pushLine({ type: "output", content: <HelpOutput /> });
                 break;
-            case "whoami":
-                pushLine({ type: "output", content: <WhoamiOutput /> });
-                break;
             case "ls":
                 if (arg === "projects") {
                     pushLine({ type: "output", content: <ListProjectsOutput onRun={run} /> });
@@ -104,7 +99,7 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                     pushLine({ type: "output", content: <CatProjectOutput slug={arg} /> });
                 }
                 break;
-            case "resume":
+            case "whoami":
                 pushLine({ type: "output", content: <Resume /> });
                 break;
             case "clear":

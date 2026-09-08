@@ -10,13 +10,11 @@ const HelpOutput: React.FC = () => (
             <dd className="text-fg-dim">list all projects</dd>
             <dt className="text-accent">cat &lt;project&gt;</dt>
             <dd className="text-fg-dim">show details for a project</dd>
-            <dt className="text-accent">whoami</dt>
-            <dd className="text-fg-dim">who&apos;s behind this</dd>
             <dt className="text-accent">clear</dt>
             <dd className="text-fg-dim">clear the screen</dd>
             <dt className="text-accent">ping</dt>
             <dd className="text-fg-dim">send me an email</dd>
-            <dt className="text-accent">resume</dt>
+            <dt className="text-accent">whoami</dt>
             <dd className="text-fg-dim">view my resume</dd>
             <dt className="text-accent">cron</dt>
             <dd className="text-fg-dim">schedule a meeting</dd>
