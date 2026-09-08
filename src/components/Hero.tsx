@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
                 </span>
             </h1>
             <p className="mt-4 border-l-2 border-accent pl-3 text-fg-dim">
-                full-stack web3 security research and development
+                web3 security research and full-stack development
             </p>
         </div>
     )
