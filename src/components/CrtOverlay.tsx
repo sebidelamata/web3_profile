@@ -1,71 +1,115 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
+
+const rand = (min: number, max: number) => min + Math.random() * (max - min)
 
 /**
- * Uniform-darken CRT flicker with 7 irregular dips per loop. Spacing,
- * depth, and width are all deliberately uneven — no two dips are the same
- * shape or same gap apart — so it reads as electrical imperfection rather
- * than a metronome. See CrtOverlay history: no mix-blend-mode (dead on a
- * near-black backdrop), keyframes self-contained via <style> tag,
- * prefers-reduced-motion checked in JS.
+ * Uniform-darken CRT flicker, driven by a JS random scheduler instead of
+ * CSS keyframes.
+ *
+ * Why: a fixed @keyframes loop repeats EXACTLY every N seconds no matter
+ * how irregular the dips look within one cycle — a viewer who has the tab
+ * open for a couple minutes will eventually lock onto that period, and a
+ * detected loop reads as more artificial than a plain steady pulse would,
+ * not less. Real flicker has no period. Generating each dip's timing,
+ * depth, and shape from Math.random() at runtime removes the loop point
+ * entirely — it never repeats the same way twice in a session.
+ *
+ * Mechanics:
+ * - Gaps between dips are mostly short (1.5–4.5s) with an occasional
+ *   longer pause (up to 11s, ~20% of the time) — an all-short-gaps
+ *   flicker feels busy/mechanical; occasional calm stretches feel organic.
+ * - Depth (0.03–0.17) and rise/hold/fall timing are all randomized per
+ *   dip, so no two dips are ever the same shape.
+ * - ~22% chance of chaining a second, usually fainter dip right after —
+ *   a "double-blink" — without hand-authoring specific double-blink cases.
+ * - Opacity is set directly via ref (no React state), so this never
+ *   triggers a re-render — cheap regardless of how often it fires.
+ * - Scheduling pauses while the tab is hidden (visibilitychange) so
+ *   nothing builds up or fires pointlessly in a background tab.
+ * - Listens for prefers-reduced-motion changes live, not just at mount,
+ *   so toggling the OS setting while the page is open takes effect
+ *   immediately.
  */
 const CrtOverlay: React.FC = () => {
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ref = useRef<HTMLDivElement>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>()
 
-  if (prefersReducedMotion) return null;
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let active = !mq.matches
+
+    const clear = () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+
+    const triggerFlicker = () => {
+      const el = ref.current
+      if (!el) return
+
+      const depth = rand(0.03, 0.12)
+      const riseMs = rand(15, 45)
+      const holdMs = rand(15, 80)
+      const fallMs = rand(30, 130)
+
+      el.style.transition = `opacity ${riseMs}ms linear`
+      el.style.opacity = String(depth)
+
+      setTimeout(() => {
+        if (!ref.current) return
+        ref.current.style.transition = `opacity ${fallMs}ms ease-out`
+        ref.current.style.opacity = "0"
+      }, riseMs + holdMs)
+
+      // occasional double-blink: a second, usually fainter dip right after
+      if (Math.random() < 0.22) {
+        setTimeout(() => {
+          if (active) triggerFlicker()
+        }, riseMs + holdMs + fallMs + rand(50, 160))
+      }
+    }
+
+    const scheduleNext = () => {
+      // mostly short gaps, occasionally a longer calm stretch
+      const gap = Math.random() < 0.2 ? rand(5000, 11000) : rand(1500, 4500)
+      timeoutRef.current = setTimeout(() => {
+        if (active) triggerFlicker()
+        scheduleNext()
+      }, gap)
+    }
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        clear()
+      } else if (active) {
+        scheduleNext()
+      }
+    }
+
+    const handleMotionChange = () => {
+      active = !mq.matches
+      clear()
+      if (active && !document.hidden) scheduleNext()
+      else if (ref.current) ref.current.style.opacity = "0"
+    }
+
+    if (active) scheduleNext()
+    document.addEventListener("visibilitychange", handleVisibility)
+    mq.addEventListener("change", handleMotionChange)
+
+    return () => {
+      clear()
+      document.removeEventListener("visibilitychange", handleVisibility)
+      mq.removeEventListener("change", handleMotionChange)
+    }
+  }, [])
 
   return (
-    <>
-      <style>{`
-        @keyframes crt-flicker-4 {
-          0%, 100% { opacity: 0; }
-
-          /* dip 1 — quick, faint blip */
-          6%    { opacity: 0; }
-          6.15% { opacity: 0.06; }
-          6.3%  { opacity: 0; }
-
-          /* dip 2 — deeper, slightly longer */
-          17%   { opacity: 0; }
-          17.2% { opacity: 0.14; }
-          17.4% { opacity: 0; }
-
-          /* dip 3 — very quick, tiny */
-          29%   { opacity: 0; }
-          29.1% { opacity: 0.04; }
-          29.2% { opacity: 0; }
-
-          /* dip 4 — double-blink, close together */
-          44%   { opacity: 0; }
-          44.15%{ opacity: 0.091; }
-          44.3% { opacity: 0; }
-          44.5% { opacity: 0.07; }
-          44.65%{ opacity: 0; }
-
-          /* dip 5 — the deepest one, still brief */
-          58%   { opacity: 0; }
-          58.2% { opacity: 0.14; }
-          58.5% { opacity: 0; }
-
-          /* dip 6 — faint, lingers slightly longer than the others */
-          74%   { opacity: 0; }
-          74.2% { opacity: 0.08; }
-          74.5% { opacity: 0.05; }
-          75.1% { opacity: 0; }
-
-          /* dip 7 — quick, near the end */
-          89%   { opacity: 0; }
-          89.15%{ opacity: 0.10; }
-          89.3% { opacity: 0; }
-        }
-      `}</style>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[9999] bg-black"
-        style={{ animation: "crt-flicker-4 17s linear infinite" }}
-      />
-    </>
+    <div
+      ref={ref}
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[9999] bg-black"
+      style={{ opacity: 0 }}
+    />
   )
 }
 

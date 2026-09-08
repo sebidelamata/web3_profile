@@ -15,16 +15,24 @@ import React from "react"
  */
 const GhostOverlay: React.FC = () => {
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[9998]"
-      style={{
-        transform: "translateX(1.5px)",
-        backdropFilter: "blur(0.5px)",
-        WebkitBackdropFilter: "blur(0.5px)", // Safari
-        opacity: 0.35,
-      }}
-    />
+    <>
+     <style>{`
+       @keyframes ghost-drift {
+         0%, 100% { transform: translateX(1px); }
+         50%      { transform: translateX(2.2px); }
+       }
+     `}</style>
+     <div
+       aria-hidden="true"
+       className="pointer-events-none fixed inset-0 z-[9998]"
+       style={{
+         backdropFilter: "blur(0.5px)",
+         WebkitBackdropFilter: "blur(0.5px)",
+         opacity: 0.35,
+          animation: "ghost-drift 19s ease-in-out infinite",
+        }}
+      />
+    </>
   )
 }
 
