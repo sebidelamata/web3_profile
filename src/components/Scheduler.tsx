@@ -12,7 +12,7 @@ const Scheduler: React.FC = () => {
       </div>
       <PopupButton
         url="https://calendly.com/sebidelamata/discoveryourweb3vision"
-        className={buttonVariants({ variant: "default", size: "default" })}
+        className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
         text="Schedule a meetup"
         rootElement={rootElement}
       />

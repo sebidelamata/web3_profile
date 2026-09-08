@@ -43,7 +43,7 @@ const Contacts: React.FC = () => {
                 <input
                     type="submit"
                     value="Send"
-                    className="w-fit cursor-pointer border border-accent px-4 py-2 text-accent transition-colors hover:bg-accent hover:text-bg"
+                    className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent text-xl"
                 />
             </form>
             {successMessage && <SuccessBanner />}

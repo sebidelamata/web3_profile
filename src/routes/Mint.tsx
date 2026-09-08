@@ -111,14 +111,26 @@ const Mint: React.FC = () => {
                             <a 
                             href="https://opensea.io/collection/boxers-in-predicaments" 
                             target="_blank"
-                            >View Collection on OpenSea</a>
+                            >
+                                <button
+                                    className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                                >
+                                    View Collection on OpenSea
+                                </button>
+                            </a>
                         </div>
                         <br></br>
                         <div>
                             <a 
                             href={`https://arbiscan.io/address/${import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS}`} 
                             target="_blank"
-                            >View Verified and Published Contract on Arbiscan</a>
+                            >
+                                <button
+                                    className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                                >
+                                    View Verified and Published Contract on Arbiscan
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -126,7 +138,10 @@ const Mint: React.FC = () => {
                     {
                         totalSupply !== null && 
                         totalSupply < 138 &&
-                        <button onClick={mintNFT} className="mint-button">
+                        <button 
+                            onClick={mintNFT} 
+                            className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent text"
+                        >
                             {
                                 walletMints &&
                                 walletMints >= 2 
@@ -140,7 +155,7 @@ const Mint: React.FC = () => {
                     {
                         totalSupply !== null &&
                         totalSupply >= 138 &&
-                        <button className="mint-button">
+                        <button className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">
                             <a href="https://opensea.io/collection/boxers-in-predicaments" target="blank">
                                 Mint Completed, Make an Offer on OpenSea.
                             </a>
@@ -163,7 +178,9 @@ const Mint: React.FC = () => {
                             target="_blank"
                             className="view-tx"
                             >
+                                <button className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">
                                 View Transaction
+                                </button>
                             </a>
                             <div className="exit-success-banner" onClick={exitSuccessBanner}>
                                 ✕
@@ -175,7 +192,10 @@ const Mint: React.FC = () => {
             {
                 tokenIDs.length > 0 &&
                 <div className="view-yours-container">
-                    <button onClick={() => setShowPortfolio(true)} className="view-yours-container-button">
+                    <button 
+                        onClick={() => setShowPortfolio(true)} 
+                        className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                        >
                         View Your Boxers
                     </button>
                 </div>

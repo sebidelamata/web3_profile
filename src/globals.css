@@ -67,20 +67,6 @@
   }
 }
 
-@keyframes crt-flicker-2 {
-  0%, 100% { opacity: 1; }
-  91% { opacity: 1; }
-  91.3% { opacity: 0.3; }
-  91.6% { opacity: 1; }
-  95% { opacity: 1; }
-  95.2% { opacity: 0.45; }
-  95.5% { opacity: 1; }
-}
-
-.animate-crt-flicker {
-  animation: crt-flicker 6s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

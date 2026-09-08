@@ -58,8 +58,8 @@ createWeb3Modal({
   themeMode: 'dark',
   themeVariables: {
     '--w3m-font-family': 'Roboto Mono',
-    '--w3m-accent': 'rgb(10, 6, 37)',
-    '--w3m-color-mix': 'rgb(181, 194, 202)'
+    '--w3m-accent': '#161310',
+    '--w3m-color-mix': '#161310',
   }
 })
 
