@@ -26,6 +26,8 @@ const HelpOutput: React.FC = () => (
             <dd className="text-fg-dim">connect Web3 wallet</dd>
             <dt className="text-accent">mint</dt>
             <dd className="text-fg-dim">mint Boxers in Predicaments NFT</dd>
+            <dt className="text-accent">mood</dt>
+            <dd className="text-fg-dim">backwards</dd>
             <dt className="text-accent">--help</dt>
             <dd className="text-fg-dim">show this again</dd>
         </dl>
