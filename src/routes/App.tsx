@@ -1,17 +1,16 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import TechStackCarousel from '../components/TechStackCarousel'
-import Projects from './Projects'
-import Contacts from '../components/Contacts'
 import Footer from '../components/Footer'
 import CrtOverlay from '../components/CrtOverlay'
 import Terminal from '../components/Terminal'
+import GhostOverlay from '../components/GhostOverlay'
 
 const App: React.FC = () => {
   return (
     <div>
       <CrtOverlay />
+      <GhostOverlay />
       <Navbar />
       <main className="mx-auto max-w-content px-5">
         <section id="hero">

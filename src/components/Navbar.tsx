@@ -10,25 +10,9 @@ const Navbar: React.FC = () => {
                 <Link to="/" className="text-accent">sebi@delamata:~$</Link>
 
                 {/* desktop */}
-                <ul className="hidden items-center gap-8 text-sm sm:flex">
-                    <li>
-                        <w3m-button size="sm" label="connect" balance="hide" />
-                    </li>
-                </ul>
-
-                {/* mobile */}
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <Button variant="default" size="sm" className="sm:hidden">menu</Button>
-                    </SheetTrigger>
-                    <SheetContent>
-                        <ul className="mt-8 flex flex-col gap-6 text-sm">
-                            <li>
-                                <w3m-button size="sm" label="connect" balance="hide" />
-                            </li>
-                        </ul>
-                    </SheetContent>
-                </Sheet>
+                <div className="flex justify-end">
+                    <w3m-button size="sm" label="connect" balance="hide" />
+                </div>
             </div>
         </nav>
     );
