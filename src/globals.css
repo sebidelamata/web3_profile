@@ -67,14 +67,14 @@
   }
 }
 
-@keyframes crt-flicker {
+@keyframes crt-flicker-2 {
   0%, 100% { opacity: 1; }
-  92% { opacity: 1; }
-  92.5% { opacity: 0.94; }
-  93% { opacity: 1; }
-  96% { opacity: 1; }
-  96.3% { opacity: 0.96; }
-  96.6% { opacity: 1; }
+  91% { opacity: 1; }
+  91.3% { opacity: 0.3; }
+  91.6% { opacity: 1; }
+  95% { opacity: 1; }
+  95.2% { opacity: 0.45; }
+  95.5% { opacity: 1; }
 }
 
 .animate-crt-flicker {
