@@ -108,16 +108,6 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                     }
                 }
                 break;
-            case "cat security/":
-                if (!arg) {
-                    pushLine({
-                        type: "output",
-                        content: <p className="text-fg-dim">usage: cat &lt;report|project&gt;</p>,
-                    });
-                } else {
-                    pushLine({ type: "output", content: <CatReportOutput id={parseInt(arg)} /> });
-                }
-                break;
             case "whoami":
                 pushLine({ type: "output", content: <Resume /> });
                 break;
