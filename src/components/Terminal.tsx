@@ -119,8 +119,8 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
     useEffect(() => {
         if (booted.current) return;
         booted.current = true;
-        pushLine({ type: "input", content: "--help" });
-        pushLine({ type: "output", content: <HelpOutput /> });
+        // pushLine({ type: "input", content: "--help" });
+        // pushLine({ type: "output", content: <HelpOutput /> });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
