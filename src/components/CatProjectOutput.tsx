@@ -1,6 +1,5 @@
 import React from "react";
 import { PROJECTS } from "../lib/Projects";
-import { Button } from "./components/ui/button";
 
 const CatProjectOutput: React.FC<{ slug: string }> = ({ slug }) => {
     const project = PROJECTS.find((p) => p.slug === slug);
@@ -22,17 +21,25 @@ const CatProjectOutput: React.FC<{ slug: string }> = ({ slug }) => {
                 <iframe
                     src={project.videoLink}
                     title={project.videoTitle}
-                    className="aspect-video w-full"
+                    className="aspect-video h-90"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                 />
             </div>
             <div className="flex flex-wrap gap-3">
                 <a href={project.applicationLink} target="_blank" rel="noreferrer">
-                    <Button variant="default" size="sm">live application</Button>
+                    <button 
+                        className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                    >
+                        live application
+                    </button>
                 </a>
                 <a href={project.repositoryLink} target="_blank" rel="noreferrer">
-                    <Button variant="default" size="sm">repository</Button>
+                    <button 
+                        className="w-fit text-left text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                    >
+                        repository
+                    </button>
                 </a>
             </div>
         </div>
