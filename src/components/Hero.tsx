@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
         <div className="py-16 sm:py-24">
             <p className="text-fg-dim">hi, I&apos;m</p>
             <h1 className="mt-1 text-3xl font-bold text-accent sm:text-4xl">
-                Sebi de la Mata
+                Sebi de la Mata 
                 <span
                     aria-hidden="true"
                     className="ml-1 inline-block w-[0.5ch] animate-blink bg-accent align-middle"

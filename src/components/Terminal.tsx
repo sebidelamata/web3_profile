@@ -13,6 +13,7 @@ import ListReportsOutput from "./ListReports";
 import CatReportOutput from "./CatReportOutput";
 import { REPORTS } from "../lib/Reports"; // adjust path to wherever Reports.ts actually lives
 import { PROJECTS } from "../lib/Projects"; // adjust path to wherever Projects.ts actually lives
+import { DoomWrapper } from "./DoomEasterEgg";
 
 type Line =
     | { type: "input"; content: string; id: string }
@@ -225,6 +226,13 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
             case "clear":
                 setLines([]);
                 return;
+            case "doom":
+                pushLine({
+                    type: "output",
+                    content: <DoomWrapper onFocusInput={() => inputRef.current?.focus()} />,
+                });
+                inputRef.current?.blur();
+                break;
             default:
                 pushLine({ type: "output", content: <UnknownOutput command={command} /> });
         }
