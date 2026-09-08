@@ -12,7 +12,7 @@ const ListProjectsOutput: React.FC<{ onRun: (cmd: string) => void }> = ({ onRun 
                 {p.slug}
             </button>
         ))}
-        <p className="mt-1 text-xs text-fg-dim">tip: try `cat {PROJECTS[0].slug}`</p>
+        <p className="mt-1 text-xs text-fg-dim">tip: try `cat projects/{PROJECTS[0].slug}`</p>
     </div>
 );
 

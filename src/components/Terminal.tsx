@@ -9,6 +9,8 @@ import ConnectOutput from "./ConnectOutput";
 import Mint from "../routes/Mint";
 import Contacts from "./Contacts";
 import Resume from "../routes/Resume";
+import ListReportsOutput from "./ListReports";
+import CatReportOutput from "./CatReportOutput";
 
 type Line =
     | { type: "input"; content: string; id: string }
@@ -66,12 +68,14 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                     pushLine({ type: "output", content: <ListProjectsOutput onRun={run} /> });
                 } else if (arg === "stack") {
                     pushLine({ type: "output", content: <ListTechStackOutput onRun={run} /> });
+                } else if (arg === "security") {
+                    pushLine({ type: "output", content: <ListReportsOutput onRun={run} /> });
                 } else {
                     pushLine({
                         type: "output",
                         content: (
                             <p className="text-fg-dim">
-                                usage: ls &lt;projects|stack&gt;
+                                usage: ls &lt;security|projects|stack&gt;
                             </p>
                         ),
                     });
@@ -93,10 +97,25 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 if (!arg) {
                     pushLine({
                         type: "output",
-                        content: <p className="text-fg-dim">usage: cat &lt;project&gt;</p>,
+                        content: <p className="text-fg-dim">usage: cat &lt;report|project&gt;</p>,
                     });
                 } else {
-                    pushLine({ type: "output", content: <CatProjectOutput slug={arg} /> });
+                    let [path, ...rest] = arg.split("/");
+                    if (path === "projects") {
+                        pushLine({ type: "output", content: <CatProjectOutput slug={rest.join("/")} /> });
+                    } else if (path === "security") {
+                        pushLine({ type: "output", content: <CatReportOutput title={rest.join("/")} /> });
+                    }
+                }
+                break;
+            case "cat security/":
+                if (!arg) {
+                    pushLine({
+                        type: "output",
+                        content: <p className="text-fg-dim">usage: cat &lt;report|project&gt;</p>,
+                    });
+                } else {
+                    pushLine({ type: "output", content: <CatReportOutput id={parseInt(arg)} /> });
                 }
                 break;
             case "whoami":

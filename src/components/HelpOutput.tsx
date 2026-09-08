@@ -6,6 +6,10 @@ const HelpOutput: React.FC = () => (
         <dl className="ml-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1">
             <dt className="text-accent">ls stack</dt>
             <dd className="text-fg-dim">list tech stack</dd>
+            <dt className="text-accent">ls security</dt>
+            <dd className="text-fg-dim">list all security research reports</dd>
+            <dt className="text-accent">cat &lt;report&gt;</dt>
+            <dd className="text-fg-dim">show details for a security report</dd>
             <dt className="text-accent">ls projects</dt>
             <dd className="text-fg-dim">list all projects</dd>
             <dt className="text-accent">cat &lt;project&gt;</dt>
