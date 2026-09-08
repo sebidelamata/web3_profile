@@ -22,10 +22,10 @@ const COMMANDS = [
     "whoami", 
     "cat alphaping", 
     "clear", 
-    "contact", 
+    "ping", 
     "resume", 
     "cron", 
-    "ping", 
+    "connect", 
     "mint"
 ];
 
@@ -82,13 +82,13 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                     });
                 }
                 break;
-            case "contact":
+            case "ping":
                 pushLine({ type: "output", content: <Contacts /> });
                 break;
             case "cron":
                 pushLine({ type: "output", content: <Scheduler/> });
                 break;
-            case "ping":
+            case "connect":
                 pushLine({ type: "output", content: <ConnectOutput /> });
                 break;
             case "mint":
