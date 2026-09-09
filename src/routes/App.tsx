@@ -9,16 +9,16 @@ import ScanlineOverlay from '../components/ScanlineOverlay'
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <CrtOverlay />
       <GhostOverlay />
       <ScanlineOverlay />
       <Navbar />
-      <main className="mx-auto max-w-content px-5">
+      <main className="mx-auto w-full max-w-content flex-1 px-5">
         <section id="hero">
           <Hero />
         </section>
-        <section id="projects-section" className="border-t border-border py-16">
+        <section id="projects-section" className="border-t border-border py-14">
           <Terminal onRequestPlainList={() => {}} />
         </section>
       </main>

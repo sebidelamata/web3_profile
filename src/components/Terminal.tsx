@@ -346,7 +346,7 @@ const Terminal: React.FC<TerminalProps> = ({ onRequestPlainList }) => {
                 role="log"
                 aria-live="polite"
                 aria-label="terminal output"
-                className="max-h-96 overflow-y-auto px-3 py-3 text-sm"
+                className="max-h-96 overflow-y-auto px-3 py-3 text-sm min-h-44"
             >
                 {lines.map((line) =>
                     line.type === "input" ? (

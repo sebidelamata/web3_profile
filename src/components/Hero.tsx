@@ -2,7 +2,7 @@ import React from "react"
 
 const Hero: React.FC = () => {
     return (
-        <div className="py-16 sm:py-24">
+        <div className="py-12 sm:py-16">
             <p className="text-fg-dim">hi, I&apos;m</p>
             <h1 className="mt-1 text-3xl font-bold text-accent sm:text-4xl">
                 Sebi de la Mata 
