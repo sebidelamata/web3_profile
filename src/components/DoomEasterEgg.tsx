@@ -79,7 +79,7 @@ const LEVELS: LevelDef[] = [
     map: LEVEL_1_MAP,
     playerStart: { x: 3.5, y: 3.5, angle: 0 },
     enemies: [
-      { id: 1, type: "david", x: 8.5, y: 1.5 },
+      { id: 1, type: "david", x: 8, y: 1 },
       { id: 2, type: "gary", x: 9, y: 3 },
       { id: 3, type: "sbf", x: 2.5, y: 9.5 },
       { id: 4, type: "brian", x: 5.5, y: 5.5 },
@@ -93,7 +93,7 @@ const LEVELS: LevelDef[] = [
     enemies: [
       { id: 1, type: "gary", x: 11.5, y: 2.5 },
       { id: 2, type: "david", x: 12.5, y: 9.5 },
-      { id: 3, type: "sbf", x: 2.5, y: 10.5 },
+      { id: 3, type: "sbf", x: 2, y: 10.5 },
       { id: 4, type: "brian", x: 6.5, y: 5.5 },
       { id: 5, type: "elizabeth", x: 9.5, y: 3.5 },
     ],
