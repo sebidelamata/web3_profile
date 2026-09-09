@@ -210,6 +210,188 @@ class Sound {
   }
 }
 
+// ---------- procedural atmospheric music ----------
+class Music {
+  private ctx: AudioContext | null = null;
+  private master: GainNode | null = null;
+  private isPlaying = false;
+  private muted = false;
+  private currentLevel = 0;
+  private nodes: AudioNode[] = [];
+  private intervalIds: number[] = [];
+
+  private get audioCtx() {
+    if (!this.ctx) {
+      const AC = window.AudioContext || (window as any).webkitAudioContext;
+      this.ctx = new AC();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0.11; // quiet by default
+      this.master.connect(this.ctx.destination);
+    }
+    return this.ctx;
+  }
+
+  private clear() {
+    this.intervalIds.forEach(clearInterval);
+    this.intervalIds = [];
+    this.nodes.forEach((n) => {
+      try {
+        (n as any).stop?.();
+        n.disconnect();
+      } catch {}
+    });
+    this.nodes = [];
+  }
+
+  private tone(
+    freq: number,
+    duration: number,
+    type: OscillatorType = "sine",
+    gain = 0.04,
+    delay = 0
+  ) {
+    const ctx = this.audioCtx;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+
+    g.gain.setValueAtTime(0, ctx.currentTime + delay);
+    g.gain.linearRampToValueAtTime(gain, ctx.currentTime + delay + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+
+    osc.connect(g);
+    g.connect(this.master!);
+    osc.start(ctx.currentTime + delay);
+    osc.stop(ctx.currentTime + delay + duration + 0.1);
+
+    this.nodes.push(osc, g);
+  }
+
+  private noise(duration: number, gain = 0.015, delay = 0) {
+    const ctx = this.audioCtx;
+    const bufferSize = ctx.sampleRate * duration;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+    const g = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 400;
+
+    g.gain.setValueAtTime(0, ctx.currentTime + delay);
+    g.gain.linearRampToValueAtTime(gain, ctx.currentTime + delay + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+
+    src.connect(filter);
+    filter.connect(g);
+    g.connect(this.master!);
+    src.start(ctx.currentTime + delay);
+
+    this.nodes.push(src, g, filter);
+  }
+
+  // Level 1 – sparse, cold, haunting
+  private playLevel1() {
+    const beat = 0.55; // slow
+
+    const loop = () => {
+      if (!this.isPlaying || this.muted) return;
+
+      // deep pulse
+      this.tone(55, 0.8, "sine", 0.05);
+      this.tone(55.5, 0.8, "sine", 0.03, 0.02);
+
+      // distant high tone
+      if (Math.random() > 0.4) {
+        this.tone(420 + Math.random() * 80, 1.4, "sine", 0.018, 0.3);
+      }
+
+      // soft noise hit
+      if (Math.random() > 0.6) {
+        this.noise(0.25, 0.012, 0.1);
+      }
+
+      // rare eerie pad
+      if (Math.random() > 0.75) {
+        this.tone(110, 2.2, "triangle", 0.015, 0.6);
+        this.tone(165, 2.2, "triangle", 0.01, 0.65);
+      }
+    };
+
+    loop();
+    this.intervalIds.push(window.setInterval(loop, beat * 1000 * 4));
+  }
+
+  // Level 2 – slightly more driving but still atmospheric
+  private playLevel2() {
+    const beat = 0.48;
+
+    const loop = () => {
+      if (!this.isPlaying || this.muted) return;
+
+      // low techno pulse
+      this.tone(49, 0.35, "sine", 0.045);
+      this.tone(49, 0.15, "square", 0.02, 0.18);
+
+      // soft hi-hat style noise
+      this.noise(0.07, 0.01, 0.24);
+      if (Math.random() > 0.5) this.noise(0.05, 0.008, 0.48);
+
+      // haunting lead
+      if (Math.random() > 0.55) {
+        const notes = [196, 220, 233, 262];
+        const note = notes[Math.floor(Math.random() * notes.length)];
+        this.tone(note, 1.1, "sine", 0.016, 0.3);
+        this.tone(note * 1.5, 1.1, "sine", 0.008, 0.32);
+      }
+
+      // dark pad
+      if (Math.random() > 0.7) {
+        this.tone(73, 2.5, "triangle", 0.012, 0.5);
+      }
+    };
+
+    loop();
+    this.intervalIds.push(window.setInterval(loop, beat * 1000 * 2));
+  }
+
+  start(levelIndex: number) {
+    if (this.isPlaying && this.currentLevel === levelIndex) return;
+    this.stop();
+    this.currentLevel = levelIndex;
+    this.isPlaying = true;
+
+    // resume context if suspended
+    if (this.audioCtx.state === "suspended") {
+      this.audioCtx.resume();
+    }
+
+    if (levelIndex === 0) this.playLevel1();
+    else this.playLevel2();
+  }
+
+  stop() {
+    this.isPlaying = false;
+    this.clear();
+  }
+
+  toggleMute() {
+    this.muted = !this.muted;
+    if (this.master) {
+      this.master.gain.value = this.muted ? 0 : 0.11;
+    }
+    return this.muted;
+  }
+
+  isMuted() {
+    return this.muted;
+  }
+}
+
 // ---------- procedural textures ----------
 const TEX_SIZE = 64;
 
@@ -378,6 +560,9 @@ const DoomEasterEgg: React.FC<DoomEasterEggProps> = ({ onExit }) => {
   const flashRef = useRef(0);
   const rafRef = useRef<number>();
   const lastTimeRef = useRef<number>(performance.now());
+  // Inside the component, near the other refs
+    const weaponBobRef = useRef(0);
+    const weaponRecoilRef = useRef(0);
 
   const [started, setStarted] = useState(false);
   const [gameState, setGameState] = useState<"playing" | "dead" | "levelClear" | "won">("playing");
@@ -613,6 +798,19 @@ const DoomEasterEgg: React.FC<DoomEasterEggProps> = ({ onExit }) => {
         if (!isWall(map, nextX, player.y)) player.x = nextX;
         if (!isWall(map, player.x, nextY)) player.y = nextY;
       }
+
+      // weapon bob + recoil
+    const isMoving = len > 0.1;
+        if (isMoving) {
+        weaponBobRef.current += dt * 9;
+        } else {
+        weaponBobRef.current *= 0.9;
+        }
+        weaponRecoilRef.current = Math.max(0, weaponRecoilRef.current - dt * 6);
+
+        // when you shoot, set recoil
+        // (put this inside performShot, after flashRef.current = 0.08)
+        weaponRecoilRef.current = 1;
 
       // pickups
       for (const pickup of pickupsRef.current) {
@@ -929,6 +1127,250 @@ const DoomEasterEgg: React.FC<DoomEasterEggProps> = ({ onExit }) => {
         ctx.fill();
       }
 
+      // ---------- weapon viewmodel (detailed) ----------
+        const bob = Math.sin(weaponBobRef.current) * 5;
+        const recoil = weaponRecoilRef.current * 16;
+        const handY = CANVAS_H - 8 + bob - recoil;
+        const handX = CANVAS_W / 2;
+
+        ctx.save();
+        ctx.translate(handX, handY);
+
+        if (weaponRef.current === "pistol") {
+        // === LEFT ARM ===
+        // sleeve
+        ctx.fillStyle = "#2a1f14";
+        ctx.beginPath();
+        ctx.moveTo(-38, 30);
+        ctx.lineTo(-8, 25);
+        ctx.lineTo(-5, 70);
+        ctx.lineTo(-42, 75);
+        ctx.closePath();
+        ctx.fill();
+
+        // arm skin
+        ctx.fillStyle = "#c4a484";
+        ctx.beginPath();
+        ctx.moveTo(-32, 28);
+        ctx.lineTo(-12, 24);
+        ctx.lineTo(-10, 55);
+        ctx.lineTo(-34, 58);
+        ctx.closePath();
+        ctx.fill();
+
+        // === RIGHT HAND + PISTOL ===
+        // hand
+        ctx.fillStyle = "#d2b48c";
+        ctx.beginPath();
+        ctx.ellipse(6, 22, 14, 11, -0.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // fingers curled
+        ctx.fillStyle = "#c4a484";
+        ctx.beginPath();
+        ctx.ellipse(14, 18, 5, 7, 0.4, 0, Math.PI * 2);
+        ctx.ellipse(18, 24, 4, 6, 0.6, 0, Math.PI * 2);
+        ctx.fill();
+
+        // pistol grip
+        ctx.fillStyle = "#1a1a1a";
+        ctx.beginPath();
+        ctx.moveTo(-6, 15);
+        ctx.lineTo(4, 15);
+        ctx.lineTo(8, 42);
+        ctx.lineTo(-10, 42);
+        ctx.closePath();
+        ctx.fill();
+
+        // grip texture lines
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 1;
+        for (let i = 0; i < 4; i++) {
+            ctx.beginPath();
+            ctx.moveTo(-5 + i * 0.5, 20 + i * 5);
+            ctx.lineTo(5 - i * 0.5, 20 + i * 5);
+            ctx.stroke();
+        }
+
+        // pistol body / slide
+        ctx.fillStyle = "#2a2a2a";
+        ctx.fillRect(-10, -28, 22, 38);
+
+        // slide highlight
+        ctx.fillStyle = "#3f3f3f";
+        ctx.fillRect(-8, -26, 18, 6);
+
+        // barrel
+        ctx.fillStyle = "#111";
+        ctx.fillRect(-4, -42, 10, 16);
+
+        // front sight
+        ctx.fillStyle = "#555";
+        ctx.fillRect(-1, -46, 4, 5);
+
+        // rear sight
+        ctx.fillStyle = "#444";
+        ctx.fillRect(-6, -30, 3, 4);
+        ctx.fillRect(5, -30, 3, 4);
+
+        // trigger guard
+        ctx.strokeStyle = "#222";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(2, 12, 7, 0.2, Math.PI - 0.2);
+        ctx.stroke();
+
+        // trigger
+        ctx.fillStyle = "#111";
+        ctx.fillRect(0, 8, 3, 8);
+
+        // muzzle flash
+        if (flashRef.current > 0) {
+            const alpha = flashRef.current / 0.08;
+            ctx.fillStyle = `rgba(255, 230, 100, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(0, -48);
+            ctx.lineTo(-16, -70);
+            ctx.lineTo(-6, -55);
+            ctx.lineTo(0, -78);
+            ctx.lineTo(6, -55);
+            ctx.lineTo(16, -70);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = `rgba(255, 255, 220, ${alpha * 0.8})`;
+            ctx.beginPath();
+            ctx.arc(0, -52, 10, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        } else {
+        // === SHOTGUN ===
+
+        // left arm + hand (pump hand)
+        ctx.fillStyle = "#2a1f14";
+        ctx.beginPath();
+        ctx.moveTo(-48, 25);
+        ctx.lineTo(-18, 18);
+        ctx.lineTo(-15, 65);
+        ctx.lineTo(-52, 70);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#c4a484";
+        ctx.beginPath();
+        ctx.moveTo(-42, 22);
+        ctx.lineTo(-22, 17);
+        ctx.lineTo(-20, 48);
+        ctx.lineTo(-44, 52);
+        ctx.closePath();
+        ctx.fill();
+
+        // left hand on pump
+        ctx.fillStyle = "#d2b48c";
+        ctx.beginPath();
+        ctx.ellipse(-22, 12, 12, 9, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // right arm
+        ctx.fillStyle = "#2a1f14";
+        ctx.beginPath();
+        ctx.moveTo(12, 30);
+        ctx.lineTo(42, 35);
+        ctx.lineTo(45, 75);
+        ctx.lineTo(8, 72);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#c4a484";
+        ctx.beginPath();
+        ctx.moveTo(16, 28);
+        ctx.lineTo(36, 32);
+        ctx.lineTo(38, 58);
+        ctx.lineTo(14, 55);
+        ctx.closePath();
+        ctx.fill();
+
+        // right hand on grip
+        ctx.fillStyle = "#d2b48c";
+        ctx.beginPath();
+        ctx.ellipse(18, 22, 11, 9, 0.25, 0, Math.PI * 2);
+        ctx.fill();
+
+        // stock
+        ctx.fillStyle = "#3a2a1a";
+        ctx.beginPath();
+        ctx.moveTo(-8, 25);
+        ctx.lineTo(8, 25);
+        ctx.lineTo(14, 58);
+        ctx.lineTo(-14, 58);
+        ctx.closePath();
+        ctx.fill();
+
+        // receiver
+        ctx.fillStyle = "#1f1f1f";
+        ctx.fillRect(-12, -20, 28, 42);
+
+        // receiver highlight
+        ctx.fillStyle = "#333";
+        ctx.fillRect(-10, -18, 24, 5);
+
+        // barrel
+        ctx.fillStyle = "#111";
+        ctx.fillRect(-6, -58, 14, 42);
+
+        // barrel rib
+        ctx.fillStyle = "#2a2a2a";
+        ctx.fillRect(-2, -58, 6, 42);
+
+        // front sight
+        ctx.fillStyle = "#555";
+        ctx.fillRect(0, -64, 3, 7);
+
+        // pump / forend
+        ctx.fillStyle = "#4a3520";
+        ctx.fillRect(-16, -8, 36, 14);
+        // pump grooves
+        ctx.strokeStyle = "#2a1e10";
+        ctx.lineWidth = 1.5;
+        for (let i = 0; i < 5; i++) {
+            ctx.beginPath();
+            ctx.moveTo(-14, -5 + i * 2.5);
+            ctx.lineTo(18, -5 + i * 2.5);
+            ctx.stroke();
+        }
+
+        // trigger guard + trigger
+        ctx.strokeStyle = "#222";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(4, 18, 8, 0.15, Math.PI - 0.15);
+        ctx.stroke();
+        ctx.fillStyle = "#111";
+        ctx.fillRect(2, 12, 4, 9);
+
+        // muzzle flash (bigger for shotgun)
+        if (flashRef.current > 0) {
+            const alpha = flashRef.current / 0.08;
+            ctx.fillStyle = `rgba(255, 200, 60, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(1, -68);
+            ctx.lineTo(-22, -95);
+            ctx.lineTo(-8, -78);
+            ctx.lineTo(1, -105);
+            ctx.lineTo(10, -78);
+            ctx.lineTo(24, -95);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = `rgba(255, 255, 200, ${alpha * 0.7})`;
+            ctx.beginPath();
+            ctx.arc(1, -72, 14, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        }
+
+        ctx.restore();
+
       // HUD bar
       ctx.fillStyle = "rgba(0,0,0,0.55)";
       ctx.fillRect(0, CANVAS_H - 26, CANVAS_W, 26);
@@ -944,6 +1386,7 @@ const DoomEasterEgg: React.FC<DoomEasterEggProps> = ({ onExit }) => {
       ctx.fillText(`WPN [1/2]: ${weaponLabel}`, 210, CANVAS_H - 9);
       ctx.fillStyle = "#888";
       ctx.fillText("SPACE/CLICK: shoot   F: fullscreen   ESC: quit", 380, CANVAS_H - 9);
+      
     };
 
     const loop = (time: number) => {
