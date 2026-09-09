@@ -48,9 +48,14 @@ const Mint: React.FC = () => {
                 const response = await contract.getWalletMints(signer.address);
                 const walletMints = await response.toString()
                 setWalletMints(parseInt(await walletMints))
-                const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
-                console.log(_tokenIDs)
-                const tokenIDsArray = Object.values(await _tokenIDs).map((value: unknown) => parseInt(value as string))
+                let _tokenIDs: any = [];
+                for(let i = 0; i < parseInt(totalSupply?.toString() || "0"); i++){
+                    const owner = await contract.ownerOf(i);
+                    if(owner === signer.address){
+                        _tokenIDs.push(i);
+                    }
+                }
+                const tokenIDsArray = _tokenIDs.map((value: unknown) => parseInt(value as string))
                 setTokenIDs(tokenIDsArray)
             }
             
@@ -85,11 +90,18 @@ const Mint: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             await getTotalSupply();
+        };
+    
+        fetchData();
+    }, [provider, account, minted]);
+
+    useEffect(() => {
+        const fetchData = async () => {
             await loadAccountData();
         };
     
         fetchData();
-    }, [provider, account, minted])
+    }, [totalSupply, provider, account, minted]);
 
     const exitSuccessBanner = () => {
         setMinted(null)
@@ -203,7 +215,10 @@ const Mint: React.FC = () => {
             {
                 tokenIDs.length > 0 &&
                 showPortfolio === true &&
-                <UserNFTPortfolio setShowPortfolio={setShowPortfolio} showPortfolio={showPortfolio}/>
+                <UserNFTPortfolio 
+                    setShowPortfolio={setShowPortfolio} 
+                    tokenIDs={tokenIDs}  
+                />
             }
         </>
     )

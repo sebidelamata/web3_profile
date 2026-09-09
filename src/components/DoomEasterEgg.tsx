@@ -210,6 +210,104 @@ class Sound {
   }
 }
 
+// ---------- procedural textures ----------
+const TEX_SIZE = 64;
+
+function createTexture(draw: (ctx: CanvasRenderingContext2D, size: number) => void): HTMLCanvasElement {
+  const c = document.createElement("canvas");
+  c.width = c.height = TEX_SIZE;
+  const ctx = c.getContext("2d")!;
+  draw(ctx, TEX_SIZE);
+  return c;
+}
+
+const wallTextures: Record<number, HTMLCanvasElement> = {
+  // Type 1 – dark red brick
+  1: createTexture((ctx, s) => {
+    ctx.fillStyle = "#3a1010";
+    ctx.fillRect(0, 0, s, s);
+    ctx.fillStyle = "#5c1a1a";
+    for (let y = 0; y < s; y += 8) {
+      for (let x = 0; x < s; x += 16) {
+        const offset = (y / 8) % 2 === 0 ? 0 : 8;
+        ctx.fillRect(x + offset, y, 14, 6);
+      }
+    }
+    // mortar lines
+    ctx.strokeStyle = "#2a0a0a";
+    ctx.lineWidth = 1;
+    for (let y = 0; y <= s; y += 8) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(s, y);
+      ctx.stroke();
+    }
+  }),
+
+  // Type 2 – brown tech / panel
+  2: createTexture((ctx, s) => {
+    ctx.fillStyle = "#2a1e12";
+    ctx.fillRect(0, 0, s, s);
+    ctx.fillStyle = "#3d2c1a";
+    for (let i = 0; i < 8; i++) {
+      ctx.fillRect(i * 8, 0, 6, s);
+    }
+    ctx.fillStyle = "#1f160c";
+    ctx.fillRect(0, 20, s, 4);
+    ctx.fillRect(0, 40, s, 4);
+    // small lights
+    ctx.fillStyle = "#6b4a20";
+    for (let x = 4; x < s; x += 16) {
+      ctx.fillRect(x, 12, 3, 3);
+      ctx.fillRect(x, 32, 3, 3);
+    }
+  }),
+
+  // Type 3 – cool grey metal / server
+  3: createTexture((ctx, s) => {
+    ctx.fillStyle = "#1e1e22";
+    ctx.fillRect(0, 0, s, s);
+    ctx.fillStyle = "#2c2c32";
+    for (let y = 0; y < s; y += 4) {
+      ctx.fillRect(0, y, s, 2);
+    }
+    ctx.fillStyle = "#3a3a42";
+    ctx.fillRect(8, 8, s - 16, 12);
+    ctx.fillRect(8, 28, s - 16, 8);
+    ctx.fillRect(8, 44, s - 16, 12);
+    // vents
+    ctx.fillStyle = "#111";
+    for (let x = 12; x < s - 12; x += 6) {
+      ctx.fillRect(x, 10, 3, 8);
+      ctx.fillRect(x, 46, 3, 8);
+    }
+  }),
+};
+
+const floorTexture = createTexture((ctx, s) => {
+  ctx.fillStyle = "#1a120c";
+  ctx.fillRect(0, 0, s, s);
+  ctx.strokeStyle = "#2a1e14";
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= s; i += 16) {
+    ctx.beginPath();
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i, s);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, i);
+    ctx.lineTo(s, i);
+    ctx.stroke();
+  }
+  // subtle dots
+  ctx.fillStyle = "#241810";
+  for (let y = 8; y < s; y += 16) {
+    for (let x = 8; x < s; x += 16) {
+      ctx.fillRect(x, y, 2, 2);
+    }
+  }
+});
+
 const makeEnemies = (level: LevelDef): Enemy[] =>
   level.enemies.map((e) => ({
     id: e.id,
@@ -636,45 +734,76 @@ const DoomEasterEgg: React.FC<DoomEasterEggProps> = ({ onExit }) => {
       const map = LEVELS[levelIndexRef.current].map;
       const zBuffer = new Array(CANVAS_W).fill(Infinity);
 
-      // ceiling + floor
-      ctx.fillStyle = "#161616";
-      ctx.fillRect(0, 0, CANVAS_W, CANVAS_H / 2);
-      ctx.fillStyle = "#332417";
-      ctx.fillRect(0, CANVAS_H / 2, CANVAS_W, CANVAS_H / 2);
+      // ---------- ceiling ----------
+        ctx.fillStyle = "#0e0e12";
+        ctx.fillRect(0, 0, CANVAS_W, CANVAS_H / 2);
 
-      const wallColors: Record<number, [number, number, number]> = {
-        1: [150, 32, 32],
-        2: [110, 70, 35],
-        3: [80, 80, 85],
-      };
+        // ---------- floor (simple perspective texture) ----------
+        const floorImg = floorTexture;
+        for (let y = CANVAS_H / 2; y < CANVAS_H; y++) {
+        const rowDist = CANVAS_H / (2.0 * y - CANVAS_H); // rough perspective
+        const shade = Math.max(0.15, 1 - rowDist / 12);
 
-      // walls
-      for (let col = 0; col < CANVAS_W; col++) {
+        // sample a horizontal strip of the floor texture
+        const texY = Math.floor((y * 3) % TEX_SIZE);
+        ctx.globalAlpha = shade;
+        ctx.drawImage(
+            floorImg,
+            0, texY, TEX_SIZE, 1,          // source
+            0, y, CANVAS_W, 1             // dest – stretch across screen
+        );
+        }
+        ctx.globalAlpha = 1;
+
+        // ---------- textured walls ----------
+        for (let col = 0; col < CANVAS_W; col++) {
         const rayAngle = player.angle - FOV / 2 + (col / CANVAS_W) * FOV;
         const dx = Math.cos(rayAngle);
         const dy = Math.sin(rayAngle);
+
         let distance = 0;
         let wallValue = 1;
         let hit = false;
         let rx = player.x;
         let ry = player.y;
+        let hitX = 0;
+        let hitY = 0;
+
         while (!hit && distance < 20) {
-          rx += dx * RAY_STEP;
-          ry += dy * RAY_STEP;
-          distance += RAY_STEP;
-          if (isWall(map, rx, ry)) {
+            rx += dx * RAY_STEP;
+            ry += dy * RAY_STEP;
+            distance += RAY_STEP;
+            if (isWall(map, rx, ry)) {
             hit = true;
             wallValue = map[Math.floor(ry)][Math.floor(rx)];
-          }
+            hitX = rx;
+            hitY = ry;
+            }
         }
+
         const corrected = distance * Math.cos(rayAngle - player.angle);
         zBuffer[col] = corrected;
+
         const wallHeight = Math.min(CANVAS_H, CANVAS_H / (corrected || 0.0001));
-        const shade = Math.max(0.15, 1 - corrected / 10);
-        const [r, g, b] = wallColors[wallValue] || wallColors[1];
-        ctx.fillStyle = `rgb(${r * shade}, ${g * shade}, ${b * shade})`;
-        ctx.fillRect(col, (CANVAS_H - wallHeight) / 2, 1, wallHeight);
-      }
+        const shade = Math.max(0.18, 1 - corrected / 11);
+
+        // texture X coordinate (which column of the texture to use)
+        const tex = wallTextures[wallValue] || wallTextures[1];
+        // use the fractional part of the hit to pick the texture column
+        const wallX = Math.abs(dx) > Math.abs(dy)
+            ? hitY % 1
+            : hitX % 1;
+        const texX = Math.floor(wallX * TEX_SIZE);
+
+        // draw the textured vertical strip
+        ctx.globalAlpha = shade;
+        ctx.drawImage(
+            tex,
+            texX, 0, 1, TEX_SIZE,                     // source 1px column
+            col, (CANVAS_H - wallHeight) / 2, 1, wallHeight  // dest
+        );
+        ctx.globalAlpha = 1;
+        }
 
       // enemies (sorted far → near)
       const sortedEnemies = [...enemiesRef.current]

@@ -13,17 +13,16 @@ interface Metadata {
 }
 
 interface UserNFTPortfolioProps {
-    showPortfolio: boolean;
     setShowPortfolio: React.Dispatch<React.SetStateAction<boolean>>;
+    tokenIDs: number[];
 }
 
-const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, showPortfolio}) => {
+const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({
+    setShowPortfolio, 
+    tokenIDs
+}) => {
 
     const provider = useProvider();
-    const account = useAccount();
-
-    const [tokenIDs, setTokenIDs] = useState<number[]>([])
-    const [tokenIDsLoading, setTokenIDsLoading] = useState(true)
 
     const [mintedMetaData, setMintedMetadata] = useState<Metadata[]>([])
     const [mintedMetadataLoading, setMintedMetadataLoading] = useState(true)
@@ -132,33 +131,9 @@ const UserNFTPortfolio: React.FC<UserNFTPortfolioProps> = ({setShowPortfolio, sh
         setMintedMetadataLoading(false)
     }
 
-    // load which nfts the wallet has
-    const loadPortfolioIDs = async () => {
-        
-        try{
-            if (!provider) return
-            const signer = await provider.getSigner()
-            const contractAddress: string = import.meta.env.VITE_ARBITRUM_CONTRACT_ADDRESS as string
-            const contractABI = portfolioNFTArtifact.abi
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-            
-            const _tokenIDs = await contract.getWalletTokenIDs(signer.address);
-            const tokenIDsArray = Object.values(await _tokenIDs).map((value: unknown) => parseInt(value as string))
-            setTokenIDs(tokenIDsArray)
-        } catch(err){
-            console.log(err)
-        } finally {
-            setTokenIDsLoading(false)
-        }
-    }
-
-    useEffect(() => {
-        loadPortfolioIDs()
-    }, [provider, account])
-
     useEffect(() => {
         loadNFTPortfolioMetaData()
-    },[tokenIDsLoading])
+    },[tokenIDs])
 
     useEffect(() => {
         loadNFTPortfolioMetaData().then(() => {
